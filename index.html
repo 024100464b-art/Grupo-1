@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Sistema Académico UAC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .uac-primary { background-color: #003366; }
+        .uac-secondary { background-color: #005599; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #003366 0%, #005599 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+    <div class="max-w-6xl mx-auto px-4 py-12">
+        <!-- Main Header -->
+        <header class="relative overflow-hidden rounded-3xl mb-12 shadow-2xl">
+            <div class="uac-primary absolute inset-0 opacity-90"></div>
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+            
+            <div class="relative z-10 p-10 md:p-16 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+                <div class="max-w-2xl">
+                    <span class="inline-block px-4 py-1 rounded-full bg-blue-500/20 text-blue-200 text-xs font-bold uppercase tracking-widest mb-4">
+                        Facultad de Ingeniería y Arquitectura
+                    </span>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
+                        Sistema Académico <span class="text-blue-400">UAC</span>
+                    </h1>
+                    <p class="text-blue-100 text-lg md:text-xl font-light max-w-xl">
+                        Modelado y Gestión de Base de Datos para la optimización de procesos académicos y administrativos.
+                    </p>
+                </div>
+                
+                <div class="mt-8 md:mt-0 glass-card p-6 rounded-2xl text-slate-800 shadow-xl">
+                    <h4 class="text-xs font-bold text-blue-900 uppercase mb-3 border-b pb-2">Equipo de Desarrollo</h4>
+                    <ul class="text-sm space-y-1.5 font-medium">
+                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-600 rounded-full mr-2"></span> Flores Bocangel, T.</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-600 rounded-full mr-2"></span> Canaza Coricasa, Y.</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-600 rounded-full mr-2"></span> Flórez Hurtado, D.</li>
+                        <li class="flex items-center"><span class="w-2 h-2 bg-blue-600 rounded-full mr-2"></span> Gil Condori, G.</li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <!-- Brief Intro -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            <div class="md:col-span-4 flex flex-col justify-center">
+                <h2 class="text-3xl font-bold gradient-text mb-4">Propósito del Sistema</h2>
+                <p class="text-slate-600 leading-relaxed">
+                    Estructurar la información académica para evitar redundancias, mejorar el acceso a registros y fortalecer el funcionamiento institucional mediante un modelo relacional sólido.
+                </p>
+            </div>
+            <div class="md:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="stat-card bg-white p-6 rounded-2xl shadow-sm text-center border-b-4 border-blue-500">
+                    <div class="text-3xl mb-2">🎓</div>
+                    <div class="text-xs font-bold uppercase text-slate-400 tracking-wider">Entidad</div>
+                    <div class="text-lg font-bold">Alumnos</div>
+                </div>
+                <div class="stat-card bg-white p-6 rounded-2xl shadow-sm text-center border-b-4 border-amber-500">
+                    <div class="text-3xl mb-2">👨‍🏫</div>
+                    <div class="text-xs font-bold uppercase text-slate-400 tracking-wider">Entidad</div>
+                    <div class="text-lg font-bold">Docentes</div>
+                </div>
+                <div class="stat-card bg-white p-6 rounded-2xl shadow-sm text-center border-b-4 border-emerald-500">
+                    <div class="text-3xl mb-2">📚</div>
+                    <div class="text-xs font-bold uppercase text-slate-400 tracking-wider">Entidad</div>
+                    <div class="text-lg font-bold">Asignaturas</div>
+                </div>
+                <div class="stat-card bg-white p-6 rounded-2xl shadow-sm text-center border-b-4 border-purple-500">
+                    <div class="text-3xl mb-2">📝</div>
+                    <div class="text-xs font-bold uppercase text-slate-400 tracking-wider">Entidad</div>
+                    <div class="text-lg font-bold">Notas</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Power Pivot Section -->
+        <section class="bg-slate-900 rounded-3xl p-8 md:p-12 text-white mb-12 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full filter blur-[100px] opacity-20"></div>
+            
+            <div class="relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">Arquitectura de Datos (Power Pivot)</h2>
+                        <p class="text-slate-400">Relaciones clave del Sistema Académico III Semestre</p>
+                    </div>
+                    <div class="mt-4 md:mt-0 bg-blue-500 px-4 py-2 rounded-lg text-sm font-bold">
+                        Modelo Relacional 1:N
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Column 1: Alumnos & Notas -->
+                    <div class="space-y-6">
+                        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                            <h4 class="text-blue-400 font-bold text-sm mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span> ALUMNOS
+                            </h4>
+                            <ul class="text-xs space-y-2 text-slate-300">
+                                <li>• Código de Alumno (PK)</li>
+                                <li>• DNI / Nombres</li>
+                                <li>• Correo Institucional</li>
+                            </ul>
+                        </div>
+                        <div class="flex justify-center py-2 text-blue-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+                        </div>
+                        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                            <h4 class="text-purple-400 font-bold text-sm mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-purple-400 rounded-full mr-2"></span> NOTAS
+                            </h4>
+                            <p class="text-[10px] text-slate-500 mb-2 italic">Tabla de Hechos</p>
+                            <ul class="text-xs space-y-2 text-slate-300">
+                                <li>• ID Nota (PK)</li>
+                                <li>• Aporte 1, 2, 3</li>
+                                <li>• Promedio Final</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Central Connections -->
+                    <div class="hidden lg:flex flex-col items-center justify-center space-y-12">
+                        <div class="w-full h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+                        <div class="bg-blue-600/10 p-6 rounded-full border border-blue-500/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                            </svg>
+                        </div>
+                        <div class="w-full h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+                    </div>
+
+                    <!-- Column 3: Docentes & Asignaturas -->
+                    <div class="space-y-6">
+                        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                            <h4 class="text-emerald-400 font-bold text-sm mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-emerald-400 rounded-full mr-2"></span> ASIGNATURAS
+                            </h4>
+                            <ul class="text-xs space-y-2 text-slate-300">
+                                <li>• Código Curso (PK)</li>
+                                <li>• Nombre: Cálculo II, Física I...</li>
+                                <li>• Créditos / Horas</li>
+                            </ul>
+                        </div>
+                        <div class="flex justify-center py-2 text-emerald-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+                        </div>
+                        <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                            <h4 class="text-amber-400 font-bold text-sm mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-amber-400 rounded-full mr-2"></span> DOCENTES
+                            </h4>
+                            <ul class="text-xs space-y-2 text-slate-300">
+                                <li>• Código Docente (PK)</li>
+                                <li>• Cargo Académico</li>
+                                <li>• Correo Institucional</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusions & Suggestions -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Conclusión</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                    El desarrollo permitió aplicar conocimientos prácticos en organización de datos, asegurando eficiencia en los procesos administrativos. La estructura previene errores y mejora la veracidad de la información educativa.
+                </p>
+                <div class="p-4 bg-blue-50 rounded-xl text-xs text-blue-700 font-medium">
+                    "La base de datos es el pilar de la gestión eficiente."
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Sugerencias</h3>
+                <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">✔</span> Implementar en entorno real para ajustes.</li>
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">✔</span> Establecer protocolos de seguridad (Backup).</li>
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">✔</span> Brindar capacitación a usuarios y personal.</li>
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">✔</span> Incorporar módulos de reportes automáticos.</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer class="mt-16 pt-8 border-t border-slate-200 text-center">
+            <p class="text-slate-400 text-xs font-medium tracking-widest uppercase">
+                Escuela Profesional de Ingeniería de Sistemas | Cusco 2025
+            </p>
+        </footer>
+    </div>
+
+</body>
+</html>
