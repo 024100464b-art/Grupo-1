@@ -1,3 +1,8 @@
+# Taller 1.2 : Implementación de Modelos Físicos
+
+---
+
+
 ## Actividad 2: Sistema de registro de transacciones bancarias a nivel nacional (Super Giros)
 **Motor de Base de Datos:** SQL Server
 
