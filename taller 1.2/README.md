@@ -116,7 +116,7 @@ GO
 **Motor de Base de Datos:** SQL Server
 
 ### Diagrama Físico
-![Diagrama INPE](diagrama-actividad3.jpg)
+![Diagrama INPE](diagrama-actividad3.png)
 
 ### Código SQL (Implementación)
 ```sql
@@ -211,7 +211,7 @@ GO
 **Motor de Base de Datos:** MySQL
 
 ### Diagrama Físico
-![Diagrama Pollería Don Gallino](diagrama-actividad4.jpg)
+![Diagrama Pollería Don Gallino](diagrama-actividad4.png)
 
 ### Código SQL (Implementación)
 ```sql
@@ -272,7 +272,7 @@ CREATE TABLE Detalle (
 **Motor de Base de Datos:** MySQL
 
 ### Diagrama Físico
-![Diagrama Electro Track](diagrama-actividad5.jpg)
+![Diagrama Electro Track](diagrama-actividad5.png)
 
 ### Código SQL (Implementación)
 ```sql
@@ -343,7 +343,7 @@ CREATE TABLE detalleIngresoSalida (
 **Motor de Base de Datos:** Oracle SQL
 
 ### Diagrama Físico
-![Diagrama Clínica Mac Salud](diagrama-actividad6.jpg)
+![Diagrama Clínica Mac Salud](diagrama-actividad6.png)
 
 ### Código SQL (Implementación)
 ```sql
@@ -398,7 +398,7 @@ CREATE TABLE Asistencia (
 **Motor de Base de Datos:** Oracle SQL
 
 ### Diagrama Físico
-![Diagrama Pollería Los Ángeles](diagrama-actividad7.jpg)
+![Diagrama Pollería Los Ángeles](diagrama-actividad7.png)
 
 ### Código SQL (Implementación)
 ```sql
@@ -455,7 +455,7 @@ CREATE TABLE Detalle (
 **Motor de Base de Datos:** PostgreSQL
 
 ### Diagrama Físico
-![Diagrama del Gimnasio](diagrama-actividad8.jpg)
+![Diagrama del Gimnasio](diagrama-actividad8.png)
 
 ### Código SQL (Implementación)
 ```sql
