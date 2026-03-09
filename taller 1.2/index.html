@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller 1.2: Modelos Físicos</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- PrismJS for Syntax Highlighting (Dark Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --bg-main: #0a0a0f;
+            --card-bg: rgba(22, 23, 31, 0.6);
+            --card-hover: rgba(30, 32, 45, 0.8);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-glow: rgba(59, 130, 246, 0.5);
+
+            --sqlserver-bg: rgba(60, 60, 60, 0.4);
+            --sqlserver-border: rgba(144, 144, 144, 0.4);
+            
+            --mysql-bg: rgba(1, 102, 140, 0.2);
+            --mysql-border: rgba(1, 102, 140, 0.5);
+
+            --oracle-bg: rgba(248, 0, 0, 0.15);
+            --oracle-border: rgba(248, 0, 0, 0.4);
+
+            --postgres-bg: rgba(51, 103, 145, 0.2);
+            --postgres-border: rgba(51, 103, 145, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Gradients (Blob effects) */
+        .bg-shape {
+            position: absolute;
+            filter: blur(120px);
+            z-index: -1;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+
+        .shape-1 {
+            top: -10%;
+            left: 10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(0,0,0,0) 70%);
+        }
+
+        .shape-2 {
+            top: 40%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, rgba(0,0,0,0) 70%);
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            bottom: -10%;
+            left: 20%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, rgba(0,0,0,0) 70%);
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-50px) scale(1.1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            padding: 100px 0 60px;
+            position: relative;
+        }
+
+        .badge-glow {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: var(--accent-blue);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            box-shadow: 0 0 20px var(--accent-glow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            padding: 30px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .db-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+
+        .db-badge img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .tag-sqlserver {
+            background: var(--sqlserver-bg);
+            border-color: var(--sqlserver-border);
+            color: #e2e8f0;
+        }
+
+        .tag-mysql {
+            background: var(--mysql-bg);
+            border-color: var(--mysql-border);
+            color: #38bdf8;
+        }
+
+        .tag-oracle {
+            background: var(--oracle-bg);
+            border-color: var(--oracle-border);
+            color: #f87171;
+        }
+
+        .tag-postgres {
+            background: var(--postgres-bg);
+            border-color: var(--postgres-border);
+            color: #60a5fa;
+        }
+
+        /* Layout Grid */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .media-container, .code-container {
+            padding: 30px;
+        }
+
+        .media-container {
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-heading {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-heading::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 18px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 4px;
+        }
+
+        .m-0 {
+            margin: 0;
+        }
+
+        /* Images */
+        .image-wrapper {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            min-height: 300px;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .image-wrapper:hover img {
+            transform: scale(1.05);
+            filter: blur(2px);
+        }
+
+        .image-wrapper:hover .image-overlay {
+            opacity: 1;
+        }
+
+        /* Code */
+        .code-container {
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .copy-btn.success {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #34d399;
+        }
+
+        /* Prism Overrides */
+        pre[class*="language-"] {
+            background: #0d1117 !important;
+            border-radius: 12px;
+            margin: 0 !important;
+            flex-grow: 1;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace !important;
+            font-size: 0.85rem !important;
+        }
+
+        code[class*="language-"] {
+            font-family: 'JetBrains Mono', monospace !important;
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .close-modal:hover { color: #fff; transform: scale(1.1); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        /* Animations fade in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 992px) {
+            .layout-grid { grid-template-columns: 1fr; }
+            .media-container { border-right: none; border-bottom: 1px solid var(--border-color); }
+            .title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body class="line-numbers">
+    
+    <!-- Background Elements -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <header class="header">
+        <div class="container text-center">
+            <span class="badge badge-glow">Taller 1.2</span>
+            <h1 class="title">Implementación de <br/><span class="text-gradient">Modelos Físicos</span></h1>
+            <p class="subtitle">Repositorio de implementación de base de datos interactivas y modelos ER.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Actividad 2 -->
+        <article class="card fade-in">
+            <div class="card-header">
+                <div>
+                    <h2 class="card-title">Actividad 2: Transacciones Bancarias (Super Giros)</h2>
+                    <p class="card-desc">Motor de Base de Datos: <span class="db-badge tag-sqlserver"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="SQL Server" class="tech-icon"/> SQL Server</span></p>
+                </div>
+            </div>
+            <div class="card-content layout-grid">
+                <div class="media-container">
+                    <h3 class="section-heading">Diagrama Físico</h3>
+                    <div class="image-wrapper" onclick="openModal('diagrama-actividad2.jpg')">
+                        <img src="diagrama-actividad2.jpg" alt="Diagrama Super Giros" onerror="this.src='https://placehold.co/800x600/1e293b/a1a1aa?text=Diagrama+Actividad+2';">
+                        <div class="image-overlay">🔍 Ampliar Diagrama</div>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <h3 class="section-heading m-0">Implementación SQL</h3>
+                        <button class="copy-btn" data-clipboard-target="#code2">Copiar</button>
+                    </div>
+                    <pre><code class="language-sql" id="code2">USE Master
+GO
+
+IF DB_ID('DBSuperGiros') IS NOT NULL
+	DROP DATABASE DBSuperGiros
+GO
+
+CREATE DATABASE DBSuperGiros
+GO
+
+USE DBSuperGiros
+GO
+
+-- Tabla Banco
+IF OBJECT_ID('TBanco') IS NOT NULL
+	DROP TABLE TBanco
+GO
+
+CREATE TABLE TBanco
+(
+	IdBanco INT PRIMARY KEY IDENTITY(1,1),
+	NombreBanco VARCHAR(100) NOT NULL,
+	PaginaWeb VARCHAR(150) NOT NULL
+)
+GO
+
+-- Tabla Cliente
+IF OBJECT_ID('TCliente') IS NOT NULL
+	DROP TABLE TCliente
+GO
+
+CREATE TABLE TCliente
+(
+	IdCliente INT PRIMARY KEY IDENTITY(1,1),
+	TipoDocumento VARCHAR(20) NOT NULL,
+	NroDocumento VARCHAR(20) NOT NULL,
+	Nombres VARCHAR(100) NOT NULL,
+	Paterno VARCHAR(100) NOT NULL,
+	Materno VARCHAR(100) NOT NULL,
+	Celular VARCHAR(15) NOT NULL
+)
+GO
+
+-- Tabla Empleado
+IF OBJECT_ID('TEmpleado') IS NOT NULL
+	DROP TABLE TEmpleado
+GO
+
+CREATE TABLE TEmpleado
+(
+	IdEmpleado INT PRIMARY KEY IDENTITY(1,1),
+	TipoDocumento VARCHAR(20) NOT NULL,
+	NroDocumento VARCHAR(20) NOT NULL,
+	Nombres VARCHAR(100) NOT NULL,
+	Paterno VARCHAR(100) NOT NULL,
+	Materno VARCHAR(100) NOT NULL,
+	Celular VARCHAR(15) NOT NULL
+)
+GO
+
+-- Tabla Cuenta
+IF OBJECT_ID('TCuenta') IS NOT NULL
+	DROP TABLE TCuenta
+GO
+
+CREATE TABLE TCuenta
+(
+	IdCuenta INT PRIMARY KEY IDENTITY(1,1),
+	NroCuenta VARCHAR(30) NOT NULL,
+	SaldoCuenta DECIMAL(12,2) NOT NULL,
+	IdBanco INT NOT NULL,
+	IdCliente INT NOT NULL,
+
+	CONSTRAINT FK_Banco_Cuenta FOREIGN KEY (IdBanco) REFERENCES TBanco(IdBanco),
+	CONSTRAINT FK_Cliente_Cuenta FOREIGN KEY (IdCliente) REFERENCES TCliente(IdCliente)
+)
+GO
+
+-- Tabla Operacion
+IF OBJECT_ID('TOperacion') IS NOT NULL
+	DROP TABLE TOperacion
+GO
+
+CREATE TABLE TOperacion
+(
+	IdOperacion INT PRIMARY KEY IDENTITY(1,1),
+	TipoOperacion VARCHAR(50) NOT NULL,
+	FechaHoraOperacion DATETIME NOT NULL,
+	MontoOperacion DECIMAL(12,2) NOT NULL,
+	ComisionOperacion DECIMAL(10,2) NOT NULL,
+	IdCuenta INT NOT NULL,
+	IdCliente INT NOT NULL,
+	IdEmpleado INT NOT NULL,
+
+	CONSTRAINT FK_Cuenta_Operacion FOREIGN KEY (IdCuenta) REFERENCES TCuenta(IdCuenta),
+	CONSTRAINT FK_Cliente_Operacion FOREIGN KEY (IdCliente) REFERENCES TCliente(IdCliente),
+	CONSTRAINT FK_Empleado_Operacion FOREIGN KEY (IdEmpleado) REFERENCES TEmpleado(IdEmpleado)
+)
+GO</code></pre>
+                </div>
+            </div>
+        </article>
+
+        <!-- Actividad 3 -->
+        <article class="card fade-in">
+            <div class="card-header">
+                <div>
+                    <h2 class="card-title">Actividad 3: Asistencia del personal del INPE</h2>
+                    <p class="card-desc">Motor de Base de Datos: <span class="db-badge tag-sqlserver"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="SQL Server" class="tech-icon"/> SQL Server</span></p>
+                </div>
+            </div>
+            <div class="card-content layout-grid">
+                <div class="media-container">
+                    <h3 class="section-heading">Diagrama Físico</h3>
+                    <div class="image-wrapper" onclick="openModal('diagrama-actividad3.png')">
+                        <img src="diagrama-actividad3.png" alt="Diagrama INPE" onerror="this.src='https://placehold.co/800x600/1e293b/a1a1aa?text=Diagrama+Actividad+3';">
+                        <div class="image-overlay">🔍 Ampliar Diagrama</div>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <h3 class="section-heading m-0">Implementación SQL</h3>
+                        <button class="copy-btn" data-clipboard-target="#code3">Copiar</button>
+                    </div>
+                    <pre><code class="language-sql" id="code3">USE Master 
+GO
+
+IF DB_ID('DBinpe') IS NOT NULL
+	DROP DATABASE DBinpe
+GO
+
+CREATE DATABASE DBinpe
+GO
+
+USE DBinpe
+GO
+
+-- Tabla Empleado
+IF OBJECT_ID('TEmpleado') IS NOT NULL
+	DROP TABLE TEmpleado
+GO
+
+CREATE TABLE TEmpleado
+(
+	IdEmpleado INT PRIMARY KEY IDENTITY(1,1),
+	tipoDocumento VARCHAR(20) NOT NULL,
+	nroDocumento VARCHAR(20) NOT NULL,
+	nombres VARCHAR(100) NOT NULL,
+	paterno VARCHAR(100) NOT NULL,
+	materno VARCHAR(100) NOT NULL,
+	celular CHAR(100) NOT NULL,
+	IdSupervisor INT UNIQUE NULL,
+
+	CONSTRAINT FK_Empleado_Supervisor FOREIGN KEY (IdSupervisor) REFERENCES TEmpleado (IdEmpleado) 
+)
+GO
+
+-- Tabla Turno
+IF OBJECT_ID('TTurno') IS NOT NULL
+	DROP TABLE TTurno
+GO
+
+CREATE TABLE TTurno
+(
+	IdTurno INT PRIMARY KEY IDENTITY(1,5),
+	nombre VARCHAR(100) NOT NULL,
+	inicio DATETIME,
+	fin DATETIME
+)
+GO
+
+-- Tabla Año
+IF OBJECT_ID('TAño') IS NOT NULL
+	DROP TABLE TAño
+GO
+
+CREATE TABLE TAño
+(
+	IdAño INT PRIMARY KEY,
+	inicio DATETIME NOT NULL,
+	fin DATETIME NOT NULL,
+	IdTurno INT,
+
+	CONSTRAINT FK_Turno_Año FOREIGN KEY (IdTurno) REFERENCES TTurno(IdTurno)
+)
+GO
+
+-- Tabla Asistencia
+IF OBJECT_ID ('TAsistencia') IS NOT NULL
+	DROP TABLE TAsistencia
+GO
+
+CREATE TABLE TAsistencia
+(
+	IdAsistencia INT PRIMARY KEY,
+	fecha DATETIME NOT NULL,
+	dia VARCHAR(20) NOT NULL,
+	Feriado VARCHAR(10) NOT NULL,
+	asistio VARCHAR(10) NOT NULL,
+	tardo VARCHAR(10) NOT NULL,
+	horaEntrada DATETIME,
+	horaSalida DATETIME,
+	IdEmpleado INT,
+	IdTurno INT UNIQUE,
+
+	CONSTRAINT FK_Empleado_Asistencia FOREIGN KEY(IdEmpleado) REFERENCES TEmpleado(IdEmpleado),
+	CONSTRAINT FK_Turno_Asistencia FOREIGN KEY(IdTurno) REFERENCES TTurno(IdTurno)
+)
+GO</code></pre>
+                </div>
+            </div>
+        </article>
+
+        <!-- Actividad 4 -->
+        <article class="card fade-in">
+            <div class="card-header">
+                <div>
+                    <h2 class="card-title">Actividad 4: Venta en pollería “Don Gallino”</h2>
+                    <p class="card-desc">Motor de Base de Datos: <span class="db-badge tag-mysql"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="tech-icon"/> MySQL</span></p>
+                </div>
+            </div>
+            <div class="card-content layout-grid">
+                <div class="media-container">
+                    <h3 class="section-heading">Diagrama Físico</h3>
+                    <div class="image-wrapper" onclick="openModal('diagrama-actividad4.png')">
+                        <img src="diagrama-actividad4.png" alt="Diagrama Pollería Don Gallino" onerror="this.src='https://placehold.co/800x600/1e293b/a1a1aa?text=Diagrama+Actividad+4';">
+                        <div class="image-overlay">🔍 Ampliar Diagrama</div>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <h3 class="section-heading m-0">Implementación SQL</h3>
+                        <button class="copy-btn" data-clipboard-target="#code4">Copiar</button>
+                    </div>
+                    <pre><code class="language-sql" id="code4">CREATE DATABASE DonGallino;
+
+USE DonGallino;
+
+-- TABLA: Cliente
+CREATE TABLE Cliente (
+    idC INT AUTO_INCREMENT PRIMARY KEY,
+    tipoDocum VARCHAR(20),
+    nroDocum VARCHAR(20),
+    nombres VARCHAR(100),
+    paterno VARCHAR(50),
+    materno VARCHAR(50),
+    celular VARCHAR(15)
+);
+
+-- TABLA: Categoria
+CREATE TABLE Categoria (
+    idCat INT AUTO_INCREMENT PRIMARY KEY,
+    nombreCat VARCHAR(100),
+    descripcionCat VARCHAR(200)
+);
+
+-- TABLA: Producto
+CREATE TABLE Producto (
+    idP INT AUTO_INCREMENT PRIMARY KEY,
+    nombreP VARCHAR(100),
+    descripcionP VARCHAR(200),
+    precioReferencialP DECIMAL(10,2),
+    idCat INT,
+    FOREIGN KEY (idCat) REFERENCES Categoria(idCat)
+);
+
+-- TABLA: Comprobante
+CREATE TABLE Comprobante (
+    idComp INT AUTO_INCREMENT PRIMARY KEY,
+    fechaHoraComp DATETIME,
+    totalComp DECIMAL(10,2),
+    idC INT,
+    FOREIGN KEY (idC) REFERENCES Cliente(idC)
+);
+
+-- TABLA: Detalle
+CREATE TABLE Detalle (
+    idDet INT AUTO_INCREMENT PRIMARY KEY,
+    cantidadDet INT,
+    precioRealUnitarioDet DECIMAL(10,2),
+    subTotalDet DECIMAL(10,2),
+    idComp INT,
+    idP INT,
+    FOREIGN KEY (idComp) REFERENCES Comprobante(idComp),
+    FOREIGN KEY (idP) REFERENCES Producto(idP)
+);</code></pre>
+                </div>
+            </div>
+        </article>
+
+        <!-- Actividad 5 -->
+        <article class="card fade-in">
+            <div class="card-header">
+                <div>
+                    <h2 class="card-title">Actividad 5: Entrada y salida de electrodomésticos “Electro Track”</h2>
+                    <p class="card-desc">Motor de Base de Datos: <span class="db-badge tag-mysql"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="tech-icon"/> MySQL</span></p>
+                </div>
+            </div>
+            <div class="card-content layout-grid">
+                <div class="media-container">
+                    <h3 class="section-heading">Diagrama Físico</h3>
+                    <div class="image-wrapper" onclick="openModal('diagrama-actividad5.png')">
+                        <img src="diagrama-actividad5.png" alt="Diagrama Electro Track" onerror="this.src='https://placehold.co/800x600/1e293b/a1a1aa?text=Diagrama+Actividad+5';">
+                        <div class="image-overlay">🔍 Ampliar Diagrama</div>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <h3 class="section-heading m-0">Implementación SQL</h3>
+                        <button class="copy-btn" data-clipboard-target="#code5">Copiar</button>
+                    </div>
+                    <pre><code class="language-sql" id="code5">-- TABLA: Proveedor
+CREATE TABLE Proveedor (
+    idP INT AUTO_INCREMENT PRIMARY KEY,
+    razonSocialP VARCHAR(100),
+    direccion VARCHAR(150)
+);
+
+-- TABLA: OrdenDeCompra
+CREATE TABLE OrdenDeCompra (
+    idOrden INT AUTO_INCREMENT PRIMARY KEY,
+    fechaHoraOrden DATETIME,
+    totalOrden DECIMAL(10,2),
+    idP INT,
+    FOREIGN KEY (idP) REFERENCES Proveedor(idP)
+);
+
+-- TABLA: Electrodomestico
+CREATE TABLE Electrodomestico (
+    idE INT AUTO_INCREMENT PRIMARY KEY,
+    nombreE VARCHAR(100),
+    marcaE VARCHAR(100),
+    modeloE VARCHAR(100),
+    precioVentaE DECIMAL(10,2),
+    precioCompraE DECIMAL(10,2)
+);
+
+-- TABLA: Cliente
+CREATE TABLE Cliente (
+    idC INT AUTO_INCREMENT PRIMARY KEY,
+    tipoDocumC VARCHAR(20),
+    nombresC VARCHAR(100),
+    nroDocumC VARCHAR(20),
+    paternoC VARCHAR(50),
+    maternoC VARCHAR(50),
+    celularC VARCHAR(15)
+);
+
+-- TABLA: Comprobante
+CREATE TABLE Comprobante (
+    idComp INT AUTO_INCREMENT PRIMARY KEY,
+    tipoComp VARCHAR(50),
+    fechaHoraComp DATETIME,
+    totalComp DECIMAL(10,2),
+    idC INT,
+    FOREIGN KEY (idC) REFERENCES Cliente(idC)
+);
+
+-- TABLA: detalleIngresoSalida
+CREATE TABLE detalleIngresoSalida (
+    idDet INT AUTO_INCREMENT PRIMARY KEY,
+    tipoDet VARCHAR(50),
+    subTotalDet DECIMAL(10,2),
+    cantidadDet INT,
+    idE INT,
+    idOrden INT,
+    idComp INT,
+    FOREIGN KEY (idE) REFERENCES Electrodomestico(idE),
+    FOREIGN KEY (idOrden) REFERENCES OrdenDeCompra(idOrden),
+    FOREIGN KEY (idComp) REFERENCES Comprobante(idComp)
+);</code></pre>
+                </div>
+            </div>
+        </article>
+
+        <!-- Actividad 6 -->
+        <article class="card fade-in">
+            <div class="card-header">
+                <div>
+                    <h2 class="card-title">Actividad 6: Asistencia de enfermeras (Clínica Mac Salud)</h2>
+                    <p class="card-desc">Motor de Base de Datos: <span class="db-badge tag-oracle"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle" class="tech-icon"/> Oracle SQL</span></p>
+                </div>
+            </div>
+            <div class="card-content layout-grid">
+                <div class="media-container">
+                    <h3 class="section-heading">Diagrama Físico</h3>
+                    <div class="image-wrapper" onclick="openModal('diagrama-actividad6.png')">
+                        <img src="diagrama-actividad6.png" alt="Diagrama Clínica Mac Salud" onerror="this.src='https://placehold.co/800x600/1e293b/a1a1aa?text=Diagrama+Actividad+6';">
+                        <div class="image-overlay">🔍 Ampliar Diagrama</div>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <h3 class="section-heading m-0">Implementación SQL</h3>
+                        <button class="copy-btn" data-clipboard-target="#code6">Copiar</button>
+                    </div>
+                    <pre><code class="language-sql" id="code6">-- Tabla Enfermero
+CREATE TABLE Enfermero (
+    idE NUMBER PRIMARY KEY,
+    tipoDocumeE VARCHAR2(20),
+    nroDocumeE VARCHAR2(20),
+    nombresE VARCHAR2(100),
+    paternoE VARCHAR2(100),
+    maternoE VARCHAR2(100),
+    fechaNacimientoE DATE,
+    generoE VARCHAR2(10)
+);
+
+-- Tabla Ambiente
+CREATE TABLE Ambiente (
+    idAmb NUMBER PRIMARY KEY,
+    nroAmb VARCHAR2(20),
+    ubicacionAmb VARCHAR2(100)
+);
+
+-- Tabla Calendario
+CREATE TABLE Calendario (
+    idC NUMBER PRIMARY KEY,
+    inicioC DATE,
+    finC DATE,
+    nombreC VARCHAR2(100)
+);
+
+-- Tabla Asistencia
+CREATE TABLE Asistencia (
+    idA NUMBER PRIMARY KEY,
+    fechaA DATE,
+    diaA VARCHAR2(20),
+    asistioA VARCHAR2(10),
+    tardoA VARCHAR2(10),
+    horaEntradaA VARCHAR2(10),
+    horaSalidaA VARCHAR2(10),
+    justificacionA VARCHAR2(200),
+    esDescansoA VARCHAR2(10),
+    idE NUMBER,
+    idAmb NUMBER,
+    idC NUMBER,
+    CONSTRAINT fk_enfermero FOREIGN KEY (idE) REFERENCES Enfermero(idE),
+    CONSTRAINT fk_ambiente FOREIGN KEY (idAmb) REFERENCES Ambiente(idAmb),
+    CONSTRAINT fk_calendario FOREIGN KEY (idC) REFERENCES Calendario(idC)
+);</code></pre>
+                </div>
+            </div>
+        </article>
+
+        <!-- Actividad 7 -->
+        <article class="card fade-in">
+            <div class="card-header">
+                <div>
+                    <h2 class="card-title">Actividad 7: Facturación electrónica (Pollería Los Ángeles)</h2>
+                    <p class="card-desc">Motor de Base de Datos: <span class="db-badge tag-oracle"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle" class="tech-icon"/> Oracle SQL</span></p>
+                </div>
+            </div>
+            <div class="card-content layout-grid">
+                <div class="media-container">
+                    <h3 class="section-heading">Diagrama Físico</h3>
+                    <div class="image-wrapper" onclick="openModal('diagrama-actividad7.png')">
+                        <img src="diagrama-actividad7.png" alt="Diagrama Pollería Los Ángeles" onerror="this.src='https://placehold.co/800x600/1e293b/a1a1aa?text=Diagrama+Actividad+7';">
+                        <div class="image-overlay">🔍 Ampliar Diagrama</div>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <h3 class="section-heading m-0">Implementación SQL</h3>
+                        <button class="copy-btn" data-clipboard-target="#code7">Copiar</button>
+                    </div>
+                    <pre><code class="language-sql" id="code7">-- Tabla Cliente
+CREATE TABLE Cliente (
+    idC NUMBER PRIMARY KEY,
+    tipoDocumC VARCHAR2(20),
+    nroDocumC VARCHAR2(20),
+    nombresC VARCHAR2(100),
+    paternoC VARCHAR2(100),
+    maternoC VARCHAR2(100),
+    celularC VARCHAR2(20)
+);
+
+-- Tabla Categoria
+CREATE TABLE Categoria (
+    idCat NUMBER PRIMARY KEY,
+    nombreCat VARCHAR2(100),
+    descripcionCat VARCHAR2(200)
+);
+
+-- Tabla Producto
+CREATE TABLE Producto (
+    idP NUMBER PRIMARY KEY,
+    nombreP VARCHAR2(100),
+    decripcionP VARCHAR2(200),
+    precioReferencialP NUMBER(10,2),
+    idCat NUMBER,
+    CONSTRAINT fk_categoria FOREIGN KEY (idCat) REFERENCES Categoria(idCat)
+);
+
+-- Tabla Comprobante
+CREATE TABLE Comprobante (
+    idComp NUMBER PRIMARY KEY,
+    fechaHoraComp DATE,
+    totalComp NUMBER(10,2),
+    idC NUMBER,
+    CONSTRAINT fk_cliente FOREIGN KEY (idC) REFERENCES Cliente(idC)
+);
+
+-- Tabla Detalle
+CREATE TABLE Detalle (
+    idDet NUMBER PRIMARY KEY,
+    cantidadDet NUMBER,
+    precioRealUnitarioDet NUMBER(10,2),
+    subtotalDet NUMBER(10,2),
+    idComp NUMBER,
+    idP NUMBER,
+    CONSTRAINT fk_comprobante FOREIGN KEY (idComp) REFERENCES Comprobante(idComp),
+    CONSTRAINT fk_producto FOREIGN KEY (idP) REFERENCES Producto(idP)
+);</code></pre>
+                </div>
+            </div>
+        </article>
+
+        <!-- Actividad 8 -->
+        <article class="card fade-in">
+            <div class="card-header">
+                <div>
+                    <h2 class="card-title">Actividad 8: Gimnasio Titanium</h2>
+                    <p class="card-desc">Motor de Base de Datos: <span class="db-badge tag-postgres"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="tech-icon"/> PostgreSQL</span></p>
+                </div>
+            </div>
+            <div class="card-content layout-grid">
+                <div class="media-container">
+                    <h3 class="section-heading">Diagrama Físico</h3>
+                    <div class="image-wrapper" onclick="openModal('diagrama-actividad8.png')">
+                        <img src="diagrama-actividad8.png" alt="Diagrama del Gimnasio" onerror="this.src='https://placehold.co/800x600/1e293b/a1a1aa?text=Diagrama+Actividad+8';">
+                        <div class="image-overlay">🔍 Ampliar Diagrama</div>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <h3 class="section-heading m-0">Implementación SQL</h3>
+                        <button class="copy-btn" data-clipboard-target="#code8">Copiar</button>
+                    </div>
+                    <pre><code class="language-sql" id="code8">-- 1. Tabla Cliente
+CREATE TABLE TCliente
+(
+    IdCliente CHAR(5) PRIMARY KEY, 
+    tipoDocumC VARCHAR(20),
+    nroDocumC VARCHAR(20) UNIQUE NOT NULL, 
+    nombresC VARCHAR(50) NOT NULL,  
+    paternoC VARCHAR(50) NOT NULL, 
+    maternoC VARCHAR(50),
+    generoC CHAR(1),
+    fechaNacimC DATE,
+    enfermedadesC TEXT, 
+    celularC VARCHAR(15)
+);
+
+-- 2. Tabla Disciplina
+CREATE TABLE TDisciplina
+(
+    IdDisciplina CHAR(5) PRIMARY KEY,
+    nombreD VARCHAR(50) UNIQUE NOT NULL,  
+    descripcionD TEXT
+);
+
+-- 3. Tabla GrupoDisciplina
+CREATE TABLE TGrupoDisciplina
+(
+    IdGrupoDisciplina CHAR(5) PRIMARY KEY,
+    nombreG VARCHAR(50) NOT NULL,          
+    fechaInicioG DATE,
+    fechaFinG DATE,
+    idD CHAR(5) NOT NULL,                 
+    FOREIGN KEY(idD) REFERENCES TDisciplina(IdDisciplina)
+);
+
+-- 4. Tabla Asistencia
+CREATE TABLE TAsistencia
+(
+    idA CHAR(5) PRIMARY KEY,
+    fechaA DATE NOT NULL,                  
+    diaA VARCHAR(15),
+    esferiadoA BOOLEAN,
+    asistioA BOOLEAN,
+    horaEntradaA TIME,
+    idC CHAR(5) NOT NULL,                 
+    idG CHAR(5) NOT NULL,                 
+    FOREIGN KEY(idC) REFERENCES TCliente(IdCliente),
+    FOREIGN KEY(idG) REFERENCES TGrupoDisciplina(IdGrupoDisciplina)
+);</code></pre>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <footer class="footer">
+        <p>Implementación de Modelos Físicos &copy; 2024</p>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Intersection Observer for fade-in animations
+            const faders = document.querySelectorAll('.fade-in');
+            
+            const appearOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // Code Copy Functionality
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            
+            copyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.getAttribute('data-clipboard-target');
+                    const codeElement = document.querySelector(targetId);
+                    
+                    if (codeElement) {
+                        const textToCopy = codeElement.innerText || codeElement.textContent;
+                        
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            button.innerText = '¡Copiado!';
+                            button.classList.add('success');
+                            
+                            setTimeout(() => {
+                                button.innerText = 'Copiar';
+                                button.classList.remove('success');
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('Failed to copy: ', err);
+                            button.innerText = 'Error';
+                        });
+                    }
+                });
+            });
+
+            // Close modal on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape") {
+                    closeModal();
+                }
+            });
+
+            // Close modal when clicking outside the image
+            const modal = document.getElementById("imageModal");
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+
+        // Modal Logic
+        function openModal(imgSrc) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImg");
+            
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+            document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+    </script>
+</body>
+</html>
