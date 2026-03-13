@@ -1,1 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Bases de Datos | Proyectos SQL</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
+    <style>
+        :root {
+            --bg-color: #f3f4f6;
+            --text-color: #1f2937;
+            --card-bg: #ffffff;
+            --primary: #3b82f6;
+            --sql-server: #ef4444;
+            --postgres: #336791;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--text-color);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            color: #9ca3af;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card h2 {
+            margin-top: 0;
+            color: var(--text-color);
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .badge.sql-server { background-color: var(--sql-server); }
+        .badge.postgres { background-color: var(--postgres); }
+
+        pre {
+            border-radius: 8px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mis Proyectos de Bases de Datos</h1>
+        <p>Modelado, diseño e implementación de bases de datos relacionales</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="project-card">
+            <span class="badge sql-server">Microsoft SQL Server (T-SQL)</span>
+            <h2>1. Sistema de Inventario "ABC" (Electrodomésticos)</h2>
+            <p>Diseño de una base de datos transaccional para el control de entradas (compras a proveedores) y salidas (ventas a clientes) de electrodomésticos.</p>
+            
+            <pre><code class="language-sql">USE master
+GO
+
+IF DB_ID('DBElectrodomesticosABC') IS NOT NULL
+    DROP DATABASE DBElectrodomesticosABC
+GO
+
+CREATE DATABASE DBElectrodomesticosABC
+GO
+
+USE DBElectrodomesticosABC
+GO
+
+IF OBJECT_ID('Cliente') IS NOT NULL
+    DROP TABLE Cliente
+GO
+
+CREATE TABLE Cliente
+(
+    idCliente INT PRIMARY KEY IDENTITY(1,1),
+    nombre VARCHAR(100) NOT NULL,
+    telefono VARCHAR(20),
+    direccion VARCHAR(150),
+    email VARCHAR(100)
+)
+GO
+
+IF OBJECT_ID('Proveedor') IS NOT NULL
+    DROP TABLE Proveedor
+GO
+
+CREATE TABLE Proveedor
+(
+    idProveedor INT PRIMARY KEY IDENTITY(1,1),
+    nombreProveedor VARCHAR(120) NOT NULL,
+    telefono VARCHAR(20),
+    direccion VARCHAR(150),
+    email VARCHAR(100)
+)
+GO
+
+IF OBJECT_ID('Electrodomesticos') IS NOT NULL
+    DROP TABLE Electrodomesticos
+GO
+
+CREATE TABLE Electrodomesticos
+(
+    idElectrodomestico INT PRIMARY KEY IDENTITY(1,1),
+    nombre VARCHAR(120) NOT NULL,
+    descripcion VARCHAR(200),
+    marca VARCHAR(100),
+    precioCompra DECIMAL(10,2) NOT NULL,
+    precioVenta DECIMAL(10,2) NOT NULL
+)
+GO
+
+IF OBJECT_ID('OrdenCompra') IS NOT NULL
+    DROP TABLE OrdenCompra
+GO
+
+CREATE TABLE OrdenCompra
+(
+    idOrdenCompra INT PRIMARY KEY IDENTITY(1,1),
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
+    montoTotal DECIMAL(12,2) NOT NULL,
+    idProveedor INT NOT NULL,
+
+    CONSTRAINT FK_OrdenCompra_Proveedor
+    FOREIGN KEY (idProveedor)
+    REFERENCES Proveedor(idProveedor)
+)
+GO
+
+IF OBJECT_ID('Comprobante') IS NOT NULL
+    DROP TABLE Comprobante
+GO
+
+CREATE TABLE Comprobante
+(
+    idComprobante INT PRIMARY KEY IDENTITY(1,1),
+    fecha DATE NOT NULL,
+    total DECIMAL(12,2) NOT NULL,
+    idCliente INT NOT NULL,
+    email VARCHAR(100),
+
+    CONSTRAINT FK_Comprobante_Cliente
+    FOREIGN KEY (idCliente)
+    REFERENCES Cliente(idCliente)
+)
+GO
+
+IF OBJECT_ID('DetalleEntradaSalida') IS NOT NULL
+    DROP TABLE DetalleEntradaSalida
+GO
+
+CREATE TABLE DetalleEntradaSalida
+(
+    idDetalle INT PRIMARY KEY IDENTITY(1,1),
+    cantidad INT NULL, 
+    subtotal DECIMAL(12,2) NOT NULL,
+    idElectrodomestico INT NOT NULL,
+    idOrdenCompra INT NULL,
+    idComprobante INT NULL,
+
+    CONSTRAINT FK_Detalle_Electrodomestico
+    FOREIGN KEY (idElectrodomestico)
+    REFERENCES Electrodomesticos(idElectrodomestico),
+
+    CONSTRAINT FK_Detalle_OrdenCompra
+    FOREIGN KEY (idOrdenCompra)
+    REFERENCES OrdenCompra(idOrdenCompra),
+
+    CONSTRAINT FK_Detalle_Comprobante
+    FOREIGN KEY (idComprobante)
+    REFERENCES Comprobante(idComprobante)
+)
+GO</code></pre>
+        </div>
+
+        <div class="project-card">
+            <span class="badge postgres">PostgreSQL</span>
+            <h2>2. Plataforma de Comercio Electrónico</h2>
+            <p>Estructura relacional optimizada para una tienda en línea. Gestiona el catálogo de productos, cuentas de clientes, múltiples direcciones de envío, historial de pedidos y sistema de reseñas.</p>
+            
+            <pre><code class="language-sql">-- 1. Tablas Independientes
+CREATE TABLE TCategoria (
+    IdCategoria CHAR(5) PRIMARY KEY,
+    nombreCat VARCHAR(50) UNIQUE NOT NULL,
+    descripcionCat TEXT
+);
+
+CREATE TABLE TMarca (
+    IdMarca CHAR(5) PRIMARY KEY,
+    nombreM VARCHAR(50) NOT NULL,
+    paisOrigenM VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE TCliente (
+    IdCliente CHAR(5) PRIMARY KEY,
+    nombreCompletoC VARCHAR(100) NOT NULL,
+    correoC VARCHAR(100) UNIQUE NOT NULL,
+    contrasenaC VARCHAR(255) NOT NULL
+);
+
+-- 2. Tabla Producto (Depende de Categoría y Marca)
+CREATE TABLE TProducto (
+    IdProducto CHAR(5) PRIMARY KEY,
+    nombreP VARCHAR(100) NOT NULL,
+    descripcionP TEXT,
+    precioP DECIMAL(10,2) NOT NULL,
+    stockP INT NOT NULL,
+    idCat CHAR(5) NOT NULL,
+    idM CHAR(5) NOT NULL,
+    FOREIGN KEY(idCat) REFERENCES TCategoria(IdCategoria),
+    FOREIGN KEY(idM) REFERENCES TMarca(IdMarca)
+);
+
+-- 3. Tabla Dirección (Depende del Cliente)
+CREATE TABLE TDireccion (
+    IdDireccion CHAR(5) PRIMARY KEY,
+    calleD VARCHAR(100) NOT NULL,
+    ciudadD VARCHAR(50) NOT NULL,
+    codigoPostalD VARCHAR(20),
+    paisD VARCHAR(50) NOT NULL,
+    idC CHAR(5) NOT NULL,
+    FOREIGN KEY(idC) REFERENCES TCliente(IdCliente)
+);
+
+-- 4. Tabla Pedido (Depende del Cliente)
+CREATE TABLE TPedido (
+    IdPedido CHAR(5) PRIMARY KEY,
+    fechaPe DATE NOT NULL,
+    estadoPe VARCHAR(20) NOT NULL,
+    idC CHAR(5) NOT NULL,
+    FOREIGN KEY(idC) REFERENCES TCliente(IdCliente)
+);
+
+-- 5. Tabla DetallePedido (Depende de Pedido y Producto)
+CREATE TABLE TDetallePedido (
+    IdDetalle CHAR(5) PRIMARY KEY,
+    cantidadDP INT NOT NULL,
+    idPe CHAR(5) NOT NULL,
+    idP CHAR(5) NOT NULL,
+    FOREIGN KEY(idPe) REFERENCES TPedido(IdPedido),
+    FOREIGN KEY(idP) REFERENCES TProducto(IdProducto)
+);
+
+-- 6. Tabla Opinión (Depende de Cliente y Producto)
+CREATE TABLE TOpinion (
+    IdOpinion CHAR(5) PRIMARY KEY,
+    calificacionO INT NOT NULL CHECK (calificacionO >= 1 AND calificacionO <= 5),
+    comentarioO TEXT,
+    fechaO DATE NOT NULL,
+    idC CHAR(5) NOT NULL,
+    idP CHAR(5) NOT NULL,
+    FOREIGN KEY(idC) REFERENCES TCliente(IdCliente),
+    FOREIGN KEY(idP) REFERENCES TProducto(IdProducto)
+);</code></pre>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Portafolio de Base de Datos © 2024</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></
