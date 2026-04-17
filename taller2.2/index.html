@@ -3,147 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Procedimientos Almacenados - SQL Server</title>
+    <title>Scripts Taller 2.2 - Grupo 1</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f4f7f9;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            background: #2c3e50;
-            color: white;
-            border-radius: 8px;
-        }
-        nav {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #3498db;
-            font-weight: bold;
-        }
-        .script-section {
-            background: white;
-            padding: 25px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            color: #2c3e50;
-        }
-        pre {
-            border-radius: 5px;
-            max-height: 500px;
-            overflow-y: auto !important;
-        }
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            font-size: 0.9em;
-            color: #7f8c8d;
-        }
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; max-width: 1100px; margin: 0 auto; padding: 20px; background-color: #f0f2f5; }
+        header { text-align: center; padding: 30px; background: #1a2a3a; color: white; border-radius: 10px; margin-bottom: 30px; }
+        nav { text-align: center; margin-bottom: 25px; }
+        nav a { margin: 0 15px; text-decoration: none; color: #007bff; font-weight: bold; }
+        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 40px; }
+        h2 { color: #1a2a3a; border-left: 5px solid #007bff; padding-left: 15px; }
+        pre { border-radius: 8px; font-size: 14px !important; }
+        footer { text-align: center; padding: 20px; color: #666; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Repositorio de Scripts SQL</h1>
-    <p>Procedimientos Almacenados para Northwind y Pubs</p>
+    <h1>Taller 2.2: Stored Procedures</h1>
+    <p>Visualización de Scripts para Northwind y Pubs</p>
 </header>
 
 <nav>
-    <a href="#northwind">SPnorthwind.sql</a>
-    <a href="#pubs">SPpubs.sql</a>
-    <a href="https://github.com/TU_USUARIO/TU_REPOSITORIO" target="_blank">Ver en GitHub</a>
+    <a href="#northwind">Northwind Scripts</a>
+    <a href="#pubs">Pubs Scripts</a>
+    <a href="https://github.com/024100464b-art/Grupo-1" target="_blank">Repositorio GitHub</a>
 </nav>
 
-<section id="northwind" class="script-section">
-    <h2>1. Scripts Northwind (SPnorthwind.sql)</h2>
-    <p>Procedimientos para gestión de categorías, empleados, proveedores y clientes en la base de datos Northwind.</p>
+<div id="northwind" class="card">
+    <h2>1. SPnorthwind.sql</h2>
+    <p>Procedimientos almacenados para la base de datos Northwind (Consultas 1 a 8).</p>
     <pre><code class="language-sql">
--- Consulta 1: Productos por categoría filtrado por ID
-IF OBJECT_ID('spProductosPorCategoria') IS NOT NULL
-    DROP PROC spProductosPorCategoria
-GO
-CREATE PROC spProductosPorCategoria
-@CategoryID int
-AS
-BEGIN
-    SELECT C.CategoryID, C.CategoryName, P.ProductID, P.ProductName, P.UnitPrice
-    FROM Categories C INNER JOIN Products P
-    ON C.CategoryID = P.CategoryID
-    WHERE C.CategoryID = @CategoryID
-END
-GO
+use Northwind
+go
 
--- Consulta 2: Territorios asignados a un empleado específico
-IF OBJECT_ID('spTerritoriosPorEmpleado') IS NOT NULL
-    DROP PROC spTerritoriosPorEmpleado
-GO
-CREATE PROC spTerritoriosPorEmpleado
-@EmployeeID int
-AS
-BEGIN
-    SELECT E.EmployeeID, E.FirstName + ' ' + E.LastName AS Empleado, T.TerritoryDescription
-    FROM Employees E INNER JOIN EmployeeTerritories ET
-    ON E.EmployeeID = ET.EmployeeID INNER JOIN Territories T
-    ON ET.TerritoryID = T.TerritoryID
-    WHERE E.EmployeeID = @EmployeeID
-END
-GO
+-- Consulta1: Productos por categoría filtrado por ID
+if OBJECT_ID('spProductosPorCategoria') is not null drop proc spProductosPorCategoria
+go
+create proc spProductosPorCategoria @CategoryID int as
+begin
+    select C.CategoryID, C.CategoryName, P.ProductID, P.ProductName, P.UnitPrice
+    from Categories C inner join Products P on C.CategoryID = P.CategoryID
+    where C.CategoryID = @CategoryID
+end
+go
+
+-- Consulta2: Territorios por empleado
+if OBJECT_ID('spTerritoriosPorEmpleado') is not null drop proc spTerritoriosPorEmpleado
+go
+create proc spTerritoriosPorEmpleado @EmployeeID int as
+begin
+    select E.EmployeeID, E.FirstName + ' ' + E.LastName as Empleado, T.TerritoryDescription
+    from Employees E inner join EmployeeTerritories ET on E.EmployeeID = ET.EmployeeID 
+    inner join Territories T on ET.TerritoryID = T.TerritoryID
+    where E.EmployeeID = @EmployeeID
+end
+go
+
+-- ... (El resto de tus consultas de Northwind)
     </code></pre>
-</section>
+</div>
 
-<section id="pubs" class="script-section">
-    <h2>2. Scripts Pubs (SPpubs.sql)</h2>
-    <p>Colección de 10 procedimientos almacenados utilizando INNER, LEFT y RIGHT JOIN con estandarización de minúsculas.</p>
+<div id="pubs" class="card">
+    <h2>2. SPpubs.sql</h2>
+    <p>10 Procedimientos almacenados para la base de datos Pubs (Inner, Left y Right Join).</p>
     <pre><code class="language-sql">
----sp 8 autores por titulo
-IF OBJECT_ID('spautoresportitulo') IS NOT NULL
-    DROP PROC spautoresportitulo
-GO
-CREATE PROC spautoresportitulo
-AS
-BEGIN
-    SELECT a.au_fname + ' ' + a.au_lname AS 'autor', t.title AS 'libro publicado'
-    FROM authors a INNER JOIN titleauthor ta
-    ON a.au_id = ta.au_id INNER JOIN titles t
-    ON ta.title_id = t.title_id;
-END
-GO
+use pubs
+go
+
+---sp 1 libros y editoriales
+if OBJECT_ID('splibrosyeditoriales') is not null drop proc splibrosyeditoriales
+go
+create proc splibrosyeditoriales as
+begin
+    select t.title as 'titulo del libro', p.pub_name as 'editorial'
+    from titles t inner join publishers p on t.pub_id = p.pub_id;
+end
+go
 
 ---sp 9 libros sin ventas (LEFT JOIN)
-IF OBJECT_ID('splibrossinventas') IS NOT NULL
-    DROP PROC splibrossinventas
-GO
-CREATE PROC splibrossinventas
-AS
-BEGIN
-    SELECT t.title AS 'libros sin ventas', s.ord_num
-    FROM titles t LEFT JOIN sales s
-    ON t.title_id = s.title_id
-    WHERE s.ord_num IS NULL;
-END
-GO
+if OBJECT_ID('splibrossinventas') is not null drop proc splibrossinventas
+go
+create proc splibrossinventas as
+begin
+    select t.title as 'libros sin ventas', s.ord_num
+    from titles t left join sales s on t.title_id = s.title_id
+    where s.ord_num is null;
+end
+go
+
+---sp 10 puestos sin empleados (RIGHT JOIN)
+if OBJECT_ID('sppuestossinempleados') is not null drop proc sppuestossinempleados
+go
+create proc sppuestossinempleados as
+begin
+    select e.emp_id as 'id de empleado faltante', j.job_desc as 'puestos sin empleados'
+    from employee e right join jobs j on e.job_id = j.job_id
+    where e.emp_id is null;
+end
+go
     </code></pre>
-</section>
+</div>
 
 <footer>
-    <p>Creado para el curso de Bases de Datos | 2024</p>
+    <p>Grupo 1 | Repositorio: 024100464b-art/Grupo-1</p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
