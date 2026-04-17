@@ -1,20 +1,18 @@
-# Mis Procedimientos Almacenados (SQL Server)
+# Repositorio de Scripts SQL - Grupo 1
 
-Este repositorio contiene los scripts necesarios para configurar y gestionar las bases de datos de ejemplo **Northwind** y **Pubs**, junto con una serie de procedimientos almacenados personalizados.
+Este repositorio contiene los scripts de instalación y los procedimientos almacenados para las bases de datos **Northwind** y **Pubs**.
 
-## 🚀 Demo En Vivo
-Puedes ver el código con formato resaltado aquí:
-👉 **[Ver Scripts en Formato Web](https://https://github.com/024100464b-art/Grupo-1/taller2.2/index.html)**
+## 🚀 Visualización del Taller
+Puedes ver los scripts organizados y con formato resaltado en el siguiente enlace:
+👉 **[https://github.com/024100464b-art/Grupo-1/taller2.2/index.html](https://github.com/024100464b-art/Grupo-1/taller2.2/index.html)**
 
-## 📁 Archivos en este repositorio
+## 📁 Estructura del Proyecto
+* `/taller2.2/index.html`: Índice visual de los procedimientos.
+* `SPnorthwind.sql`: Procedimientos almacenados para la base de datos Northwind.
+* `SPpubs.sql`: Procedimientos almacenados para la base de datos Pubs (INNER, LEFT y RIGHT JOIN).
+* `instnwnd.sql`: Script original de instalación de Northwind.
+* `instpubs.sql`: Script original de instalación de Pubs.
 
-| Archivo | Descripción |
-| :--- | :--- |
-| `instnwnd.sql` | Script de instalación de la BD Northwind. |
-| `instpubs.sql` | Script de instalación de la BD Pubs. |
-| `SPnorthwind.sql` | **Procedimientos:** Categorías, Territorios, Proveedores, etc. |
-| `SPpubs.sql` | **Procedimientos:** 10 SPs con INNER, LEFT y RIGHT JOIN. |
-
-## 🛠️ Cómo usar
-1. Ejecuta primero los archivos `inst...` para crear las bases de datos.
-2. Ejecuta los archivos `SP...` para cargar los procedimientos almacenados.
+## 🛠️ Instrucciones
+1. Ejecutar `instnwnd.sql` e `instpubs.sql` para crear las bases de datos.
+2. Ejecutar los archivos `SP...` para registrar los procedimientos en el servidor.
