@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Procedimientos Almacenados - SQL Server</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f9;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 8px;
+        }
+        nav {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+        .script-section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            color: #2c3e50;
+        }
+        pre {
+            border-radius: 5px;
+            max-height: 500px;
+            overflow-y: auto !important;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Repositorio de Scripts SQL</h1>
+    <p>Procedimientos Almacenados para Northwind y Pubs</p>
+</header>
+
+<nav>
+    <a href="#northwind">SPnorthwind.sql</a>
+    <a href="#pubs">SPpubs.sql</a>
+    <a href="https://github.com/TU_USUARIO/TU_REPOSITORIO" target="_blank">Ver en GitHub</a>
+</nav>
+
+<section id="northwind" class="script-section">
+    <h2>1. Scripts Northwind (SPnorthwind.sql)</h2>
+    <p>Procedimientos para gestión de categorías, empleados, proveedores y clientes en la base de datos Northwind.</p>
+    <pre><code class="language-sql">
+-- Consulta 1: Productos por categoría filtrado por ID
+IF OBJECT_ID('spProductosPorCategoria') IS NOT NULL
+    DROP PROC spProductosPorCategoria
+GO
+CREATE PROC spProductosPorCategoria
+@CategoryID int
+AS
+BEGIN
+    SELECT C.CategoryID, C.CategoryName, P.ProductID, P.ProductName, P.UnitPrice
+    FROM Categories C INNER JOIN Products P
+    ON C.CategoryID = P.CategoryID
+    WHERE C.CategoryID = @CategoryID
+END
+GO
+
+-- Consulta 2: Territorios asignados a un empleado específico
+IF OBJECT_ID('spTerritoriosPorEmpleado') IS NOT NULL
+    DROP PROC spTerritoriosPorEmpleado
+GO
+CREATE PROC spTerritoriosPorEmpleado
+@EmployeeID int
+AS
+BEGIN
+    SELECT E.EmployeeID, E.FirstName + ' ' + E.LastName AS Empleado, T.TerritoryDescription
+    FROM Employees E INNER JOIN EmployeeTerritories ET
+    ON E.EmployeeID = ET.EmployeeID INNER JOIN Territories T
+    ON ET.TerritoryID = T.TerritoryID
+    WHERE E.EmployeeID = @EmployeeID
+END
+GO
+    </code></pre>
+</section>
+
+<section id="pubs" class="script-section">
+    <h2>2. Scripts Pubs (SPpubs.sql)</h2>
+    <p>Colección de 10 procedimientos almacenados utilizando INNER, LEFT y RIGHT JOIN con estandarización de minúsculas.</p>
+    <pre><code class="language-sql">
+---sp 8 autores por titulo
+IF OBJECT_ID('spautoresportitulo') IS NOT NULL
+    DROP PROC spautoresportitulo
+GO
+CREATE PROC spautoresportitulo
+AS
+BEGIN
+    SELECT a.au_fname + ' ' + a.au_lname AS 'autor', t.title AS 'libro publicado'
+    FROM authors a INNER JOIN titleauthor ta
+    ON a.au_id = ta.au_id INNER JOIN titles t
+    ON ta.title_id = t.title_id;
+END
+GO
+
+---sp 9 libros sin ventas (LEFT JOIN)
+IF OBJECT_ID('splibrossinventas') IS NOT NULL
+    DROP PROC splibrossinventas
+GO
+CREATE PROC splibrossinventas
+AS
+BEGIN
+    SELECT t.title AS 'libros sin ventas', s.ord_num
+    FROM titles t LEFT JOIN sales s
+    ON t.title_id = s.title_id
+    WHERE s.ord_num IS NULL;
+END
+GO
+    </code></pre>
+</section>
+
+<footer>
+    <p>Creado para el curso de Bases de Datos | 2024</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+
+</body>
+</html>
