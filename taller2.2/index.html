@@ -11,8 +11,8 @@
         nav { text-align: center; margin-bottom: 25px; }
         nav a { margin: 0 15px; text-decoration: none; color: #007bff; font-weight: bold; }
         .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 40px; }
-        h2 { color: #1a2a3a; border-left: 5px solid #007bff; padding-left: 15px; }
-        pre { border-radius: 8px; font-size: 14px !important; }
+        h2 { color: #1a2a3a; border-left: 5px solid #007bff; padding-left: 15px; margin-bottom: 15px; }
+        pre { border-radius: 8px; font-size: 14px !important; margin-top: 10px; }
         footer { text-align: center; padding: 20px; color: #666; font-size: 0.9em; }
     </style>
 </head>
@@ -20,24 +20,22 @@
 
 <header>
     <h1>Taller 2.2: Stored Procedures</h1>
-    <p>Visualización de Scripts para Northwind y Pubs</p>
+    <p>Visualización Completa de Scripts - Grupo 1</p>
 </header>
 
 <nav>
     <a href="#northwind">Northwind Scripts</a>
     <a href="#pubs">Pubs Scripts</a>
-    <a href="https://github.com/024100464b-art/Grupo-1" target="_blank">Repositorio GitHub</a>
 </nav>
 
 <div id="northwind" class="card">
     <h2>1. SPnorthwind.sql</h2>
-    <p>Procedimientos almacenados para la base de datos Northwind (Consultas 1 a 8).</p>
     <pre><code class="language-sql">
 use Northwind
 go
 
 -- Consulta1: Productos por categoría filtrado por ID
-if OBJECT_ID('spProductosPorCategoria') is not null drop proc spProductosPorCategoria
+if object_id('spProductosPorCategoria') is not null drop proc spProductosPorCategoria
 go
 create proc spProductosPorCategoria @CategoryID int as
 begin
@@ -47,8 +45,8 @@ begin
 end
 go
 
--- Consulta2: Territorios por empleado
-if OBJECT_ID('spTerritoriosPorEmpleado') is not null drop proc spTerritoriosPorEmpleado
+-- Consulta2: Territorios asignados a un empleado específico
+if object_id('spTerritoriosPorEmpleado') is not null drop proc spTerritoriosPorEmpleado
 go
 create proc spTerritoriosPorEmpleado @EmployeeID int as
 begin
@@ -59,13 +57,78 @@ begin
 end
 go
 
--- ... (El resto de tus consultas de Northwind)
+-- Consulta3: Productos de un proveedor específico
+if object_id('spProductosPorProveedor') is not null drop proc spProductosPorProveedor
+go
+create proc spProductosPorProveedor @SupplierID int as
+begin
+    select S.SupplierID, S.CompanyName, P.ProductID, P.ProductName
+    from Suppliers S inner join Products P on S.SupplierID = P.SupplierID
+    where S.SupplierID = @SupplierID
+end
+go
+
+-- Consulta4: Pedidos realizados por un empleado
+if object_id('spPedidosPorEmpleado') is not null drop proc spPedidosPorEmpleado
+go
+create proc spPedidosPorEmpleado @EmployeeID int as
+begin
+    select E.FirstName + ' ' + E.LastName as Empleado, O.OrderID, O.OrderDate
+    from Employees E inner join Orders O on E.EmployeeID = O.EmployeeID
+    where E.EmployeeID = @EmployeeID
+end
+go
+
+-- Consulta5: Stock de productos por proveedor
+if object_id('spStockPorProveedor') is not null drop proc spStockPorProveedor
+go
+create proc spStockPorProveedor @SupplierID int as
+begin
+    select S.CompanyName, P.ProductName, P.UnitsInStock
+    from Products P inner join Suppliers S on P.SupplierID = S.SupplierID
+    where S.SupplierID = @SupplierID
+    order by P.UnitsInStock asc
+end
+go
+
+-- Consulta6: Órdenes enviadas por un transportista
+if object_id('spOrdenesPorTransportista') is not null drop proc spOrdenesPorTransportista
+go
+create proc spOrdenesPorTransportista @ShipperID int as
+begin
+    select S.CompanyName as Transportista, O.OrderID, O.OrderDate, O.ShipCity
+    from Orders O inner join Shippers S on O.ShipVia = S.ShipperID
+    where S.ShipperID = @ShipperID
+end
+go
+
+-- Consulta7: Historial de compras de un Cliente
+if object_id('spHistorialCliente') is not null drop proc spHistorialCliente
+go
+create proc spHistorialCliente @CustomerID nchar(5) as
+begin
+    select C.CustomerID, C.CompanyName, O.OrderID, O.OrderDate
+    from Customers C inner join Orders O on C.CustomerID = O.CustomerID
+    where C.CustomerID = @CustomerID
+    order by O.OrderDate desc
+end
+go
+
+-- Consulta8: Detalle de ventas de un Producto
+if object_id('spVentasPorProducto') is not null drop proc spVentasPorProducto
+go
+create proc spVentasPorProducto @ProductID int as
+begin
+    select P.ProductName, OD.OrderID, OD.Quantity, OD.UnitPrice
+    from Products P inner join [Order Details] OD on P.ProductID = OD.ProductID
+    where P.ProductID = @ProductID
+end
+go
     </code></pre>
 </div>
 
 <div id="pubs" class="card">
     <h2>2. SPpubs.sql</h2>
-    <p>10 Procedimientos almacenados para la base de datos Pubs (Inner, Left y Right Join).</p>
     <pre><code class="language-sql">
 use pubs
 go
@@ -77,6 +140,76 @@ create proc splibrosyeditoriales as
 begin
     select t.title as 'titulo del libro', p.pub_name as 'editorial'
     from titles t inner join publishers p on t.pub_id = p.pub_id;
+end
+go
+
+---sp 2 empleados y puestos
+if OBJECT_ID('spempleadosypuestos') is not null drop proc spempleadosypuestos
+go
+create proc spempleadosypuestos as
+begin
+    select e.fname + ' ' + e.lname as 'nombre del empleado', j.job_desc as 'puesto'
+    from employee e inner join jobs j on e.job_id = j.job_id;
+end
+go
+
+---sp 3 tiendas y ventas
+if OBJECT_ID('sptiendasyventas') is not null drop proc sptiendasyventas
+go
+create proc sptiendasyventas as
+begin
+    select st.stor_name as 'tienda', s.ord_num as 'numero de orden', s.qty as 'cantidad'
+    from stores st inner join sales s on st.stor_id = s.stor_id;
+end
+go
+
+---sp 4 libros y detalle de ventas
+if OBJECT_ID('splibrosydetalleventas') is not null drop proc splibrosydetalleventas
+go
+create proc splibrosydetalleventas as
+begin
+    select t.title as 'titulo', s.ord_date as 'fecha de venta', s.qty as 'unidades vendidas'
+    from titles t inner join sales s on t.title_id = s.title_id;
+end
+go
+
+---sp 5 autores e id de libros
+if OBJECT_ID('spautoresyidlibros') is not null drop proc spautoresyidlibros
+go
+create proc spautoresyidlibros as
+begin
+    select a.au_fname + ' ' + a.au_lname as 'autor', ta.title_id as 'id del libro'
+    from authors a inner join titleauthor ta on a.au_id = ta.au_id;
+end
+go
+
+---sp 6 editoriales y detalles
+if OBJECT_ID('speditorialesydetalles') is not null drop proc speditorialesydetalles
+go
+create proc speditorialesydetalles as
+begin
+    select p.pub_name as 'editorial', pi.pr_info as 'informacion publica'
+    from publishers p inner join pub_info pi on p.pub_id = pi.pub_id;
+end
+go
+
+---sp 7 empleados y editoriales
+if OBJECT_ID('spempleadosyeditoriales') is not null drop proc spempleadosyeditoriales
+go
+create proc spempleadosyeditoriales as
+begin
+    select e.fname + ' ' + e.lname as 'empleado', p.pub_name as 'trabaja en editorial'
+    from employee e inner join publishers p on e.pub_id = p.pub_id;
+end
+go
+
+---sp 8 autores por titulo
+if OBJECT_ID('spautoresportitulo') is not null drop proc spautoresportitulo
+go
+create proc spautoresportitulo as
+begin
+    select a.au_fname + ' ' + a.au_lname as 'autor', t.title as 'libro publicado'
+    from authors a inner join titleauthor ta on a.au_id = ta.au_id inner join titles t on ta.title_id = t.title_id;
 end
 go
 
@@ -105,7 +238,7 @@ go
 </div>
 
 <footer>
-    <p>Grupo 1 | Repositorio: 024100464b-art/Grupo-1</p>
+    <p>Grupo 1 | 024100464b-art</p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
