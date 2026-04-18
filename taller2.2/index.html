@@ -139,7 +139,8 @@ go
 create proc splibrosyeditoriales as
 begin
     select t.title as 'titulo del libro', p.pub_name as 'editorial'
-    from titles t inner join publishers p on t.pub_id = p.pub_id;
+    from titles t inner join publishers p
+    on t.pub_id = p.pub_id;
 end
 go
 
@@ -149,7 +150,8 @@ go
 create proc spempleadosypuestos as
 begin
     select e.fname + ' ' + e.lname as 'nombre del empleado', j.job_desc as 'puesto'
-    from employee e inner join jobs j on e.job_id = j.job_id;
+    from employee e inner join jobs j 
+    on e.job_id = j.job_id;
 end
 go
 
@@ -159,7 +161,8 @@ go
 create proc sptiendasyventas as
 begin
     select st.stor_name as 'tienda', s.ord_num as 'numero de orden', s.qty as 'cantidad'
-    from stores st inner join sales s on st.stor_id = s.stor_id;
+    from stores st inner join sales s 
+    on st.stor_id = s.stor_id;
 end
 go
 
@@ -169,7 +172,8 @@ go
 create proc splibrosydetalleventas as
 begin
     select t.title as 'titulo', s.ord_date as 'fecha de venta', s.qty as 'unidades vendidas'
-    from titles t inner join sales s on t.title_id = s.title_id;
+    from titles t inner join sales s 
+    on t.title_id = s.title_id;
 end
 go
 
@@ -179,7 +183,8 @@ go
 create proc spautoresyidlibros as
 begin
     select a.au_fname + ' ' + a.au_lname as 'autor', ta.title_id as 'id del libro'
-    from authors a inner join titleauthor ta on a.au_id = ta.au_id;
+    from authors a inner join titleauthor ta 
+    on a.au_id = ta.au_id;
 end
 go
 
@@ -189,7 +194,8 @@ go
 create proc speditorialesydetalles as
 begin
     select p.pub_name as 'editorial', pi.pr_info as 'informacion publica'
-    from publishers p inner join pub_info pi on p.pub_id = pi.pub_id;
+    from publishers p inner join pub_info pi 
+    on p.pub_id = pi.pub_id;
 end
 go
 
@@ -199,7 +205,8 @@ go
 create proc spempleadosyeditoriales as
 begin
     select e.fname + ' ' + e.lname as 'empleado', p.pub_name as 'trabaja en editorial'
-    from employee e inner join publishers p on e.pub_id = p.pub_id;
+    from employee e inner join publishers p 
+    on e.pub_id = p.pub_id;
 end
 go
 
@@ -209,7 +216,8 @@ go
 create proc spautoresportitulo as
 begin
     select a.au_fname + ' ' + a.au_lname as 'autor', t.title as 'libro publicado'
-    from authors a inner join titleauthor ta on a.au_id = ta.au_id inner join titles t on ta.title_id = t.title_id;
+    from authors a inner join titleauthor ta 
+    on a.au_id = ta.au_id inner join titles t on ta.title_id = t.title_id;
 end
 go
 
@@ -219,7 +227,8 @@ go
 create proc splibrossinventas as
 begin
     select t.title as 'libros sin ventas', s.ord_num
-    from titles t left join sales s on t.title_id = s.title_id
+    from titles t left join sales s 
+    on t.title_id = s.title_id
     where s.ord_num is null;
 end
 go
