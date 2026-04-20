@@ -1,10 +1,10 @@
-# Repositorio de Scripts SQL - Grupo 1
+# Repositorio de Scripts SQL - las abejitas
 
 Este repositorio contiene los scripts de instalación y los procedimientos almacenados para las bases de datos **Northwind** y **Pubs**.
 
 ## 🚀 Visualización del Taller
 Puedes ver los scripts organizados y con formato resaltado en el siguiente enlace:
-👉 **[https://github.com/024100464b-art/Grupo-1/taller2.2/index.html](https://github.com/024100464b-art/Grupo-1/taller2.2/index.html)**
+👉 **[https://github.com/024100464b-art/Grupo-1/taller2.2/index.html](https://024100464b-art.github.io/Grupo-1/taller2.2/index.html)**
 
 ## 📁 Estructura del Proyecto
 * `/taller2.2/index.html`: Índice visual de los procedimientos.
