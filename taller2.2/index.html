@@ -3,34 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scripts Taller 2.2 - Grupo 1</title>
+    <title>Scripts Taller 2.2 e Infografía - Grupo 1</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    
     <style>
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; max-width: 1100px; margin: 0 auto; padding: 20px; background-color: #f0f2f5; }
-        header { text-align: center; padding: 30px; background: #1a2a3a; color: white; border-radius: 10px; margin-bottom: 30px; }
-        nav { text-align: center; margin-bottom: 25px; }
-        nav a { margin: 0 15px; text-decoration: none; color: #007bff; font-weight: bold; }
-        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 40px; }
-        h2 { color: #1a2a3a; border-left: 5px solid #007bff; padding-left: 15px; margin-bottom: 15px; }
+        /* Fuentes */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        /* Estilos Base Combinados */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f8fafc; 
+            color: #333;
+        }
+        
+        /* Estilos de la Navegación y Scripts (Anterior) */
+        .main-wrapper { max-width: 1152px; margin: 0 auto; padding: 20px; }
+        .top-header { text-align: center; padding: 30px; background: #1a2a3a; color: white; border-radius: 16px; margin-bottom: 30px; }
+        nav { text-align: center; margin-bottom: 40px; }
+        nav a { margin: 0 15px; text-decoration: none; color: #007bff; font-weight: bold; transition: color 0.3s; }
+        nav a:hover { color: #0056b3; }
+        .card-script { background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; margin-bottom: 40px; }
+        .card-script h2 { color: #1e293b; border-left: 5px solid #3b82f6; padding-left: 15px; margin-bottom: 15px; font-size: 1.5rem; font-weight: bold; }
         pre { border-radius: 8px; font-size: 14px !important; margin-top: 10px; }
-        footer { text-align: center; padding: 20px; color: #666; font-size: 0.9em; }
+        .site-footer { text-align: center; padding: 20px; color: #64748b; font-size: 0.9em; margin-top: 40px; border-top: 1px solid #e2e8f0; }
+
+        /* Estilos específicos de la Infografía (Tu código) */
+        .join-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .join-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+        .venn-circle { mix-blend-mode: multiply; transition: all 0.3s ease; }
+        .code-block { background-color: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; overflow-x: auto; }
+        .highlight-blue { fill: #3b82f6; opacity: 0.6; }
+        .highlight-red { fill: #ef4444; opacity: 0.6; }
+        .highlight-purple { fill: #8b5cf6; opacity: 0.8; }
+        .base-circle { fill: #cbd5e1; opacity: 0.3; stroke: #64748b; stroke-width: 2; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Taller 2.2: CONSULTAS JOIN EN T/SQL </h1>
-    <p>Visualización Completa de Scripts - Grupo las abejitas</p>
-</header>
+<div class="main-wrapper">
+    
+    <header class="top-header">
+        <h1 class="text-3xl font-bold mb-2">Taller 2.2: Stored Procedures</h1>
+        <p class="text-slate-300">Visualización de Scripts e Infografía - Grupo 1</p>
+    </header>
 
-<nav>
-    <a href="#northwind">Northwind Scripts</a>
-    <a href="#pubs">Pubs Scripts</a>
-</nav>
+    <nav>
+        <a href="#infografia">↓ Ver Infografía</a>
+        <a href="#northwind">↓ Northwind Scripts</a>
+        <a href="#pubs">↓ Pubs Scripts</a>
+    </nav>
 
-<div id="northwind" class="card">
-    <h2>1. SPnorthwind.sql</h2>
-    <pre><code class="language-sql">
+    <div id="infografia" class="mb-16">
+        <header class="text-center mb-12 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                Dominio de <span class="text-blue-600">Joins</span> en SQL Server
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                Guía técnica sobre la combinación de tablas en bases de datos relacionales, basada en los entornos 
+                <strong>Pubs</strong> y <strong>Northwind</strong>.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-4 text-sm font-semibold uppercase tracking-wider text-slate-500">
+                <span class="bg-slate-100 px-3 py-1 rounded-full border border-slate-200">Inner Join</span>
+                <span class="bg-slate-100 px-3 py-1 rounded-full border border-slate-200">Left Join</span>
+                <span class="bg-slate-100 px-3 py-1 rounded-full border border-slate-200">Right Join</span>
+                <span class="bg-slate-100 px-3 py-1 rounded-full border border-slate-200">Full Join</span>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div class="join-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 shrink-0">
+                        <svg viewBox="0 0 100 60" class="w-full h-full">
+                            <circle cx="35" cy="30" r="25" class="base-circle" />
+                            <circle cx="65" cy="30" r="25" class="base-circle" />
+                            <clipPath id="innerClip">
+                                <circle cx="65" cy="30" r="25" />
+                            </clipPath>
+                            <circle cx="35" cy="30" r="25" class="highlight-purple" clip-path="url(#innerClip)" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 m-0 border-0 p-0">INNER JOIN</h2>
+                        <span class="text-xs font-bold text-purple-600 uppercase">Intersección Exacta</span>
+                    </div>
+                </div>
+                <p class="text-slate-600 mb-4">
+                    Devuelve únicamente las filas donde existe una coincidencia exacta en ambas tablas relacionadas. Es el tipo de unión más común.
+                </p>
+                <div class="code-block mb-4">
+                    <span class="text-blue-400">SELECT</span> t.title, a.au_fname <br>
+                    <span class="text-blue-400">FROM</span> titles t <br>
+                    <span class="text-blue-400">INNER JOIN</span> titleauthor ta <span class="text-blue-400">ON</span> t.title_id = ta.title_id <br>
+                    <span class="text-blue-400">INNER JOIN</span> authors a <span class="text-blue-400">ON</span> ta.au_id = a.au_id;
+                </div>
+                <p class="text-xs text-slate-500 italic">Ejemplo: Relación Autores y Libros en la BD Pubs.</p>
+            </div>
+
+            <div class="join-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 shrink-0">
+                        <svg viewBox="0 0 100 60" class="w-full h-full">
+                            <circle cx="35" cy="30" r="25" class="highlight-blue" />
+                            <circle cx="65" cy="30" r="25" class="base-circle" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 m-0 border-0 p-0">LEFT JOIN</h2>
+                        <span class="text-xs font-bold text-blue-600 uppercase">Inclusión de Izquierda</span>
+                    </div>
+                </div>
+                <p class="text-slate-600 mb-4">
+                    Mantiene todos los registros de la tabla izquierda, incluso si no hay coincidencia en la derecha (rellena con NULL).
+                </p>
+                <div class="code-block mb-4">
+                    <span class="text-blue-400">SELECT</span> p.ProductName, o.OrderID <br>
+                    <span class="text-blue-400">FROM</span> Products p <br>
+                    <span class="text-blue-400">LEFT JOIN</span> [Order Details] o <br>
+                    <span class="text-blue-400">ON</span> p.ProductID = o.ProductID;
+                </div>
+                <p class="text-xs text-slate-500 italic">Ejemplo: Identificar productos que nunca se han vendido.</p>
+            </div>
+
+            <div class="join-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 shrink-0">
+                        <svg viewBox="0 0 100 60" class="w-full h-full">
+                            <circle cx="35" cy="30" r="25" class="base-circle" />
+                            <circle cx="65" cy="30" r="25" class="highlight-red" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 m-0 border-0 p-0">RIGHT JOIN</h2>
+                        <span class="text-xs font-bold text-red-600 uppercase">Inclusión de Derecha</span>
+                    </div>
+                </div>
+                <p class="text-slate-600 mb-4">
+                    Mantiene todos los registros de la tabla derecha. Es útil para encontrar registros "huérfanos" en la tabla principal.
+                </p>
+                <div class="code-block mb-4">
+                    <span class="text-blue-400">SELECT</span> t.TerritoryDescription, e.LastName <br>
+                    <span class="text-blue-400">FROM</span> Employees e <br>
+                    <span class="text-blue-400">RIGHT JOIN</span> Territories t <br>
+                    <span class="text-blue-400">ON</span> e.EmployeeID = t.RegionID;
+                </div>
+                <p class="text-xs text-slate-500 italic">Ejemplo: Territorios que aún no tienen empleados asignados.</p>
+            </div>
+
+            <div class="join-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 shrink-0">
+                        <svg viewBox="0 0 100 60" class="w-full h-full">
+                            <circle cx="35" cy="30" r="25" class="highlight-blue" style="opacity: 0.4;"/>
+                            <circle cx="65" cy="30" r="25" class="highlight-red" style="opacity: 0.4;"/>
+                            <clipPath id="innerFull">
+                                <circle cx="65" cy="30" r="25" />
+                            </clipPath>
+                            <circle cx="35" cy="30" r="25" class="highlight-purple" clip-path="url(#innerFull)" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 m-0 border-0 p-0">FULL JOIN</h2>
+                        <span class="text-xs font-bold text-slate-600 uppercase">Unión Total</span>
+                    </div>
+                </div>
+                <p class="text-slate-600 mb-4">
+                    Combina los resultados de LEFT y RIGHT join. Devuelve todos los registros de ambas tablas, uniendo donde coinciden.
+                </p>
+                <div class="code-block mb-4">
+                    <span class="text-blue-400">SELECT</span> Customers.ContactName, Orders.OrderID <br>
+                    <span class="text-blue-400">FROM</span> Customers <br>
+                    <span class="text-blue-400">FULL OUTER JOIN</span> Orders <br>
+                    <span class="text-blue-400">ON</span> Customers.CustomerID = Orders.CustomerID;
+                </div>
+                <p class="text-xs text-slate-500 italic">Ejemplo: Vista completa de todos los clientes y todos los pedidos.</p>
+            </div>
+        </div>
+
+        <section class="mt-12 bg-blue-900 text-white p-8 rounded-2xl shadow-lg">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Conclusión del Taller
+            </h3>
+            <p class="text-blue-100 leading-relaxed italic">
+                "El dominio de Joins nos ayuda a desarrollar la habilidad de obtener información que está distribuida en varias tablas. En sistemas como Pubs, los datos no están en una sola tabla, sino separados (libros, autores, ventas y editoriales), por lo que es necesario usar joins para relacionarlos correctamente y construir consultas útiles."
+            </p>
+        </section>
+    </div>
+    <div id="northwind" class="card-script">
+        <h2>1. SPnorthwind.sql</h2>
+        <pre><code class="language-sql">
 use Northwind
 go
 
@@ -124,12 +293,12 @@ begin
     where P.ProductID = @ProductID
 end
 go
-    </code></pre>
-</div>
+        </code></pre>
+    </div>
 
-<div id="pubs" class="card">
-    <h2>2. SPpubs.sql</h2>
-    <pre><code class="language-sql">
+    <div id="pubs" class="card-script">
+        <h2>2. SPpubs.sql</h2>
+        <pre><code class="language-sql">
 use pubs
 go
 
@@ -139,8 +308,7 @@ go
 create proc splibrosyeditoriales as
 begin
     select t.title as 'titulo del libro', p.pub_name as 'editorial'
-    from titles t inner join publishers p
-    on t.pub_id = p.pub_id;
+    from titles t inner join publishers p on t.pub_id = p.pub_id;
 end
 go
 
@@ -150,8 +318,7 @@ go
 create proc spempleadosypuestos as
 begin
     select e.fname + ' ' + e.lname as 'nombre del empleado', j.job_desc as 'puesto'
-    from employee e inner join jobs j 
-    on e.job_id = j.job_id;
+    from employee e inner join jobs j on e.job_id = j.job_id;
 end
 go
 
@@ -161,8 +328,7 @@ go
 create proc sptiendasyventas as
 begin
     select st.stor_name as 'tienda', s.ord_num as 'numero de orden', s.qty as 'cantidad'
-    from stores st inner join sales s 
-    on st.stor_id = s.stor_id;
+    from stores st inner join sales s on st.stor_id = s.stor_id;
 end
 go
 
@@ -172,8 +338,7 @@ go
 create proc splibrosydetalleventas as
 begin
     select t.title as 'titulo', s.ord_date as 'fecha de venta', s.qty as 'unidades vendidas'
-    from titles t inner join sales s 
-    on t.title_id = s.title_id;
+    from titles t inner join sales s on t.title_id = s.title_id;
 end
 go
 
@@ -183,8 +348,7 @@ go
 create proc spautoresyidlibros as
 begin
     select a.au_fname + ' ' + a.au_lname as 'autor', ta.title_id as 'id del libro'
-    from authors a inner join titleauthor ta 
-    on a.au_id = ta.au_id;
+    from authors a inner join titleauthor ta on a.au_id = ta.au_id;
 end
 go
 
@@ -194,8 +358,7 @@ go
 create proc speditorialesydetalles as
 begin
     select p.pub_name as 'editorial', pi.pr_info as 'informacion publica'
-    from publishers p inner join pub_info pi 
-    on p.pub_id = pi.pub_id;
+    from publishers p inner join pub_info pi on p.pub_id = pi.pub_id;
 end
 go
 
@@ -205,8 +368,7 @@ go
 create proc spempleadosyeditoriales as
 begin
     select e.fname + ' ' + e.lname as 'empleado', p.pub_name as 'trabaja en editorial'
-    from employee e inner join publishers p 
-    on e.pub_id = p.pub_id;
+    from employee e inner join publishers p on e.pub_id = p.pub_id;
 end
 go
 
@@ -216,8 +378,7 @@ go
 create proc spautoresportitulo as
 begin
     select a.au_fname + ' ' + a.au_lname as 'autor', t.title as 'libro publicado'
-    from authors a inner join titleauthor ta 
-    on a.au_id = ta.au_id inner join titles t on ta.title_id = t.title_id;
+    from authors a inner join titleauthor ta on a.au_id = ta.au_id inner join titles t on ta.title_id = t.title_id;
 end
 go
 
@@ -227,8 +388,7 @@ go
 create proc splibrossinventas as
 begin
     select t.title as 'libros sin ventas', s.ord_num
-    from titles t left join sales s 
-    on t.title_id = s.title_id
+    from titles t left join sales s on t.title_id = s.title_id
     where s.ord_num is null;
 end
 go
@@ -243,12 +403,15 @@ begin
     where e.emp_id is null;
 end
 go
-    </code></pre>
-</div>
+        </code></pre>
+    </div>
 
-<footer>
-    <p>Grupo 1 | 024100464b-art</p>
-</footer>
+    <footer class="site-footer">
+        <p>Grupo 1 | Equipo: Las Abejitas | Universidad Andina del Cusco | Repositorio: 024100464b-art</p>
+        <p class="mt-2 text-xs">Taller 2.1 y 2.2: Modelado de Datos - SQL Server 2026</p>
+    </footer>
+
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
