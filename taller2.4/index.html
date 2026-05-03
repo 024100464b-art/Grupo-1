@@ -4,18 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AeroQuery Cusco - Informe Técnico</title>
+    <title>AeroQuery Cusco - Propuesta de Proyecto</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Highlight.js para colorear el código SQL -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <!-- Lenguaje SQL para Highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
+
     <style>
         body { font-family: 'Inter', sans-serif; }
         .code-container {
             scrollbar-width: thin;
             scrollbar-color: #4B5563 #1F2937;
+            max-height: 500px; /* Limita la altura para que no ocupe toda la pantalla si el script es muy largo */
+            overflow-y: auto;
         }
         .code-container::-webkit-scrollbar {
             height: 8px;
@@ -23,230 +31,176 @@
         }
         .code-container::-webkit-scrollbar-track {
             background: #1F2937;
+            border-radius: 4px;
         }
         .code-container::-webkit-scrollbar-thumb {
             background-color: #4B5563;
             border-radius: 4px;
         }
+        /* Ajuste para highlight.js */
+        pre code.hljs {
+            background: transparent;
+            padding: 0;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased selection:bg-blue-200 selection:text-blue-900">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-200 selection:text-blue-900">
 
     <!-- Header / Hero Section -->
     <header class="bg-slate-900 text-white pt-16 pb-20 px-4 sm:px-6 lg:px-8 shadow-inner relative overflow-hidden">
         <div class="absolute opacity-10 right-0 top-0 w-96 h-96 transform translate-x-1/3 -translate-y-1/3">
-            <i class="fa-solid fa-plane-departure text-[20rem]"></i>
+            <i class="fa-solid fa-plane-up text-[20rem]"></i>
         </div>
         <div class="max-w-4xl mx-auto relative z-10">
+            <div class="inline-block bg-blue-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">
+                Propuesta de Proyecto
+            </div>
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">AeroQuery Cusco</h1>
-            <p class="text-xl text-blue-200 mb-8 font-light">Informe Técnico Final: Arquitectura, Modelado e Implementación</p>
+            <p class="text-xl text-blue-200 mb-8 font-light">Diseño de Arquitectura, Modelado de Datos y Planteamiento Lógico</p>
             
             <!-- Botón de Descarga Superior -->
             <a href="AeroQuery.zip" download class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg transition-colors shadow-lg hover:shadow-xl">
                 <i class="fa-solid fa-file-zipper"></i>
-                Descargar Proyecto (AeroQuery.zip)
+                Descargar Archivos del Proyecto (.zip)
             </a>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
 
-        <!-- 1. Introducción -->
-        <section class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b pb-2 border-gray-200">
-                <i class="fa-solid fa-circle-info text-blue-600 mr-2"></i>1. Introducción y Problema que Resuelve
+        <!-- 1. Introducción y Propuesta -->
+        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b pb-2 border-slate-100">
+                <i class="fa-solid fa-bullseye text-blue-600 mr-2"></i>1. Planteamiento del Problema
             </h2>
-            <p class="text-gray-600 leading-relaxed mb-4">
-                AeroQuery resuelve el problema de la gestión operativa en terminales aéreos complejos. Los sistemas aeroportuarios manejan simultáneamente a pasajeros, boletos, personal de mantenimiento, distribución de equipaje y el tracking de los vuelos.
+            <p class="text-slate-600 leading-relaxed mb-4">
+                El proyecto <strong>AeroQuery</strong> nace como una propuesta para resolver los desafíos de la gestión operativa en terminales aéreos. Actualmente, los sistemas aeroportuarios requieren manejar un flujo constante y simultáneo de pasajeros, venta de boletos, asignación de personal y logística de equipaje.
             </p>
-            <p class="text-gray-600 leading-relaxed">
-                El sistema centraliza estos datos en una base de datos relacional de <strong>13 tablas perfectamente normalizadas</strong> y provee una aplicación de escritorio dinámica e interactiva en Windows Forms. Esto permite extraer métricas instantáneas (como rutas más transitadas, recaudación económica por aerolíneas y logística de peso de equipaje) para agilizar la toma de decisiones gerenciales.
+            <p class="text-slate-600 leading-relaxed">
+                Nuestra propuesta consiste en estructurar una base de datos centralizada y normalizada que permita recopilar esta información, sentando las bases para una futura aplicación de escritorio que facilite la extracción de métricas clave para la toma de decisiones gerenciales.
             </p>
         </section>
 
-        <!-- 2. Modelado de Base de Datos -->
-        <section>
-            <h2 class="text-2xl font-bold text-slate-800 mb-6">
-                <i class="fa-solid fa-database text-blue-600 mr-2"></i>2. Modelado de Base de Datos (SQL Server)
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <p class="text-gray-600 mb-4 text-sm">
-                        Para soportar la complejidad operativa y asegurar la integridad de la información, se diseñó e implementó la base de datos <code>BDAeropuertoCusco</code> en Microsoft SQL Server con 13 tablas:
-                    </p>
-                    <ul class="space-y-3 text-sm text-gray-700">
-                        <li><span class="font-bold text-slate-900">🏢 Entidades Principales:</span> Aeropuerto, Aerolínea, Aeronave, Puerta Embarque.</li>
-                        <li><span class="font-bold text-slate-900">✈️ Operatividad Aérea:</span> Vuelo.</li>
-                        <li><span class="font-bold text-slate-900">🎟️ Gestión Comercial:</span> Pasajero, Boleto, Asiento, Equipaje.</li>
-                        <li><span class="font-bold text-slate-900">👥 Recursos Humanos:</span> Cargo, Área, Empleado, Vuelo Empleado.</li>
-                    </ul>
-                </div>
-                <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
-                    <h3 class="font-bold text-blue-900 mb-2">Normalización e Integridad</h3>
-                    <p class="text-blue-800 text-sm leading-relaxed mb-3">
-                        Todas las tablas poseen una Llave Primaria (IDENTITY autoincrementable) y se establecieron múltiples Llaves Foráneas para garantizar la integridad referencial.
-                    </p>
-                    <div class="inline-flex items-center text-xs font-semibold bg-blue-200 text-blue-900 px-3 py-1 rounded-full">
-                        <i class="fa-solid fa-vial mr-2"></i> Simulación: 10,000 pasajeros y 900 vuelos generados mediante WHILE.
-                    </div>
-                </div>
+        <!-- 2. Arquitectura Propuesta -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b pb-2 border-slate-100">
+                    <i class="fa-solid fa-cubes text-blue-600 mr-2"></i>2. Stack Tecnológico
+                </h2>
+                <p class="text-slate-600 mb-4 text-sm">El desarrollo de esta solución está proyectado utilizando el siguiente ecosistema de tecnologías:</p>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-database text-slate-400 mt-1 mr-3"></i>
+                        <div>
+                            <strong class="block text-slate-800">Microsoft SQL Server</strong>
+                            <span class="text-sm text-slate-500">Motor de base de datos relacional para el almacenamiento estructurado.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-brands fa-microsoft text-slate-400 mt-1 mr-3"></i>
+                        <div>
+                            <strong class="block text-slate-800">C# y Entity Framework Core</strong>
+                            <span class="text-sm text-slate-500">Lenguaje principal y ORM para el mapeo de la base de datos hacia objetos.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-window-maximize text-slate-400 mt-1 mr-3"></i>
+                        <div>
+                            <strong class="block text-slate-800">Windows Forms (Proyectado)</strong>
+                            <span class="text-sm text-slate-500">Framework propuesto para la futura interfaz gráfica de usuario.</span>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </section>
 
-        <!-- 3. Implementación ORM -->
-        <section class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b pb-2 border-gray-200">
-                <i class="fa-solid fa-code text-blue-600 mr-2"></i>3. Implementación del ORM: Entity Framework Core
-            </h2>
-            <div class="space-y-4 text-gray-600">
-                <p>Se implementó Entity Framework Core como capa de acceso a datos para garantizar seguridad y mantenimiento rápido.</p>
-                <ul class="list-disc list-inside space-y-2 ml-2">
-                    <li><strong>Ingeniería Inversa (Scaffolding):</strong> Se utilizó la herramienta CLI <code>dotnet-ef</code> para leer el esquema de SQL Server. Esto generó automáticamente las 13 clases en C# y el contexto <code>BdaeropuertoCuscoContext</code>.</li>
-                    <li><strong>Navigation Properties:</strong> EF mapeó automáticamente propiedades complejas. Desde un objeto <em>Equipaje</em>, es posible navegar hasta el nombre del <em>Pasajero</em> o la ciudad del <em>AeropuertoDestino</em>.</li>
+            <!-- 3. Modelado de BD -->
+            <div class="bg-blue-50 p-8 rounded-2xl border border-blue-100">
+                <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b pb-2 border-blue-200">
+                    <i class="fa-solid fa-sitemap text-blue-600 mr-2"></i>3. Modelo de Datos
+                </h2>
+                <p class="text-blue-800 mb-4 text-sm">
+                    El diseño de la base de datos <code>BDAeropuertoCusco</code> se compone de <strong>13 tablas interrelacionadas</strong>, diseñadas para asegurar la integridad referencial:
+                </p>
+                <ul class="space-y-3 text-sm text-blue-900">
+                    <li class="bg-white/60 p-2 rounded"><span class="font-bold">🏢 Infraestructura:</span> Aeropuerto, Aerolínea, Aeronave, Puerta Embarque.</li>
+                    <li class="bg-white/60 p-2 rounded"><span class="font-bold">✈️ Operaciones:</span> Vuelo.</li>
+                    <li class="bg-white/60 p-2 rounded"><span class="font-bold">🎟️ Comercial:</span> Pasajero, Boleto, Asiento, Equipaje.</li>
+                    <li class="bg-white/60 p-2 rounded"><span class="font-bold">👥 RR.HH:</span> Cargo, Área, Empleado, Vuelo Empleado.</li>
                 </ul>
             </div>
         </section>
 
-        <!-- 4. Interfaz Visual -->
-        <section>
-            <h2 class="text-2xl font-bold text-slate-800 mb-6">
-                <i class="fa-solid fa-desktop text-blue-600 mr-2"></i>4. Desarrollo de la Interfaz Visual Moderna (WinForms)
+        <!-- 4. Lógica de Consultas Propuestas -->
+        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2 border-slate-100">
+                <i class="fa-solid fa-list-check text-blue-600 mr-2"></i>4. Estructura de Consultas Proyectada
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-center">
-                    <div class="bg-slate-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="fa-solid fa-moon text-slate-700"></i>
-                    </div>
-                    <h3 class="font-bold text-gray-800 text-sm mb-2">Diseño Split-Screen</h3>
-                    <p class="text-xs text-gray-500">Panel lateral oscuro (Dark Mode) con menú de navegación limpio y área de trabajo clara dibujada por código puro.</p>
-                </div>
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-center">
-                    <div class="bg-slate-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="fa-solid fa-table text-slate-700"></i>
-                    </div>
-                    <h3 class="font-bold text-gray-800 text-sm mb-2">DataGridView Estilizado</h3>
-                    <p class="text-xs text-gray-500">Filas de colores alternos sin bordes duros y fuente Segoe UI para ofrecer un look moderno web-like.</p>
-                </div>
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-center">
-                    <div class="bg-slate-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="fa-solid fa-magnifying-glass text-slate-700"></i>
-                    </div>
-                    <h3 class="font-bold text-gray-800 text-sm mb-2">Manejo de Estados</h3>
-                    <p class="text-xs text-gray-500">Barra de búsqueda dinámica (Visible = true) que solo aparece cuando se requieren parámetros de entrada.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Lógica del Core (10 Consultas) -->
-        <section class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-            <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2 border-gray-200">
-                <i class="fa-solid fa-microchip text-blue-600 mr-2"></i>5. Lógica y Funcionamiento del "Core" (Las 10 Consultas)
-            </h2>
-            <p class="text-gray-600 mb-6">El botón "Ejecutar" del menú dispara un bloque lógico que, mediante LINQ to Entities, transforma las peticiones C# en consultas SQL altamente optimizadas.</p>
+            <p class="text-slate-600 mb-6 text-sm">El núcleo analítico del proyecto plantea resolver las siguientes interrogantes operativas utilizando LINQ y SQL:</p>
             
             <div class="space-y-6">
                 <!-- Nivel 1 -->
-                <div>
-                    <h3 class="text-lg font-bold text-emerald-600 mb-3 flex items-center gap-2"><span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded text-xs">Nivel 1</span> Consultas Básicas</h3>
-                    <ul class="text-sm text-gray-600 space-y-2 pl-4 border-l-2 border-emerald-200">
-                        <li><strong>1. Listar todos los Aeropuertos:</strong> Muestra el catálogo de infraestructura (<code>.ToList()</code>).</li>
-                        <li><strong>2. Buscar Pasajero:</strong> Un filtro <code>Where(p => p.NroDocumento == dni)</code> que recibe el parámetro ingresado.</li>
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                    <h3 class="text-md font-bold text-slate-800 mb-2">Operaciones Básicas</h3>
+                    <ul class="text-sm text-slate-600 list-disc list-inside space-y-1 ml-2">
+                        <li>Listado general del catálogo de Aeropuertos.</li>
+                        <li>Búsqueda de Pasajeros específicos mediante su número de documento.</li>
                     </ul>
                 </div>
                 
                 <!-- Nivel 2 -->
-                <div>
-                    <h3 class="text-lg font-bold text-blue-600 mb-3 flex items-center gap-2"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Nivel 2</span> Consultas Intermedias</h3>
-                    <p class="text-xs text-gray-500 mb-2 italic">Uso de Navigation Properties para evitar JOINs manuales.</p>
-                    <ul class="text-sm text-gray-600 space-y-2 pl-4 border-l-2 border-blue-200">
-                        <li><strong>3. Vuelos, Aerolíneas y Aeronaves:</strong> Usa doble <code>Include()</code> para mostrar nombres en vez de IDs numéricos.</li>
-                        <li><strong>4. Boletos Activos y Pasajeros:</strong> Cruza las tablas Boleto y Pasajero para mostrar nombres completos.</li>
-                        <li><strong>5. Personal y Áreas de Trabajo:</strong> Detalla a los empleados con su Cargo y Área.</li>
-                        <li><strong>6. Filtro de Vuelos Retrasados:</strong> Aplica filtro <code>(Estado == "Cancelado" || Estado == "Retrasado")</code>.</li>
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                    <h3 class="text-md font-bold text-slate-800 mb-2">Relaciones Intermedias</h3>
+                    <ul class="text-sm text-slate-600 list-disc list-inside space-y-1 ml-2">
+                        <li>Cruce de Vuelos con sus respectivas Aerolíneas y Aeronaves asignadas.</li>
+                        <li>Identificación de Pasajeros con Boletos Activos en el sistema.</li>
+                        <li>Directorio de Empleados detallando su Cargo y Área de asignación.</li>
+                        <li>Filtro de Vuelos Retrasados y Cancelados para evaluar el impacto en destinos.</li>
                     </ul>
                 </div>
 
                 <!-- Nivel 3 -->
-                <div>
-                    <h3 class="text-lg font-bold text-purple-600 mb-3 flex items-center gap-2"><span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">Nivel 3</span> Consultas Avanzadas</h3>
-                    <p class="text-xs text-gray-500 mb-2 italic">Extracción de métricas cruzando entre 3 y 5 tablas.</p>
-                    <ul class="text-sm text-gray-600 space-y-3 pl-4 border-l-2 border-purple-200">
-                        <li><strong>7. Recaudación por Aerolínea:</strong> Usa <code>GroupBy()</code> y <code>Sum(b => b.Precio)</code> cruzando Boleto -> Vuelo -> Aerolinea.</li>
-                        <li><strong>8. Rutas más Demandadas:</strong> Agrupación compuesta por Ciudad Origen y Ciudad Destino, con <code>Count()</code> para rankear.</li>
-                        <li><strong>9. Peso de Equipaje por Vuelo:</strong> Agrupa por código de vuelo sumando <code>Sum(x => x.Peso)</code> para logística aeronáutica.</li>
-                        <li><strong>10. Dashboard de Ocupación:</strong> La más exigente. Une 4 tablas base y proyecta objetos anónimos en tiempo real comparando Capacidad Total contra Boletos Vendidos.</li>
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                    <h3 class="text-md font-bold text-slate-800 mb-2">Análisis de Datos Complejos (Métricas)</h3>
+                    <ul class="text-sm text-slate-600 list-disc list-inside space-y-1 ml-2">
+                        <li>Cálculo de la <strong>Recaudación por Aerolínea</strong> en base al precio de boletos.</li>
+                        <li>Ranking de las <strong>Rutas más Demandadas</strong> (Origen - Destino).</li>
+                        <li>Métrica logística del <strong>Peso Total de Equipaje</strong> agrupado por vuelo.</li>
+                        <li><strong>Dashboard de Ocupación:</strong> Proyección de la capacidad total de la aeronave versus la cantidad de boletos vendidos.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Visualización del Script SQL -->
+        <!-- Visualización del Script SQL (Carga Dinámica) -->
         <section class="mb-12">
             <h2 class="text-2xl font-bold text-slate-800 mb-4">
-                <i class="fa-solid fa-file-code text-blue-600 mr-2"></i>Script de Base de Datos
+                <i class="fa-solid fa-database text-blue-600 mr-2"></i>Script de Base de Datos Propuesto
             </h2>
-            <p class="text-gray-600 mb-4 text-sm">Visualización del archivo encargado de la creación e inserción de datos masivos en el sistema.</p>
+            <p class="text-slate-600 mb-4 text-sm">Este es el código completo del archivo <code>Script_BaseDatos_Cusco.sql</code> (cargado automáticamente desde el repositorio), el cual define la estructura principal de las tablas.</p>
             
-            <div class="bg-[#1E1E1E] rounded-xl overflow-hidden shadow-lg border border-gray-700">
+            <div class="bg-[#282c34] rounded-xl overflow-hidden shadow-lg border border-slate-800 relative">
+                <!-- Estado de Carga -->
+                <div id="loading-indicator" class="absolute inset-0 bg-[#282c34] flex items-center justify-center text-blue-400 z-10">
+                    <i class="fa-solid fa-circle-notch fa-spin text-3xl mr-3"></i> Cargando archivo SQL...
+                </div>
+
                 <!-- Header del Code Block -->
-                <div class="bg-[#2D2D2D] px-4 py-2 border-b border-gray-700 flex justify-between items-center text-sm">
-                    <div class="flex items-center text-gray-300">
+                <div class="bg-[#21252b] px-4 py-3 border-b border-gray-700 flex justify-between items-center text-sm">
+                    <div class="flex items-center text-slate-300">
                         <i class="fa-solid fa-file-lines text-blue-400 mr-2"></i>
                         <span class="font-mono">Script_BaseDatos_Cusco.sql</span>
                     </div>
-                    <span class="text-xs text-gray-500">SQL Server</span>
+                    <a href="Script_BaseDatos_Cusco.sql" download class="text-xs text-blue-400 hover:text-blue-300 transition-colors">
+                        <i class="fa-solid fa-download mr-1"></i> Descargar SQL
+                    </a>
                 </div>
-                <!-- Código (Ejemplo representativo basado en el PDF) -->
-                <div class="p-4 overflow-x-auto code-container">
-<pre><code class="language-sql text-sm text-gray-300 font-mono leading-relaxed">
-<span class="text-green-400">-- ==============================================================</span>
-<span class="text-green-400">-- Script: Script_BaseDatos_Cusco.sql</span>
-<span class="text-green-400">-- Proyecto: AeroQuery Cusco</span>
-<span class="text-green-400">-- Descripción: Creación de BDAeropuertoCusco (13 Tablas) </span>
-<span class="text-green-400">-- ==============================================================</span>
-
-<span class="text-blue-400 font-bold">CREATE DATABASE</span> BDAeropuertoCusco;
-<span class="text-blue-400 font-bold">GO</span>
-
-<span class="text-blue-400 font-bold">USE</span> BDAeropuertoCusco;
-<span class="text-blue-400 font-bold">GO</span>
-
-<span class="text-green-400">-- 1. ENTIDADES PRINCIPALES</span>
-<span class="text-blue-400 font-bold">CREATE TABLE</span> Aeropuerto (
-    IdAeropuerto <span class="text-purple-400">INT IDENTITY(1,1) PRIMARY KEY</span>,
-    Nombre <span class="text-purple-400">VARCHAR(100) NOT NULL</span>,
-    Ciudad <span class="text-purple-400">VARCHAR(50) NOT NULL</span>,
-    Pais <span class="text-purple-400">VARCHAR(50) NOT NULL</span>
-);
-
-<span class="text-blue-400 font-bold">CREATE TABLE</span> Aerolinea (
-    IdAerolinea <span class="text-purple-400">INT IDENTITY(1,1) PRIMARY KEY</span>,
-    NombreComercial <span class="text-purple-400">VARCHAR(100) NOT NULL</span>,
-    CodigoIATA <span class="text-purple-400">CHAR(2) NOT NULL</span>
-);
-
-<span class="text-green-400">-- 2. OPERATIVIDAD AÉREA</span>
-<span class="text-blue-400 font-bold">CREATE TABLE</span> Vuelo (
-    IdVuelo <span class="text-purple-400">INT IDENTITY(1,1) PRIMARY KEY</span>,
-    IdAerolinea <span class="text-purple-400">INT FOREIGN KEY REFERENCES</span> Aerolinea(IdAerolinea),
-    IdAeropuertoOrigen <span class="text-purple-400">INT FOREIGN KEY REFERENCES</span> Aeropuerto(IdAeropuerto),
-    IdAeropuertoDestino <span class="text-purple-400">INT FOREIGN KEY REFERENCES</span> Aeropuerto(IdAeropuerto),
-    FechaHoraSalida <span class="text-purple-400">DATETIME NOT NULL</span>,
-    Estado <span class="text-purple-400">VARCHAR(20)</span> <span class="text-green-400">-- 'Programado', 'Retrasado', 'Cancelado'</span>
-);
-
-<span class="text-green-400">-- [FRAGMENTO DE SIMULACIÓN / INSERCIÓN MASIVA]</span>
-<span class="text-blue-400 font-bold">DECLARE</span> @i <span class="text-purple-400">INT</span> = 1;
-<span class="text-blue-400 font-bold">WHILE</span> @i <= 10000
-<span class="text-blue-400 font-bold">BEGIN</span>
-    <span class="text-blue-400 font-bold">INSERT INTO</span> Pasajero (NroDocumento, Nombres, Apellidos)
-    <span class="text-blue-400 font-bold">VALUES</span> (<span class="text-yellow-300">'DOC'</span> + <span class="text-blue-400 font-bold">CAST</span>(@i <span class="text-blue-400 font-bold">AS</span> <span class="text-purple-400">VARCHAR</span>), <span class="text-yellow-300">'NombreTest'</span>, <span class="text-yellow-300">'ApellidoTest'</span>);
-    <span class="text-blue-400 font-bold">SET</span> @i = @i + 1;
-<span class="text-blue-400 font-bold">END</span>
-
-<span class="text-green-400">-- Nota: Este es un fragmento visual para mostrar la estructura base del archivo.</span>
-</code></pre>
+                
+                <!-- Contenedor del Código -->
+                <div class="p-4 code-container">
+                    <pre><code id="sql-code-block" class="language-sql text-sm font-mono leading-relaxed">
+/* El código se inyectará aquí mediante JavaScript */
+                    </code></pre>
                 </div>
             </div>
         </section>
@@ -254,23 +208,55 @@
     </main>
 
     <!-- Footer / Bottom Download Section -->
-    <footer class="bg-slate-900 border-t border-slate-800 text-center py-12 mt-12">
+    <footer class="bg-slate-900 border-t border-slate-800 text-center py-16 mt-12">
         <div class="max-w-4xl mx-auto px-4">
-            <h3 class="text-white text-2xl font-bold mb-6">¿Listo para probar AeroQuery?</h3>
-            <p class="text-slate-400 mb-8 max-w-xl mx-auto">Descarga el código fuente completo, incluyendo la aplicación WinForms, y el script para desplegar la base de datos en SQL Server.</p>
+            <h3 class="text-white text-2xl font-bold mb-4">Descarga la Propuesta Completa</h3>
+            <p class="text-slate-400 mb-8 max-w-xl mx-auto">Obtén el documento PDF con todos los detalles de la propuesta, junto con el script SQL de creación de la base de datos.</p>
             
             <a href="AeroQuery.zip" download class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-4 px-8 rounded-lg transition-colors shadow-[0_0_15px_rgba(37,99,235,0.4)] hover:shadow-[0_0_25px_rgba(37,99,235,0.6)] text-lg">
                 <i class="fa-solid fa-download"></i>
                 Descargar AeroQuery.zip
             </a>
             
-            <p class="text-slate-500 text-sm mt-8">
-                &copy; 2024 Proyecto AeroQuery Cusco. Desarrollado con C#, WinForms y Entity Framework Core.
+            <p class="text-slate-500 text-sm mt-10">
+                &copy; 2024 Propuesta de Proyecto: AeroQuery Cusco. <br>
+                Diseño de Base de Datos y Arquitectura de Software.
             </p>
         </div>
     </footer>
 
+    <!-- Script para cargar el archivo SQL dinámicamente -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const codeBlock = document.getElementById('sql-code-block');
+            const loadingIndicator = document.getElementById('loading-indicator');
+
+            // Hacemos la petición (fetch) al archivo que está en la misma carpeta
+            fetch('Script_BaseDatos_Cusco.sql')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo encontrar el archivo en el servidor.');
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    // Colocamos el texto crudo en el bloque de código
+                    codeBlock.textContent = text;
+                    // Aplicamos los colores al código usando Highlight.js
+                    hljs.highlightElement(codeBlock);
+                    // Ocultamos el indicador de carga
+                    loadingIndicator.style.display = 'none';
+                })
+                .catch(error => {
+                    // En caso de error (por ejemplo, si pruebas esto en local sin servidor web, o el archivo no se llama igual)
+                    loadingIndicator.style.display = 'none';
+                    codeBlock.textContent = `-- ¡Ups! Ocurrió un error al cargar el código.\n-- Detalles: ${error.message}\n\n-- Asegúrate de que el archivo "Script_BaseDatos_Cusco.sql" esté exactamente con ese nombre y en la misma carpeta que este index.html en GitHub.`;
+                    codeBlock.classList.add('text-red-400'); // Poner texto en rojo para indicar error
+                });
+        });
+    </script>
 </body>
 </html>
+
 
 ```
