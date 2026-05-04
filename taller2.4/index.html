@@ -1,16 +1,19 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AeroQuery Cusco - Propuesta de Proyecto</title>
+    <title>AeroQuery Cusco - Proyecto Unificado</title>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Font Awesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts: Poppins para diseño moderno -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- Highlight.js para colorear el código SQL -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -18,11 +21,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        
         .code-container {
             scrollbar-width: thin;
             scrollbar-color: #4B5563 #1F2937;
-            max-height: 500px; /* Limita la altura para que no ocupe toda la pantalla si el script es muy largo */
+            max-height: 500px;
             overflow-y: auto;
         }
         .code-container::-webkit-scrollbar {
@@ -41,164 +64,276 @@
         pre code.hljs {
             background: transparent;
             padding: 0;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-200 selection:text-blue-900">
+<body class="text-slate-700 antialiased selection:bg-blue-200 selection:text-blue-900">
 
-    <!-- Header / Hero Section -->
-    <header class="bg-slate-900 text-white pt-16 pb-20 px-4 sm:px-6 lg:px-8 shadow-inner relative overflow-hidden">
-        <div class="absolute opacity-10 right-0 top-0 w-96 h-96 transform translate-x-1/3 -translate-y-1/3">
-            <i class="fa-solid fa-plane-up text-[20rem]"></i>
+    <!-- HEADER / HERO SECTION -->
+    <header class="relative bg-slate-900 text-white overflow-hidden pb-24 pt-16 px-6 lg:px-12 fade-in-up">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+            <div class="absolute top-12 -left-24 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+            <i class="fa-solid fa-plane-up text-[30rem] absolute right-0 top-0 transform translate-x-1/4 -translate-y-1/4 opacity-10"></i>
         </div>
-        <div class="max-w-4xl mx-auto relative z-10">
-            <div class="inline-block bg-blue-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">
-                Propuesta de Proyecto
+        
+        <div class="relative max-w-5xl mx-auto text-center z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm font-medium mb-6 border border-blue-500/30">
+                <i class="fa-solid fa-graduation-cap"></i> Universidad Andina del Cusco
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">AeroQuery Cusco</h1>
-            <p class="text-xl text-blue-200 mb-8 font-light">Diseño de Arquitectura, Modelado de Datos y Planteamiento Lógico</p>
             
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight">Aero<span class="text-blue-400">Query</span> Cusco</h1>
+            <p class="text-xl md:text-2xl text-slate-300 font-light max-w-3xl mx-auto mb-8">
+                Diseño de Arquitectura, Modelado de Datos y Planteamiento Lógico para Terminales Aéreos.
+            </p>
+            
+            <div class="flex flex-wrap justify-center items-center gap-4 text-sm font-medium mb-8">
+                <span class="bg-slate-800 text-slate-300 px-4 py-2 rounded-lg border border-slate-700"><i class="fa-solid fa-users text-amber-400 mr-2"></i> Equipo: Las Abejitas</span>
+                <span class="bg-slate-800 text-slate-300 px-4 py-2 rounded-lg border border-slate-700"><i class="fa-solid fa-database text-emerald-400 mr-2"></i> Taller 2.4: Acceso a Datos</span>
+            </div>
+
             <!-- Botón de Descarga Superior -->
-            <a href="AeroQuery.zip" download class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg transition-colors shadow-lg hover:shadow-xl">
-                <i class="fa-solid fa-file-zipper"></i>
+            <a href="AeroQuery.zip" download class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-blue-500/50 hover:-translate-y-1">
+                <i class="fa-solid fa-file-zipper text-xl"></i>
                 Descargar Archivos del Proyecto (.zip)
             </a>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+    <!-- MAIN CONTENT -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-10 pb-20">
 
-        <!-- 1. Introducción y Propuesta -->
-        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-            <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b pb-2 border-slate-100">
-                <i class="fa-solid fa-bullseye text-blue-600 mr-2"></i>1. Planteamiento del Problema
-            </h2>
-            <p class="text-slate-600 leading-relaxed mb-4">
-                El proyecto <strong>AeroQuery</strong> nace como una propuesta para resolver los desafíos de la gestión operativa en terminales aéreos. Actualmente, los sistemas aeroportuarios requieren manejar un flujo constante y simultáneo de pasajeros, venta de boletos, asignación de personal y logística de equipaje.
-            </p>
-            <p class="text-slate-600 leading-relaxed">
-                Nuestra propuesta consiste en estructurar una base de datos centralizada y normalizada que permita recopilar esta información, sentando las bases para una futura aplicación de escritorio que facilite la extracción de métricas clave para la toma de decisiones gerenciales.
-            </p>
-        </section>
-
-        <!-- 2. Arquitectura Propuesta -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-                <h2 class="text-2xl font-bold text-slate-800 mb-4 border-b pb-2 border-slate-100">
-                    <i class="fa-solid fa-cubes text-blue-600 mr-2"></i>2. Stack Tecnológico
-                </h2>
-                <p class="text-slate-600 mb-4 text-sm">El desarrollo de esta solución está proyectado utilizando el siguiente ecosistema de tecnologías:</p>
-                <ul class="space-y-4">
-                    <li class="flex items-start">
-                        <i class="fa-solid fa-database text-slate-400 mt-1 mr-3"></i>
-                        <div>
-                            <strong class="block text-slate-800">Microsoft SQL Server</strong>
-                            <span class="text-sm text-slate-500">Motor de base de datos relacional para el almacenamiento estructurado.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fa-brands fa-microsoft text-slate-400 mt-1 mr-3"></i>
-                        <div>
-                            <strong class="block text-slate-800">C# y Entity Framework Core</strong>
-                            <span class="text-sm text-slate-500">Lenguaje principal y ORM para el mapeo de la base de datos hacia objetos.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fa-solid fa-window-maximize text-slate-400 mt-1 mr-3"></i>
-                        <div>
-                            <strong class="block text-slate-800">Windows Forms (Proyectado)</strong>
-                            <span class="text-sm text-slate-500">Framework propuesto para la futura interfaz gráfica de usuario.</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- 3. Modelado de BD -->
-            <div class="bg-blue-50 p-8 rounded-2xl border border-blue-100">
-                <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b pb-2 border-blue-200">
-                    <i class="fa-solid fa-sitemap text-blue-600 mr-2"></i>3. Modelo de Datos
-                </h2>
-                <p class="text-blue-800 mb-4 text-sm">
-                    El diseño de la base de datos <code>BDAeropuertoCusco</code> se compone de <strong>13 tablas interrelacionadas</strong>, diseñadas para asegurar la integridad referencial:
-                </p>
-                <ul class="space-y-3 text-sm text-blue-900">
-                    <li class="bg-white/60 p-2 rounded"><span class="font-bold">🏢 Infraestructura:</span> Aeropuerto, Aerolínea, Aeronave, Puerta Embarque.</li>
-                    <li class="bg-white/60 p-2 rounded"><span class="font-bold">✈️ Operaciones:</span> Vuelo.</li>
-                    <li class="bg-white/60 p-2 rounded"><span class="font-bold">🎟️ Comercial:</span> Pasajero, Boleto, Asiento, Equipaje.</li>
-                    <li class="bg-white/60 p-2 rounded"><span class="font-bold">👥 RR.HH:</span> Cargo, Área, Empleado, Vuelo Empleado.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- 4. Lógica de Consultas Propuestas -->
-        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-            <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2 border-slate-100">
-                <i class="fa-solid fa-list-check text-blue-600 mr-2"></i>4. Estructura de Consultas Proyectada
-            </h2>
-            <p class="text-slate-600 mb-6 text-sm">El núcleo analítico del proyecto plantea resolver las siguientes interrogantes operativas utilizando LINQ y SQL:</p>
-            
-            <div class="space-y-6">
-                <!-- Nivel 1 -->
-                <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                    <h3 class="text-md font-bold text-slate-800 mb-2">Operaciones Básicas</h3>
-                    <ul class="text-sm text-slate-600 list-disc list-inside space-y-1 ml-2">
-                        <li>Listado general del catálogo de Aeropuertos.</li>
-                        <li>Búsqueda de Pasajeros específicos mediante su número de documento.</li>
-                    </ul>
+        <!-- 1. EL PROBLEMA Y PROPUESTA -->
+        <section class="bg-white rounded-2xl shadow-xl p-8 mb-10 border border-slate-100 fade-in-up delay-100">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <div class="w-40 h-40 bg-blue-50 rounded-full flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-blue-400 rounded-full animate-ping opacity-20"></div>
+                        <i class="fa-solid fa-plane-departure text-6xl text-blue-600 relative z-10"></i>
+                    </div>
                 </div>
+                <div class="w-full md:w-2/3">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-800 border-b pb-2 border-slate-100">
+                        <i class="fa-solid fa-bullseye text-blue-600 mr-2"></i>1. Planteamiento del Problema
+                    </h2>
+                    <p class="text-lg text-slate-600 leading-relaxed mb-4">
+                        El proyecto <strong>AeroQuery</strong> nace para resolver los desafíos operativos en terminales aéreos. Actualmente, se requiere manejar un flujo constante de pasajeros, venta de boletos, asignación de personal y logística de equipaje.
+                    </p>
+                    <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                        Nuestra propuesta consiste en estructurar una base de datos centralizada y normalizada que recopile esta información en tiempo real, permitiendo extraer métricas instantáneas para la toma de decisiones gerenciales.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <i class="fa-solid fa-route text-2xl text-cyan-500 mb-2"></i>
+                            <p class="text-xs font-bold uppercase text-slate-500">Rutas Aéreas</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <i class="fa-solid fa-chart-line text-2xl text-green-500 mb-2"></i>
+                            <p class="text-xs font-bold uppercase text-slate-500">Métricas</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <i class="fa-solid fa-suitcase-rolling text-2xl text-amber-500 mb-2"></i>
+                            <p class="text-xs font-bold uppercase text-slate-500">Logística</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <i class="fa-solid fa-users-gear text-2xl text-purple-500 mb-2"></i>
+                            <p class="text-xs font-bold uppercase text-slate-500">Personal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ARQUITECTURA Y MODELADO -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10">
+            
+            <!-- MODELADO DE DATOS -->
+            <section class="bg-blue-50 rounded-2xl shadow-lg p-8 border border-blue-100 flex flex-col fade-in-up delay-200">
+                <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b pb-2 border-blue-200 flex items-center">
+                    <i class="fa-solid fa-sitemap text-blue-600 mr-3 text-2xl"></i>2. Modelo de Datos
+                </h2>
+                <p class="text-blue-800 mb-6 text-sm">El diseño de la base de datos <code>BDAeropuertoCusco</code> asegura integridad referencial estricta y se compone de <strong>13 tablas interrelacionadas</strong> divididas en 4 pilares:</p>
                 
-                <!-- Nivel 2 -->
-                <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                    <h3 class="text-md font-bold text-slate-800 mb-2">Relaciones Intermedias</h3>
-                    <ul class="text-sm text-slate-600 list-disc list-inside space-y-1 ml-2">
-                        <li>Cruce de Vuelos con sus respectivas Aerolíneas y Aeronaves asignadas.</li>
-                        <li>Identificación de Pasajeros con Boletos Activos en el sistema.</li>
-                        <li>Directorio de Empleados detallando su Cargo y Área de asignación.</li>
-                        <li>Filtro de Vuelos Retrasados y Cancelados para evaluar el impacto en destinos.</li>
+                <div class="grid grid-cols-2 gap-4 mb-6 flex-grow">
+                    <div class="bg-white/80 border border-blue-100 rounded-xl p-4 shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-800 mb-2 border-b border-blue-100 pb-2"><i class="fa-solid fa-building text-slate-400 mr-1"></i> Infraestructura</h4>
+                        <ul class="text-xs text-slate-600 space-y-1 font-medium">
+                            <li>• Aeropuerto, Aerolínea</li>
+                            <li>• Aeronave, Puerta Emb.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/80 border border-blue-100 rounded-xl p-4 shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-800 mb-2 border-b border-blue-100 pb-2"><i class="fa-solid fa-plane text-slate-400 mr-1"></i> Operatividad</h4>
+                        <ul class="text-xs text-slate-600 space-y-1 font-medium">
+                            <li>• Vuelo</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/80 border border-blue-100 rounded-xl p-4 shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-800 mb-2 border-b border-blue-100 pb-2"><i class="fa-solid fa-ticket text-slate-400 mr-1"></i> Comercial</h4>
+                        <ul class="text-xs text-slate-600 space-y-1 font-medium">
+                            <li>• Pasajero, Boleto</li>
+                            <li>• Asiento, Equipaje</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/80 border border-blue-100 rounded-xl p-4 shadow-sm">
+                        <h4 class="font-bold text-sm text-slate-800 mb-2 border-b border-blue-100 pb-2"><i class="fa-solid fa-id-badge text-slate-400 mr-1"></i> RR.HH.</h4>
+                        <ul class="text-xs text-slate-600 space-y-1 font-medium">
+                            <li>• Empleado, Área</li>
+                            <li>• Cargo, VueloEmpleado</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Métricas Dummy de la infografía original -->
+                <div class="bg-white p-4 rounded-xl shadow-sm flex items-center justify-between mt-auto border border-blue-100">
+                    <div class="text-center">
+                        <span class="block text-2xl font-black text-blue-600">13</span>
+                        <span class="text-xs font-bold text-slate-500 uppercase">Tablas</span>
+                    </div>
+                    <div class="text-center border-l border-r border-slate-100 px-4">
+                        <span class="block text-2xl font-black text-slate-700">10k+</span>
+                        <span class="text-xs font-bold text-slate-500 uppercase">Pasajeros</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-2xl font-black text-slate-700">900+</span>
+                        <span class="text-xs font-bold text-slate-500 uppercase">Vuelos</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TECNOLOGÍAS (Stack) -->
+            <div class="flex flex-col gap-6 fade-in-up delay-300">
+                <!-- Stack Principal -->
+                <section class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-xl p-8 text-white flex-grow">
+                    <h2 class="text-2xl font-bold mb-6 border-b border-slate-700 pb-2 flex items-center">
+                        <i class="fa-solid fa-cubes text-blue-400 mr-3"></i>3. Stack Tecnológico
+                    </h2>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start bg-slate-800/50 p-3 rounded-lg border border-slate-700">
+                            <i class="fa-solid fa-database text-blue-400 text-xl mt-1 mr-4 w-6 text-center"></i>
+                            <div>
+                                <strong class="block text-white text-sm">Microsoft SQL Server</strong>
+                                <span class="text-xs text-slate-400">Motor relacional para almacenamiento estructurado.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start bg-slate-800/50 p-3 rounded-lg border border-slate-700">
+                            <i class="fa-brands fa-microsoft text-purple-400 text-xl mt-1 mr-4 w-6 text-center"></i>
+                            <div>
+                                <strong class="block text-white text-sm">C# y Entity Framework Core</strong>
+                                <span class="text-xs text-slate-400">ORM para el mapeo automátizado de DB hacia objetos usando <code>Scaffolding</code>.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start bg-slate-800/50 p-3 rounded-lg border border-slate-700">
+                            <i class="fa-solid fa-window-maximize text-emerald-400 text-xl mt-1 mr-4 w-6 text-center"></i>
+                            <div>
+                                <strong class="block text-white text-sm">Windows Forms (UI Moderna)</strong>
+                                <span class="text-xs text-slate-400">Framework visual proyectado con diseño Dark Mode Split-Screen por código.</span>
+                            </div>
+                        </li>
                     </ul>
+                </section>
+            </div>
+        </div>
+
+        <!-- 3. LOGICA CORE (CONSULTAS LINQ) -->
+        <section class="mb-12 fade-in-up delay-400">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-slate-800 inline-block relative">
+                    <i class="fa-solid fa-list-check text-blue-600 mr-2"></i> 4. Estructura de Consultas Proyectada
+                    <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-blue-500 rounded-full"></div>
+                </h2>
+                <p class="text-slate-500 mt-6 max-w-2xl mx-auto">10 consultas transformadas de C# a SQL altamente optimizado a través de LINQ to Entities para resolver interrogantes operativas.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Nivel 1 -->
+                <div class="bg-white rounded-2xl shadow-lg border-t-4 border-emerald-400 overflow-hidden relative transition-transform hover:-translate-y-2">
+                    <div class="absolute top-0 right-0 bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-bl-lg">Nivel 1</div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-magnifying-glass text-emerald-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Operaciones Básicas</h3>
+                        <p class="text-xs text-slate-500 mb-4 border-b border-slate-100 pb-4">Operaciones de lectura directa y búsqueda de datos.</p>
+                        
+                        <ul class="text-sm text-slate-600 space-y-3">
+                            <li class="flex gap-2"><span class="text-emerald-500 font-bold">•</span> Listado general del catálogo de Aeropuertos.</li>
+                            <li class="flex gap-2"><span class="text-emerald-500 font-bold">•</span> Búsqueda de Pasajeros específicos mediante su número de documento.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Nivel 2 -->
+                <div class="bg-white rounded-2xl shadow-lg border-t-4 border-blue-500 overflow-hidden relative transition-transform hover:-translate-y-2">
+                    <div class="absolute top-0 right-0 bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-bl-lg">Nivel 2</div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-link text-blue-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Relaciones Intermedias</h3>
+                        <p class="text-xs text-slate-500 mb-4 border-b border-slate-100 pb-4">Navegación de Objetos evitando JOINs manuales.</p>
+                        
+                        <ul class="text-sm text-slate-600 space-y-3">
+                            <li class="flex gap-2"><span class="text-blue-500 font-bold">•</span> Cruce de Vuelos con sus Aerolíneas y Aeronaves asignadas.</li>
+                            <li class="flex gap-2"><span class="text-blue-500 font-bold">•</span> Identificación de Pasajeros con Boletos Activos.</li>
+                            <li class="flex gap-2"><span class="text-blue-500 font-bold">•</span> Directorio de Empleados por Cargo y Área.</li>
+                            <li class="flex gap-2"><span class="text-blue-500 font-bold">•</span> Filtro de Vuelos Retrasados y Cancelados.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Nivel 3 -->
-                <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                    <h3 class="text-md font-bold text-slate-800 mb-2">Análisis de Datos Complejos (Métricas)</h3>
-                    <ul class="text-sm text-slate-600 list-disc list-inside space-y-1 ml-2">
-                        <li>Cálculo de la <strong>Recaudación por Aerolínea</strong> en base al precio de boletos.</li>
-                        <li>Ranking de las <strong>Rutas más Demandadas</strong> (Origen - Destino).</li>
-                        <li>Métrica logística del <strong>Peso Total de Equipaje</strong> agrupado por vuelo.</li>
-                        <li><strong>Dashboard de Ocupación:</strong> Proyección de la capacidad total de la aeronave versus la cantidad de boletos vendidos.</li>
-                    </ul>
+                <div class="bg-white rounded-2xl shadow-lg border-t-4 border-amber-500 overflow-hidden relative transition-transform hover:-translate-y-2">
+                    <div class="absolute top-0 right-0 bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-bl-lg">Nivel 3</div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-chart-pie text-amber-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Análisis de Datos (Métricas)</h3>
+                        <p class="text-xs text-slate-500 mb-4 border-b border-slate-100 pb-4">LINQ Complejo, estadísticas y proyecciones.</p>
+                        
+                        <ul class="text-sm text-slate-600 space-y-3">
+                            <li class="flex gap-2"><span class="text-amber-500 font-bold">•</span> Cálculo de <strong>Recaudación por Aerolínea</strong> (Precio de boletos).</li>
+                            <li class="flex gap-2"><span class="text-amber-500 font-bold">•</span> Ranking de <strong>Rutas más Demandadas</strong>.</li>
+                            <li class="flex gap-2"><span class="text-amber-500 font-bold">•</span> <strong>Peso Total de Equipaje</strong> logístico por vuelo.</li>
+                            <li class="flex gap-2"><span class="text-amber-500 font-bold">•</span> <strong>Dashboard de Ocupación:</strong> Capacidad vs Boletos Vendidos.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Visualización del Script SQL (Carga Dinámica) -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold text-slate-800 mb-4">
-                <i class="fa-solid fa-database text-blue-600 mr-2"></i>Script de Base de Datos Propuesto
+        <!-- 4. SCRIPT SQL (CARGA DINÁMICA) -->
+        <section class="fade-in-up delay-500">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                <i class="fa-solid fa-file-code text-blue-600 mr-3 text-2xl"></i>5. Script de Base de Datos
             </h2>
-            <p class="text-slate-600 mb-4 text-sm">Este es el código completo del archivo <code>Script_BaseDatos_Cusco.sql</code> (cargado automáticamente desde el repositorio), el cual define la estructura principal de las tablas.</p>
+            <p class="text-slate-600 mb-6 text-sm">Visualización del código completo del archivo <code>Script_BaseDatos_Cusco.sql</code> que define la estructura relacional principal (DDL).</p>
             
-            <div class="bg-[#282c34] rounded-xl overflow-hidden shadow-lg border border-slate-800 relative">
+            <div class="bg-[#282c34] rounded-2xl overflow-hidden shadow-2xl border border-slate-700 relative">
                 <!-- Estado de Carga -->
-                <div id="loading-indicator" class="absolute inset-0 bg-[#282c34] flex items-center justify-center text-blue-400 z-10">
-                    <i class="fa-solid fa-circle-notch fa-spin text-3xl mr-3"></i> Cargando archivo SQL...
+                <div id="loading-indicator" class="absolute inset-0 bg-[#282c34] flex flex-col items-center justify-center text-blue-400 z-10">
+                    <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-3"></i>
+                    <span class="font-medium">Cargando archivo SQL...</span>
                 </div>
 
                 <!-- Header del Code Block -->
-                <div class="bg-[#21252b] px-4 py-3 border-b border-gray-700 flex justify-between items-center text-sm">
-                    <div class="flex items-center text-slate-300">
-                        <i class="fa-solid fa-file-lines text-blue-400 mr-2"></i>
-                        <span class="font-mono">Script_BaseDatos_Cusco.sql</span>
+                <div class="bg-[#21252b] px-5 py-3 border-b border-gray-800 flex justify-between items-center text-sm">
+                    <div class="flex items-center text-slate-300 font-mono text-xs">
+                        <i class="fa-solid fa-database text-blue-400 mr-2"></i>
+                        Script_BaseDatos_Cusco.sql
                     </div>
-                    <a href="Script_BaseDatos_Cusco.sql" download class="text-xs text-blue-400 hover:text-blue-300 transition-colors">
-                        <i class="fa-solid fa-download mr-1"></i> Descargar SQL
+                    <a href="Script_BaseDatos_Cusco.sql" download class="bg-slate-700 hover:bg-blue-600 text-white px-3 py-1.5 rounded-md text-xs font-medium transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-download"></i> Descargar SQL
                     </a>
                 </div>
                 
                 <!-- Contenedor del Código -->
-                <div class="p-4 code-container">
-                    <pre><code id="sql-code-block" class="language-sql text-sm font-mono leading-relaxed">
+                <div class="p-5 code-container">
+                    <pre><code id="sql-code-block" class="language-sql text-sm leading-relaxed">
 /* El código se inyectará aquí mediante JavaScript */
                     </code></pre>
                 </div>
@@ -207,35 +342,36 @@
 
     </main>
 
-    <!-- Footer / Bottom Download Section -->
-    <footer class="bg-slate-900 border-t border-slate-800 text-center py-16 mt-12">
-        <div class="max-w-4xl mx-auto px-4">
-            <h3 class="text-white text-2xl font-bold mb-4">Descarga la Propuesta Completa</h3>
+    <!-- FOOTER / CALL TO ACTION -->
+    <footer class="bg-slate-900 border-t border-slate-800 text-center py-16 mt-16 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <h3 class="text-white text-3xl font-bold mb-4">Descarga la Propuesta Completa</h3>
             <p class="text-slate-400 mb-8 max-w-xl mx-auto">Obtén el documento PDF con todos los detalles de la propuesta, junto con el script SQL de creación de la base de datos.</p>
             
-            <a href="AeroQuery.zip" download class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold py-4 px-8 rounded-lg transition-colors shadow-[0_0_15px_rgba(37,99,235,0.4)] hover:shadow-[0_0_25px_rgba(37,99,235,0.6)] text-lg">
-                <i class="fa-solid fa-download"></i>
+            <a href="AeroQuery.zip" download class="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] text-lg hover:-translate-y-1">
+                <i class="fa-solid fa-cloud-arrow-down text-2xl"></i>
                 Descargar AeroQuery.zip
             </a>
             
-            <p class="text-slate-500 text-sm mt-10">
-                &copy; 2024 Propuesta de Proyecto: AeroQuery Cusco. <br>
-                Diseño de Base de Datos y Arquitectura de Software.
+            <p class="text-slate-500 text-sm mt-12 border-t border-slate-800 pt-8">
+                Diseñado en base al Informe Técnico Final (AeroQuery Cusco) <br>
+                &copy; 2026-1 | Universidad Andina del Cusco - Taller 2.4
             </p>
         </div>
     </footer>
 
-    <!-- Script para cargar el archivo SQL dinámicamente -->
+    <!-- SCRIPT PARA CARGAR SQL (Highlight.js) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const codeBlock = document.getElementById('sql-code-block');
             const loadingIndicator = document.getElementById('loading-indicator');
 
-            // Hacemos la petición (fetch) al archivo que está en la misma carpeta
+            // Hacemos la petición (fetch) al archivo
             fetch('Script_BaseDatos_Cusco.sql')
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('No se pudo encontrar el archivo en el servidor.');
+                        throw new Error('No se pudo encontrar el archivo "Script_BaseDatos_Cusco.sql" en el servidor.');
                     }
                     return response.text();
                 })
@@ -245,18 +381,16 @@
                     // Aplicamos los colores al código usando Highlight.js
                     hljs.highlightElement(codeBlock);
                     // Ocultamos el indicador de carga
-                    loadingIndicator.style.display = 'none';
+                    loadingIndicator.style.opacity = '0';
+                    setTimeout(() => loadingIndicator.style.display = 'none', 300);
                 })
                 .catch(error => {
-                    // En caso de error (por ejemplo, si pruebas esto en local sin servidor web, o el archivo no se llama igual)
+                    // En caso de error
                     loadingIndicator.style.display = 'none';
-                    codeBlock.textContent = `-- ¡Ups! Ocurrió un error al cargar el código.\n-- Detalles: ${error.message}\n\n-- Asegúrate de que el archivo "Script_BaseDatos_Cusco.sql" esté exactamente con ese nombre y en la misma carpeta que este index.html en GitHub.`;
-                    codeBlock.classList.add('text-red-400'); // Poner texto en rojo para indicar error
+                    codeBlock.textContent = `-- ¡Ups! Ocurrió un error al cargar el código.\n-- Detalles: ${error.message}\n\n-- Asegúrate de que el archivo "Script_BaseDatos_Cusco.sql" esté en el mismo directorio.`;
+                    codeBlock.classList.add('text-red-400');
                 });
         });
     </script>
 </body>
 </html>
-
-
-```
