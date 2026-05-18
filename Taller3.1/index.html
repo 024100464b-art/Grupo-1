@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador Taller 3.1 - LINQ y Álgebra Relacional</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Prism.js para resaltado de código -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <style>
+        /* Estilos personalizados para scrollbars finas */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        pre {
+            margin: 0 !important;
+            border-radius: 0.5rem !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-amber-500 text-slate-950 p-2 rounded-lg font-bold flex items-center justify-center shadow-lg shadow-amber-500/10">
+                    <i class="fa-solid fa-database text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-white">Taller 3.1</h1>
+                    <p class="text-xs text-slate-400">Álgebra Relacional con LINQ & EF</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full font-medium flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Estado: Funcional
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        
+        <!-- Welcome banner -->
+        <div class="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl relative overflow-hidden">
+            <div class="absolute right-0 top-0 opacity-10 pointer-events-none transform translate-x-12 -translate-y-12">
+                <i class="fa-solid fa-cubes text-[200px] text-amber-500"></i>
+            </div>
+            <div class="max-w-3xl">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">Entregables de la Aplicación PubsAbejitas</h2>
+                <p class="text-slate-400 text-sm sm:text-base mb-6 leading-relaxed">
+                    Visualiza y descarga los recursos clave del Taller 3.1. Se incluye el script de la base de datos Microsoft Pubs adaptada, el código de consultas relacionales unarias/binarias resueltas en C# y la solución empaquetada lista para Visual Studio.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#code-viewer" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2 rounded-lg font-semibold text-sm transition flex items-center gap-2">
+                        <i class="fa-solid fa-code"></i> Explorar C#
+                    </a>
+                    <a href="#database-viewer" class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transition border border-slate-700 flex items-center gap-2">
+                        <i class="fa-solid fa-scroll"></i> Ver Base de Datos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards de Descargas Rápidas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Card 1: .CS -->
+            <div class="bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl p-5 flex flex-col justify-between transition group shadow-md">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-sky-500/10 text-sky-400 text-xs px-2 py-1 rounded font-mono">Taller3.1.cs</span>
+                        <i class="fa-brands fa-microsoft text-2xl text-sky-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Script de C# Funcional</h3>
+                    <p class="text-slate-400 text-sm mb-4">Archivo completo con los 18 métodos del formulario que controlan las consultas unarias y binarias evaluadas en memoria.</p>
+                </div>
+                <button onclick="downloadFile('Taller3.1.cs', getCSharpCode())" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 hover:border-slate-700 py-2 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-download"></i> Descargar .cs
+                </button>
+            </div>
+
+            <!-- Card 2: .ZIP -->
+            <div class="bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl p-5 flex flex-col justify-between transition group shadow-md">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-amber-500/10 text-amber-400 text-xs px-2 py-1 rounded font-mono">Taller3.1VS.zip</span>
+                        <i class="fa-solid fa-file-zipper text-2xl text-amber-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Solución de Visual Studio</h3>
+                    <p class="text-slate-400 text-sm mb-4">Proyecto completo empaquetado y limpio (sin carpetas temporales bin/obj) listo para abrir en Visual Studio 2019/2022.</p>
+                </div>
+                <a href="#" onclick="alert('En un entorno real de producción, este botón descargará el archivo comprimido Taller3.1VS.zip alojado en el servidor.')" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 hover:border-slate-700 py-2 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-file-arrow-down"></i> Descargar .zip
+                </a>
+            </div>
+
+            <!-- Card 3: .SQL -->
+            <div class="bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-xl p-5 flex flex-col justify-between transition group shadow-md">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded font-mono">PubsAbejitas.sql</span>
+                        <i class="fa-solid fa-database text-2xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Script de Base de Datos</h3>
+                    <p class="text-slate-400 text-sm mb-4">Script SQL para crear la base de datos `PubsAbejitas` compatible, poblar datos y añadir las llaves primarias/foráneas requeridas.</p>
+                </div>
+                <button onclick="downloadFile('PubsAbejitas.sql', getSQLScript())" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 hover:border-slate-700 py-2 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-download"></i> Descargar .sql
+                </button>
+            </div>
+        </div>
+
+        <!-- Secciones de Visualización -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Visor del Código C# (Taller3.1.cs) -->
+            <section id="code-viewer" class="lg:col-span-8 bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-xl flex flex-col">
+                <div class="border-b border-slate-800 px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-slate-950/50">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-1.5 bg-sky-500/10 text-sky-400 rounded-lg">
+                            <i class="fa-solid fa-file-code text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Taller3.1.cs</h3>
+                            <p class="text-xs text-slate-400">Código fuente del Formulario Principal en C#</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="copyCode('csharp-code-content', this)" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1.5">
+                            <i class="fa-regular fa-copy"></i> Copiar Código
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filtros para explorar el código interactivo -->
+                <div class="px-6 py-3 border-b border-slate-800/60 bg-slate-900/40 flex flex-wrap gap-2">
+                    <button onclick="filterCode('all')" class="filter-btn active text-xs font-semibold bg-amber-500 text-slate-950 px-3 py-1.5 rounded-md transition">Todo el Código</button>
+                    <button onclick="filterCode('seleccion')" class="filter-btn text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 px-3 py-1.5 rounded-md transition">Selección (σ)</button>
+                    <button onclick="filterCode('proyeccion')" class="filter-btn text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 px-3 py-1.5 rounded-md transition">Proyección (π)</button>
+                    <button onclick="filterCode('renombramiento')" class="filter-btn text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 px-3 py-1.5 rounded-md transition">Renombrar (ρ)</button>
+                    <button onclick="filterCode('union')" class="filter-btn text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 px-3 py-1.5 rounded-md transition">Unión (∪)</button>
+                    <button onclick="filterCode('diferencia')" class="filter-btn text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 px-3 py-1.5 rounded-md transition">Diferencia (-)</button>
+                    <button onclick="filterCode('producto')" class="filter-btn text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 px-3 py-1.5 rounded-md transition">Producto (×)</button>
+                </div>
+
+                <!-- Contenedor del código -->
+                <div class="p-6 overflow-auto max-h-[600px] bg-[#1e293b]">
+                    <pre><code class="language-csharp" id="csharp-code-content"></code></pre>
+                </div>
+            </section>
+
+            <!-- Sección de la Base de Datos (PubsAbejitas.sql) -->
+            <section id="database-viewer" class="lg:col-span-4 flex flex-col gap-6">
+                
+                <!-- Card de la BD -->
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-2 bg-emerald-500/10 text-emerald-400 rounded-xl">
+                            <i class="fa-solid fa-server text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">PubsAbejitas.sql</h3>
+                            <p class="text-xs text-slate-400">Esquema de SQL Server</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-sm text-slate-300">
+                        <p class="text-xs text-slate-400">Tablas críticas creadas y utilizadas en este taller para mapear el Entity Framework local:</p>
+                        <div class="space-y-2">
+                            <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg flex items-center justify-between">
+                                <span class="font-mono text-xs text-emerald-400">dbo.jobs</span>
+                                <span class="text-slate-400 text-xs">Puestos Laborales</span>
+                            </div>
+                            <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg flex items-center justify-between">
+                                <span class="font-mono text-xs text-emerald-400">dbo.employees</span>
+                                <span class="text-slate-400 text-xs">Información del Personal</span>
+                            </div>
+                            <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg flex items-center justify-between">
+                                <span class="font-mono text-xs text-emerald-400">dbo.titles</span>
+                                <span class="text-slate-400 text-xs">Libros Publicados</span>
+                            </div>
+                            <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg flex items-center justify-between">
+                                <span class="font-mono text-xs text-emerald-400">dbo.stores</span>
+                                <span class="text-slate-400 text-xs">Sucursales de Tiendas</span>
+                            </div>
+                            <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg flex items-center justify-between">
+                                <span class="font-mono text-xs text-emerald-400">dbo.sales</span>
+                                <span class="text-slate-400 text-xs">Ventas Registradas</span>
+                            </div>
+                            <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-lg flex items-center justify-between">
+                                <span class="font-mono text-xs text-emerald-400">dbo.authors</span>
+                                <span class="text-slate-400 text-xs">Registro de Autores</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visor de SQL Script -->
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 shadow-xl flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-sm font-bold text-slate-200">Vista rápida del Script SQL</h4>
+                            <button onclick="copyCode('sql-code-content', this)" class="text-slate-400 hover:text-white transition text-xs flex items-center gap-1">
+                                <i class="fa-regular fa-copy"></i> Copiar
+                            </button>
+                        </div>
+                        <div class="overflow-auto max-h-[220px] bg-[#1e293b] rounded-lg p-3">
+                            <pre><code class="language-sql" id="sql-code-content"></code></pre>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-800">
+                        <button onclick="downloadFile('PubsAbejitas.sql', getSQLScript())" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 py-2 rounded-lg text-sm font-semibold transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-import"></i> Descargar Script SQL Completo
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:flex sm:justify-between sm:items-center">
+            <p class="text-xs text-slate-400">&copy; 2026 Entrega de Laboratorio - Taller 3.1. Todos los derechos reservados.</p>
+            <div class="mt-2 sm:mt-0 flex justify-center space-x-4 text-xs text-slate-400">
+                <span>C# 10.0</span>
+                <span>•</span>
+                <span>LINQ</span>
+                <span>•</span>
+                <span>Entity Framework 6</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-emerald-500 text-slate-950 px-4 py-2 rounded-xl font-semibold text-sm shadow-xl flex items-center gap-2 transform translate-y-20 opacity-0 transition duration-300 pointer-events-none z-50">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-msg">¡Copiado al portapapeles!</span>
+    </div>
+
+    <!-- Script de datos y control de UI -->
+    <script>
+        // Código fuente completo de C# (Taller3.1.cs)
+        function getCSharpCode() {
+            return `using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e) { }
+
+        // ==========================================
+        // OPERACIONES UNARIAS: SELECCIÓN (σ)
+        // ==========================================
+
+        private void btnJob_Click(object sender, EventArgs e)
+        {
+            // 1. Selección: Filtra puestos donde la descripción sea "Editor"
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consulta = from J in pubsAbejitas.jobs
+                               where J.job_desc == "Editor"
+                               select new
+                               {
+                                   J.job_id,
+                                   J.job_desc,
+                                   J.min_lvl,
+                                   J.max_lvl
+                               };
+                dgvPubsAbejitas.DataSource = consulta.ToList();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // 2. Selección: Filtra empleados con nivel mayor a 100
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consulta = from E in pubsAbejitas.employees
+                               where E.job_lvl > 100
+                               select new
+                               {
+                                   E.emp_id,
+                                   E.fname,
+                                   E.lname,
+                                   E.job_lvl
+                               };
+                dgvPubsAbejitas.DataSource = consulta.ToList();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // 3. Selección: Filtra libros con precio mayor a 20 dólares
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consulta = from T in pubsAbejitas.titles
+                               where T.price > 20
+                               select new
+                               {
+                                   T.title_id,
+                                   T.title1,
+                                   T.price,
+                                   T.type
+                               };
+                dgvPubsAbejitas.DataSource = consulta.ToList();
+            }
+        }
+
+        // ==========================================
+        // OPERACIONES UNARIAS: PROYECCIÓN (π)
+        // ==========================================
+
+        private void btnPublisher_Click(object sender, EventArgs e)
+        {
+            // 1. Proyección: Selecciona país, títulos y empleados de las editoriales
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consulta = from P in pubsAbejitas.publishers
+                               select new
+                               {
+                                   P.country,
+                                   P.titles,
+                                   P.employees,
+                               };
+                dgvPubsAbejitas.DataSource = consulta.ToList();
+            }
+        }
+
+        private void btnStores_Click(object sender, EventArgs e)
+        {
+            // 2. Proyección: Selecciona columnas específicas de las tiendas
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consulta = from S in pubsAbejitas.stores
+                               select new
+                               {
+                                   S.sales,
+                                   S.stor_id,
+                                   S.stor_address,
+                                   S.stor_name,
+                               };
+                dgvPubsAbejitas.DataSource = consulta.ToList();
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            // 3. Proyección: Extrae ciudad y estado de autores eliminando duplicados
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consulta = (from A in pubsAbejitas.authors
+                                select new
+                                {
+                                    A.city,
+                                    A.state
+                                }).Distinct();
+                dgvPubsAbejitas.DataSource = consulta.ToList();
+            }
+        }
+
+        // ==========================================
+        // OPERACIONES UNARIAS: RENOMBRAMIENTO (ρ)
+        // ==========================================
+
+        private void btnTittle_Click(object sender, EventArgs e)
+        {
+            // 1. Renombramiento: Etiquetas traducidas a español para la interfaz
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consulta = from T in pubsAbejitas.titles
+                               select new
+                               {
+                                   IdTitulo = T.title_id,
+                                   NombreLibro = T.title1,
+                                   Precio = T.price
+                               };
+                dgvPubsAbejitas.DataSource = consulta.ToList();
+            }
+        }
+
+        private void btnSales_Click(object sender, EventArgs e)
+        {
+            // 2. Renombramiento: Campos adaptados de la tabla de ventas
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consulta = from S in pubsAbejitas.sales
+                               select new
+                               {
+                                   Orden = S.ord_num,
+                                   Tienda = S.stor_id,
+                                   CantidadVendida = S.qty,
+                                   FechaVenta = S.ord_date
+                               };
+                dgvPubsAbejitas.DataSource = consulta.ToList();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // 3. Renombramiento: Campos adaptados de empleados
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consulta = from E in pubsAbejitas.employees
+                               select new
+                               {
+                                   CodigoEmpleado = E.emp_id,
+                                   PrimerNombre = E.fname,
+                                   ApellidoPaterno = E.lname,
+                                   FechaContratacion = E.hire_date
+                               };
+                dgvPubsAbejitas.DataSource = consulta.ToList();
+            }
+        }
+
+        // ==========================================
+        // OPERACIONES BINARIAS: UNIÓN (∪)
+        // ==========================================
+
+        private void btnStoresUnion_Click(object sender, EventArgs e)
+        {
+            // 1. Unión: Fusiona tiendas y autores mapeados a una estructura común en memoria (.ToList)
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consultaStores = (from s in pubsAbejitas.stores
+                                      select new
+                                      {
+                                          ID = s.stor_id,
+                                          Descripcion = s.stor_name,
+                                          Ubicacion = s.city + ", " + s.state,
+                                          TipoRegistro = "Tienda"
+                                      }).ToList();
+
+                var consultaAuthors = (from a in pubsAbejitas.authors
+                                       select new
+                                       {
+                                           ID = a.au_id,
+                                           Descripcion = a.au_fname + " " + a.au_lname,
+                                           Ubicacion = a.city + ", " + a.state,
+                                           TipoRegistro = "Autor"
+                                       }).ToList();
+
+                var resultadoUnion = consultaStores.Union(consultaAuthors);
+                dgvPubsAbejitas.DataSource = resultadoUnion.ToList();
+            }
+        }
+
+        private void btnAuthorsUnion_Click(object sender, EventArgs e)
+        {
+            // 2. Unión: Fusiona autores y empleados en memoria ordenados por nombre completo
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consultaAutores = (from a in pubsAbejitas.authors
+                                       select new
+                                       {
+                                           ID = a.au_id,
+                                           NombreCompleto = a.au_fname + " " + a.au_lname,
+                                           Ciudad = a.city ?? "No registrada",
+                                           Rol = "Autor"
+                                       }).ToList();
+
+                var consultaEmpleados = (from emp in pubsAbejitas.employees
+                                         select new
+                                         {
+                                             ID = emp.emp_id,
+                                             NombreCompleto = emp.fname + " " + emp.lname,
+                                             Ciudad = "Sede Corporativa",
+                                             Rol = "Empleado"
+                                         }).ToList();
+
+                var resultadoUnion = consultaAutores.Union(consultaEmpleados);
+                dgvPubsAbejitas.DataSource = resultadoUnion.OrderBy(p => p.NombreCompleto).ToList();
+            }
+        }
+
+        private void btnTittlesUnion_Click(object sender, EventArgs e)
+        {
+            // 3. Unión: Une libros con editoriales
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var consultaLibros = (from t in pubsAbejitas.titles
+                                      select new
+                                      {
+                                          ID = t.title_id,
+                                          Descripcion = t.title1,
+                                          Ubicacion = t.type,
+                                          TipoRegistro = "Libro"
+                                      }).ToList();
+
+                var consultaEditoriales = (from p in pubsAbejitas.publishers
+                                           select new
+                                           {
+                                               ID = p.pub_id,
+                                               Descripcion = p.pub_name,
+                                               Ubicacion = p.city + ", " + p.state,
+                                               TipoRegistro = "Editorial"
+                                           }).ToList();
+
+                var resultadoUnion = consultaLibros.Union(consultaEditoriales);
+                dgvPubsAbejitas.DataSource = resultadoUnion.ToList();
+            }
+        }
+
+        // ==========================================
+        // OPERACIONES BINARIAS: DIFERENCIA (-)
+        // ==========================================
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            // 1. Diferencia: Excluye puestos directivos (Manager) de todos los puestos
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var todosLosPuestos = (from j in pubsAbejitas.jobs
+                                       select new
+                                       {
+                                           Puesto = j.job_desc,
+                                           NivelMinimo = j.min_lvl,
+                                           NivelMaximo = j.max_lvl
+                                       }).ToList();
+
+                var puestosManager = (from j in pubsAbejitas.jobs
+                                      where j.job_desc.Contains("Manager")
+                                      select new
+                                      {
+                                          Puesto = j.job_desc,
+                                          NivelMinimo = j.min_lvl,
+                                          NivelMaximo = j.max_lvl
+                                      }).ToList();
+
+                var resultadoDiferencia = todosLosPuestos.Except(puestosManager);
+                dgvPubsAbejitas.DataSource = resultadoDiferencia.ToList();
+            }
+        }
+
+        private void btnEmployeesDiferencia_Click(object sender, EventArgs e)
+        {
+            // 2. Diferencia: Todos los empleados menos los asignados a la editorial '9952'
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var todosLosEmpleados = (from emp in pubsAbejitas.employees
+                                         select new
+                                         {
+                                             ID = emp.emp_id,
+                                             NombreCompleto = emp.fname + " " + emp.lname,
+                                             ClaveEditorial = emp.pub_id,
+                                             TipoRegistro = "Personal"
+                                         }).ToList();
+
+                var empleadosExcluir = (from emp in pubsAbejitas.employees
+                                        where emp.pub_id == "9952"
+                                        select new
+                                        {
+                                            ID = emp.emp_id,
+                                            NombreCompleto = emp.fname + " " + emp.lname,
+                                            ClaveEditorial = emp.pub_id,
+                                            TipoRegistro = "Personal"
+                                        }).ToList();
+
+                var resultadoDiferencia = todosLosEmpleados.Except(empleadosExcluir);
+                dgvPubsAbejitas.DataSource = resultadoDiferencia.ToList();
+            }
+        }
+
+        private void btnPublishersDiferencia_Click(object sender, EventArgs e)
+        {
+            // 3. Diferencia: Filtra solo editoriales de USA restando las extranjeras
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var todasLasEditoriales = (from p in pubsAbejitas.publishers
+                                           select new
+                                           {
+                                               ID = p.pub_id,
+                                               Nombre = p.pub_name,
+                                               Pais = p.country,
+                                               Tipo = "Editorial"
+                                           }).ToList();
+
+                var editorialesExtranjeras = (from p in pubsAbejitas.publishers
+                                              where p.country != "USA"
+                                              select new
+                                              {
+                                                  ID = p.pub_id,
+                                                  Nombre = p.pub_name,
+                                                  Pais = p.country,
+                                                  Tipo = "Editorial"
+                                              }).ToList();
+
+                var resultadoDiferencia = todasLasEditoriales.Except(editorialesExtranjeras);
+                dgvPubsAbejitas.DataSource = resultadoDiferencia.ToList();
+            }
+        }
+
+        // ==========================================
+        // OPERACIONES BINARIAS: PRODUCTO CARTESIANO (×)
+        // ==========================================
+
+        private void btnDiscountsPC_Click(object sender, EventArgs e)
+        {
+            // 1. Producto Cartesiano: Cruza tipos de descuentos con todas las tiendas
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var productoCartesiano = from d in pubsAbejitas.discounts
+                                         from s in pubsAbejitas.stores
+                                         select new
+                                         {
+                                             TipoDescuento = d.discounttype,
+                                             Porcentaje = d.discount1,
+                                             Tienda = s.stor_name,
+                                             Ciudad = s.city
+                                         };
+                dgvPubsAbejitas.DataSource = productoCartesiano.ToList();
+            }
+        }
+
+        private void btnProductoPC_Click(object sender, EventArgs e)
+        {
+            // 2. Producto Cartesiano: Empareja todas las ventas con cada autor
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var productoCartesiano = from sa in pubsAbejitas.sales
+                                         from au in pubsAbejitas.authors
+                                         select new
+                                         {
+                                             OrdenNumero = sa.ord_num,
+                                             Cantidad = sa.qty,
+                                             FechaOrden = sa.ord_date,
+                                             AutorPosible = au.au_fname + " " + au.au_lname,
+                                             TelefonoAutor = au.phone
+                                         };
+                dgvPubsAbejitas.DataSource = productoCartesiano.ToList();
+            }
+        }
+
+        private void btnAuthorsPC_Click(object sender, EventArgs e)
+        {
+            // 3. Producto Cartesiano: Relación título-autor cruzada con tiendas
+            using (PubsAbejitasEntities pubsAbejitas = new PubsAbejitasEntities())
+            {
+                var productoCartesiano = from ta in pubsAbejitas.titleauthors
+                                         from s in pubsAbejitas.stores
+                                         select new
+                                         {
+                                             ID_Autor = ta.au_id,
+                                             ID_Libro = ta.title_id,
+                                             PorcentajeRegalia = ta.royaltyper,
+                                             TiendaDestino = s.stor_name,
+                                             CiudadTienda = s.city
+                                         };
+                dgvPubsAbejitas.DataSource = productoCartesiano.ToList();
+            }
+        }
+    }
+}`;
+        }
+
+        // Script SQL de la base de datos (PubsAbejitas.sql)
+        function getSQLScript() {
+            return `-- ==========================================
+-- SCRIPT DE BASE DE DATOS: PubsAbejitas
+-- Base de datos Microsoft Pubs adaptada
+-- ==========================================
+
+CREATE DATABASE PubsAbejitas;
+GO
+
+USE PubsAbejitas;
+GO
+
+-- 1. Tabla de Puestos Laborales (jobs)
+CREATE TABLE dbo.jobs (
+    job_id smallint IDENTITY(1,1) PRIMARY KEY,
+    job_desc varchar(50) NOT NULL,
+    min_lvl tinyint NOT NULL,
+    max_lvl tinyint NOT NULL
+);
+
+-- 2. Tabla de Editoriales (publishers)
+CREATE TABLE dbo.publishers (
+    pub_id char(4) PRIMARY KEY,
+    pub_name varchar(40) NULL,
+    city varchar(20) NULL,
+    state char(2) NULL,
+    country varchar(30) NULL
+);
+
+-- 3. Tabla de Empleados (employees)
+CREATE TABLE dbo.employees (
+    emp_id char(9) PRIMARY KEY,
+    fname varchar(20) NOT NULL,
+    minit char(1) NULL,
+    lname varchar(30) NOT NULL,
+    job_id smallint NOT NULL FOREIGN KEY REFERENCES dbo.jobs(job_id),
+    job_lvl tinyint NOT NULL,
+    pub_id char(4) NOT NULL FOREIGN KEY REFERENCES dbo.publishers(pub_id),
+    hire_date datetime NOT NULL
+);
+
+-- 4. Tabla de Libros (titles)
+CREATE TABLE dbo.titles (
+    title_id varchar(8) PRIMARY KEY,
+    title1 varchar(80) NOT NULL, -- Mapeado como title1 en EF para evitar conflictos
+    type char(12) NOT NULL,
+    pub_id char(4) NULL FOREIGN KEY REFERENCES dbo.publishers(pub_id),
+    price money NULL,
+    advance money NULL,
+    royalty int NULL,
+    ytd_sales int NULL,
+    notes varchar(200) NULL,
+    pubdate datetime NOT NULL
+);
+
+-- 5. Tabla de Tiendas (stores)
+CREATE TABLE dbo.stores (
+    stor_id char(4) PRIMARY KEY,
+    stor_name varchar(40) NULL,
+    stor_address varchar(40) NULL,
+    city varchar(20) NULL,
+    state char(2) NULL,
+    zip char(5) NULL
+);
+
+-- 6. Tabla de Ventas (sales)
+CREATE TABLE dbo.sales (
+    stor_id char(4) NOT NULL FOREIGN KEY REFERENCES dbo.stores(stor_id),
+    ord_num varchar(20) NOT NULL,
+    ord_date datetime NOT NULL,
+    qty smallint NOT NULL,
+    payterms varchar(12) NOT NULL,
+    title_id varchar(8) NOT NULL FOREIGN KEY REFERENCES dbo.titles(title_id),
+    PRIMARY KEY (stor_id, ord_num, title_id)
+);
+
+-- 7. Tabla de Descuentos (discounts)
+CREATE TABLE dbo.discounts (
+    discounttype varchar(40) NOT NULL,
+    stor_id char(4) NULL FOREIGN KEY REFERENCES dbo.stores(stor_id),
+    lowqty smallint NULL,
+    highqty smallint NULL,
+    discount1 decimal(4,2) NOT NULL -- Mapeado como discount1 en EF
+);
+
+-- 8. Tabla de Autores (authors)
+CREATE TABLE dbo.authors (
+    au_id varchar(11) PRIMARY KEY,
+    au_lname varchar(40) NOT NULL,
+    au_fname varchar(20) NOT NULL,
+    phone char(12) NOT NULL,
+    address varchar(40) NULL,
+    city varchar(20) NULL,
+    state char(2) NULL,
+    zip char(5) NULL,
+    contract bit NOT NULL
+);
+
+-- 9. Tabla Intermedia Autor - Libro (titleauthors)
+CREATE TABLE dbo.titleauthors (
+    au_id varchar(11) NOT NULL FOREIGN KEY REFERENCES dbo.authors(au_id),
+    title_id varchar(8) NOT NULL FOREIGN KEY REFERENCES dbo.titles(title_id),
+    au_ord tinyint NULL,
+    royaltyper int NULL,
+    PRIMARY KEY (au_id, title_id)
+);
+GO`;
+        }
+
+        // Carga inicial del código y de Prism
+        window.onload = function() {
+            document.getElementById('csharp-code-content').textContent = getCSharpCode();
+            document.getElementById('sql-code-content').textContent = getSQLScript().substring(0, 800) + "\n\n/* ... (Script abreviado para previsualización, descárgalo completo con el botón de abajo) ... */";
+            Prism.highlightAll();
+        };
+
+        // Filtro interactivo de código en base a comentarios o etiquetas
+        function filterCode(tag) {
+            // Actualizar estado de los botones de filtro
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-amber-500', 'text-slate-950');
+                btn.classList.add('bg-slate-800', 'text-slate-300', 'hover:bg-slate-700');
+            });
+
+            const activeBtn = event.currentTarget;
+            activeBtn.classList.remove('bg-slate-800', 'text-slate-300', 'hover:bg-slate-700');
+            activeBtn.classList.add('bg-amber-500', 'text-slate-950');
+
+            const fullCode = getCSharpCode();
+            const lines = fullCode.split('\n');
+            let filteredCode = "";
+
+            if (tag === 'all') {
+                filteredCode = fullCode;
+            } else {
+                // Mapear filtros a marcadores en el código
+                let keyword = "";
+                if (tag === 'seleccion') keyword = "SELECCIÓN";
+                if (tag === 'proyeccion') keyword = "PROYECCIÓN";
+                if (tag === 'renombramiento') keyword = "RENOMBRAMIENTO";
+                if (tag === 'union') keyword = "UNIÓN";
+                if (tag === 'diferencia') keyword = "DIFERENCIA";
+                if (tag === 'producto') keyword = "PRODUCTO CARTESIANO";
+
+                // Encontrar los bloques por comentarios delimitadores de operaciones
+                let capturing = false;
+                let braceCount = 0;
+                
+                for(let i=0; i < lines.length; i++) {
+                    if (lines[i].includes(`OPERACIONES`) && lines[i].includes(keyword)) {
+                        capturing = true;
+                        braceCount = 0;
+                    } else if (lines[i].includes(`OPERACIONES`) && !lines[i].includes(keyword) && capturing) {
+                        capturing = false;
+                    }
+
+                    if (capturing) {
+                        filteredCode += lines[i] + "\n";
+                    }
+                }
+                
+                if(!filteredCode) {
+                    filteredCode = `// --- No se pudo aislar automáticamente el bloque de ${keyword} ---\n` + fullCode;
+                } else {
+                    filteredCode = `// =========================================================================\n` +
+                                   `// VISTA FILTRADA: OPERACIONES DE ${keyword}\n` +
+                                   `// =========================================================================\n\n` + 
+                                   filteredCode;
+                }
+            }
+
+            document.getElementById('csharp-code-content').textContent = filteredCode;
+            Prism.highlightAll();
+        }
+
+        // Función segura de descarga de archivos de texto desde el iFrame
+        function downloadFile(filename, text) {
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // Portapapeles seguro compatible con iFrames (usando document.execCommand)
+        function copyCode(elementId, button) {
+            const codeText = elementId === 'csharp-code-content' ? getCSharpCode() : getSQLScript();
+            
+            const textArea = document.createElement('textarea');
+            textArea.value = codeText;
+            textArea.style.position = 'fixed'; // Evita scroll molesto
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast(elementId === 'csharp-code-content' ? '¡Código C# copiado!' : '¡Script SQL copiado!');
+                } else {
+                    alert('No se pudo copiar el código de forma automática.');
+                }
+            } catch (err) {
+                alert('Error al copiar el código.');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Visualizador de mensajes Toast
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
