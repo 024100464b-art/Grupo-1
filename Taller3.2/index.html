@@ -36,9 +36,6 @@
             margin: 0 !important;
             border-radius: 0.75rem !important;
         }
-        .math-expr {
-            font-size: 1.15rem;
-        }
     </style>
 </head>
 <body class="bg-[#0b0f19] text-slate-100 font-sans min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
@@ -53,7 +50,7 @@
                 <div>
                     <h1 class="text-base sm:text-lg font-bold tracking-tight text-white flex items-center gap-2">
                         Taller 3.2
-                        <span class="text-xs font-normal bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded-md">PRO</span>
+                        <span class="text-xs font-normal bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded-md">CONSOLIDADO</span>
                     </h1>
                     <p class="text-xs text-slate-400">Álgebra Relacional en Northwind & Pubs</p>
                 </div>
@@ -76,17 +73,17 @@
                 <i class="fa-solid fa-gears text-[250px] text-indigo-500"></i>
             </div>
             <div class="max-w-3xl">
-                <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">Entregables Completos</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">Infografía Integrada y Activa</span>
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mt-3 mb-3">Taller de Consolidación Multibase de Datos</h2>
                 <p class="text-slate-400 text-sm sm:text-base mb-6 leading-relaxed">
-                    Visualizador interactivo unificado para el <strong>Taller 3.2</strong>. Explora la implementación de las 18 operaciones del Álgebra Relacional mapeadas directamente a expresiones <strong>LINQ</strong> en las bases de datos unificadas de <strong>Northwind</strong> y <strong>Pubs</strong>.
+                    Visualizador interactivo unificado para el <strong>Taller 3.2</strong>. Explora la implementación de las 18 operaciones del Álgebra Relacional mapeadas directamente a expresiones <strong>LINQ</strong> en las bases de datos de <strong>Northwind</strong> y <strong>Pubs</strong>.
                 </p>
                 <div class="flex flex-wrap gap-3">
-                    <a href="#code-viewer" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 shadow-lg shadow-indigo-600/20">
-                        <i class="fa-solid fa-laptop-code"></i> Explorar Taller3.2.cs
+                    <a href="#infographics-viewer" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 shadow-lg shadow-indigo-600/20">
+                        <i class="fa-solid fa-circle-info"></i> Explorar Infografía Interactiva
                     </a>
-                    <a href="#infographics-viewer" class="bg-violet-600 hover:bg-violet-500 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 shadow-lg shadow-violet-600/20">
-                        <i class="fa-solid fa-circle-info"></i> Infografía Interactiva
+                    <a href="#code-viewer" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700">
+                        <i class="fa-solid fa-laptop-code"></i> Inspeccionar Taller3.2.cs
                     </a>
                 </div>
             </div>
@@ -105,7 +102,7 @@
                         <div class="text-indigo-500 group-hover:scale-110 transition-transform"><i class="fa-brands fa-windows text-2xl"></i></div>
                     </div>
                     <h4 class="text-base font-bold text-white mb-1.5">C# LINQ Source Code</h4>
-                    <p class="text-slate-400 text-xs mb-4 leading-relaxed">Script completo que procesa consultas cruzadas de Selección, Proyección, Unión, Diferencia y Producto Cartesiano en ambas BD de manera optimizada.</p>
+                    <p class="text-slate-400 text-xs mb-4 leading-relaxed">Script completo que procesa consultas de Selección, Proyección, Unión, Diferencia y Producto Cartesiano en ambas BD de manera optimizada.</p>
                 </div>
                 <button onclick="downloadFile('Taller3.2.cs', getCSharpCode())" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 hover:border-indigo-500/40 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
                     <i class="fa-solid fa-download"></i> Descargar Script C#
@@ -122,7 +119,7 @@
                     <h4 class="text-base font-bold text-white mb-1.5">Ejecutable de Producción</h4>
                     <p class="text-slate-400 text-xs mb-4 leading-relaxed">Contiene el archivo compilado listo en modo Release junto a todas las librerías binarias (DLLs) requeridas de Entity Framework y los archivos de configuración.</p>
                 </div>
-                <a href="#" onclick="alert('Descargando archivo taller3.2ejecutable.zip.zip desde los recursos estáticos del proyecto...')" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 hover:border-violet-500/40 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                <a href="#" onclick="alert('Descargando archivo taller3.2ejecutable.zip.zip desde los recursos del proyecto...')" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 hover:border-violet-500/40 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
                     <i class="fa-solid fa-cloud-arrow-down"></i> Descargar Ejecutable (.zip)
                 </a>
             </div>
@@ -134,11 +131,11 @@
                         <span class="bg-emerald-500/10 text-emerald-400 text-xs px-2.5 py-1 rounded-md font-mono border border-emerald-500/10">infografia3.2.html</span>
                         <div class="text-emerald-500 group-hover:scale-110 transition-transform"><i class="fa-solid fa-chart-pie text-2xl"></i></div>
                     </div>
-                    <h4 class="text-base font-bold text-white mb-1.5">Infografía Interactiva</h4>
+                    <h4 class="text-base font-bold text-white mb-1.5">Infografía Entregable</h4>
                     <p class="text-slate-400 text-xs mb-4 leading-relaxed">Recurso educativo visual e interactivo autocontenido que explica la equivalencia teórica entre el Álgebra Relacional y la sintaxis declarativa de LINQ.</p>
                 </div>
                 <button onclick="downloadFile('infografia3.2.html', getInfografiaCode())" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 hover:border-emerald-500/40 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-download"></i> Descargar Infografía
+                    <i class="fa-solid fa-download"></i> Descargar Infografía (.html)
                 </button>
             </div>
 
@@ -165,7 +162,7 @@
                         <div class="text-amber-500 group-hover:scale-110 transition-transform"><i class="fa-solid fa-book-open-reader text-2xl"></i></div>
                     </div>
                     <h4 class="text-base font-bold text-white mb-1.5">Pubs Database Script</h4>
-                    <p class="text-slate-400 text-xs mb-4 leading-relaxed">Estructura SQL adaptada de la base de datos de editoriales de Microsoft para configurar todo el mapeo relacional de entidades de libros.</p>
+                    <p class="text-slate-400 text-xs mb-4 leading-relaxed">Estructura SQL original de la base de datos de editoriales de Microsoft para configurar todo el mapeo relacional de entidades de libros.</p>
                 </div>
                 <button onclick="downloadFile('instpubs.sql', getPubsScript())" class="w-full bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 hover:border-amber-500/40 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
                     <i class="fa-solid fa-download"></i> Descargar instpubs.sql
@@ -188,11 +185,11 @@
             </div>
         </div>
 
-        <!-- SECCIÓN: INFOGRAFÍA INTERACTIVA (infografia3.2.html) -->
+        <!-- SECCIÓN: VISUALIZACIÓN DE INFOGRAFÍA INTERACTIVA (infografia3.2.html) -->
         <section id="infographics-viewer" class="mb-12 bg-slate-950 border border-slate-800 rounded-3xl p-6 shadow-2xl overflow-hidden">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-800">
                 <div class="flex items-center gap-3">
-                    <div class="p-3 bg-violet-500/10 text-violet-400 rounded-2xl">
+                    <div class="p-3 bg-indigo-500/10 text-indigo-400 rounded-2xl">
                         <i class="fa-solid fa-chart-pie text-xl"></i>
                     </div>
                     <div>
@@ -200,97 +197,85 @@
                         <p class="text-xs text-slate-400">Teoría del álgebra relacional vs. traducción directa a LINQ</p>
                     </div>
                 </div>
-                <span class="text-xs font-mono bg-violet-500/10 text-violet-400 border border-violet-500/20 px-3 py-1 rounded-full w-fit">Modulo Educativo Integrado</span>
+                <span class="text-xs font-mono bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1 rounded-full w-fit">Visualización en Vivo</span>
             </div>
 
-            <!-- Dashboard de la infografía -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Operadores Unarios -->
-                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5">
-                    <h4 class="text-sm font-bold text-indigo-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-sliders"></i> Operaciones Unarias</h4>
+            <!-- Cuerpo de la infografía interactiva -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Selectores de Operación -->
+                <div class="lg:col-span-4 space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Selecciona un operador:</h4>
                     
-                    <div class="space-y-4">
-                        <button onclick="showInfographicDetail('seleccion')" class="w-full text-left bg-slate-950/60 hover:bg-slate-950 border border-slate-800 hover:border-indigo-500/40 p-3.5 rounded-xl transition-all group">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-sm font-bold text-white group-hover:text-indigo-400">Selección (σ)</span>
-                                <span class="text-xs text-indigo-400 font-mono">$\sigma$</span>
-                            </div>
-                            <p class="text-slate-400 text-xs">Filtra tuplas basándose en un predicado lógico.</p>
+                    <!-- Operadores unarios -->
+                    <div class="bg-slate-900/40 border border-slate-800/60 p-3 rounded-2xl space-y-2">
+                        <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-wider">Unarios (1 Tabla)</span>
+                        <button onclick="selectActiveOp('seleccion', this)" class="op-item-btn w-full text-left bg-indigo-600 text-white p-3 rounded-xl transition-all flex items-center justify-between group shadow-lg shadow-indigo-600/10">
+                            <span class="text-xs font-bold">Selección (σ)</span>
+                            <span class="text-xs font-mono bg-slate-950/40 px-2 py-0.5 rounded">$\sigma$</span>
                         </button>
-
-                        <button onclick="showInfographicDetail('proyeccion')" class="w-full text-left bg-slate-950/60 hover:bg-slate-950 border border-slate-800 hover:border-indigo-500/40 p-3.5 rounded-xl transition-all group">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-sm font-bold text-white group-hover:text-indigo-400">Proyección (π)</span>
-                                <span class="text-xs text-indigo-400 font-mono">$\pi$</span>
-                            </div>
-                            <p class="text-slate-400 text-xs">Extrae atributos (columnas) descartando duplicados.</p>
+                        <button onclick="selectActiveOp('proyeccion', this)" class="op-item-btn w-full text-left bg-slate-900 hover:bg-slate-850 hover:text-white border border-slate-800/80 p-3 rounded-xl text-slate-400 transition-all flex items-center justify-between group">
+                            <span class="text-xs font-bold">Proyección (π)</span>
+                            <span class="text-xs font-mono bg-slate-950/40 px-2 py-0.5 rounded">$\pi$</span>
                         </button>
+                        <button onclick="selectActiveOp('renombramiento', this)" class="op-item-btn w-full text-left bg-slate-900 hover:bg-slate-850 hover:text-white border border-slate-800/80 p-3 rounded-xl text-slate-400 transition-all flex items-center justify-between group">
+                            <span class="text-xs font-bold">Renombramiento (ρ)</span>
+                            <span class="text-xs font-mono bg-slate-950/40 px-2 py-0.5 rounded">$\rho$</span>
+                        </button>
+                    </div>
 
-                        <button onclick="showInfographicDetail('renombramiento')" class="w-full text-left bg-slate-950/60 hover:bg-slate-950 border border-slate-800 hover:border-indigo-500/40 p-3.5 rounded-xl transition-all group">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-sm font-bold text-white group-hover:text-indigo-400">Renombramiento (ρ)</span>
-                                <span class="text-xs text-indigo-400 font-mono">$\rho$</span>
-                            </div>
-                            <p class="text-slate-400 text-xs">Cambia el identificador de los atributos de salida.</p>
+                    <!-- Operadores binarios -->
+                    <div class="bg-slate-900/40 border border-slate-800/60 p-3 rounded-2xl space-y-2">
+                        <span class="text-[10px] font-bold text-violet-400 uppercase tracking-wider">Binarios (2 Tablas)</span>
+                        <button onclick="selectActiveOp('union', this)" class="op-item-btn w-full text-left bg-slate-900 hover:bg-slate-850 hover:text-white border border-slate-800/80 p-3 rounded-xl text-slate-400 transition-all flex items-center justify-between group">
+                            <span class="text-xs font-bold">Unión (∪)</span>
+                            <span class="text-xs font-mono bg-slate-950/40 px-2 py-0.5 rounded">$\cup$</span>
+                        </button>
+                        <button onclick="selectActiveOp('diferencia', this)" class="op-item-btn w-full text-left bg-slate-900 hover:bg-slate-850 hover:text-white border border-slate-800/80 p-3 rounded-xl text-slate-400 transition-all flex items-center justify-between group">
+                            <span class="text-xs font-bold">Diferencia (—)</span>
+                            <span class="text-xs font-mono bg-slate-950/40 px-2 py-0.5 rounded">$-$</span>
+                        </button>
+                        <button onclick="selectActiveOp('producto', this)" class="op-item-btn w-full text-left bg-slate-900 hover:bg-slate-850 hover:text-white border border-slate-800/80 p-3 rounded-xl text-slate-400 transition-all flex items-center justify-between group">
+                            <span class="text-xs font-bold">Producto Cartesiano (×)</span>
+                            <span class="text-xs font-mono bg-slate-950/40 px-2 py-0.5 rounded">$\times$</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Operadores Binarios -->
-                <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5">
-                    <h4 class="text-sm font-bold text-violet-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-bezier-curve"></i> Operaciones Binarias</h4>
-                    
-                    <div class="space-y-4">
-                        <button onclick="showInfographicDetail('union')" class="w-full text-left bg-slate-950/60 hover:bg-slate-950 border border-slate-800 hover:border-violet-500/40 p-3.5 rounded-xl transition-all group">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-sm font-bold text-white group-hover:text-violet-400">Unión (∪)</span>
-                                <span class="text-xs text-violet-400 font-mono">$\cup$</span>
-                            </div>
-                            <p class="text-slate-400 text-xs">Une tuplas de dos esquemas de datos idénticos.</p>
-                        </button>
-
-                        <button onclick="showInfographicDetail('diferencia')" class="w-full text-left bg-slate-950/60 hover:bg-slate-950 border border-slate-800 hover:border-violet-500/40 p-3.5 rounded-xl transition-all group">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-sm font-bold text-white group-hover:text-violet-400">Diferencia (-)</span>
-                                <span class="text-xs text-violet-400 font-mono">$-$</span>
-                            </div>
-                            <p class="text-slate-400 text-xs">Registros de un conjunto que no están en el otro.</p>
-                        </button>
-
-                        <button onclick="showInfographicDetail('producto')" class="w-full text-left bg-slate-950/60 hover:bg-slate-950 border border-slate-800 hover:border-violet-500/40 p-3.5 rounded-xl transition-all group">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-sm font-bold text-white group-hover:text-violet-400">Producto Cartesiano (×)</span>
-                                <span class="text-xs text-violet-400 font-mono">$\times$</span>
-                            </div>
-                            <p class="text-slate-400 text-xs">Cruza cada registro de un conjunto con todos los del otro.</p>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Detalle de la Operación en la Infografía -->
-                <div id="infographic-detail-card" class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2 mb-3">
-                            <div id="info-icon-container" class="p-1.5 rounded-lg bg-indigo-500/15 text-indigo-400 text-sm">
-                                <i class="fa-solid fa-circle-question"></i>
-                            </div>
-                            <h4 id="info-op-name" class="text-sm font-bold text-white">Detalle Teórico-Práctico</h4>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-xs text-slate-400 mb-1">Notación Álgebra Relacional:</p>
-                            <div id="info-notation" class="bg-slate-950/80 px-3 py-1.5 rounded-lg font-mono text-xs text-slate-200 border border-slate-800">
-                                Selecciona una operación de las columnas de la izquierda
+                <!-- Representación Visual y Explicación -->
+                <div class="lg:col-span-8 flex flex-col gap-6">
+                    <!-- Fórmulas y Explicaciones -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-900/50 border border-slate-800 p-4 rounded-2xl">
+                            <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-wider block mb-1">Definición Formal</span>
+                            <h4 id="detail-title" class="text-base font-bold text-white mb-2">Operador de Selección</h4>
+                            <p id="detail-desc" class="text-xs text-slate-400 leading-relaxed mb-4">Permite filtrar un subconjunto de filas (tuplas) de una relación que cumplen con una condición lógica específica.</p>
+                            <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-wider block mb-1">Notación Álgebra Relacional</span>
+                            <div id="detail-notation" class="bg-slate-950/80 px-4 py-2 rounded-xl border border-slate-800/80 font-mono text-xs text-slate-200">
+                                \sigma_{precio > 30}(Productos)
                             </div>
                         </div>
-                        <div class="mb-4">
-                            <p class="text-xs text-slate-400 mb-1">Ejemplo en LINQ (C#):</p>
-                            <div class="bg-slate-950/80 px-3 py-1.5 rounded-lg font-mono text-[10px] text-slate-300 border border-slate-800 max-h-[120px] overflow-auto whitespace-pre-wrap leading-relaxed" id="info-linq-sample">
-                                Selecciona una operación para visualizar la traducción directa a código .NET.
+
+                        <!-- Diagrama Lógico de la Operación -->
+                        <div class="bg-slate-900/50 border border-slate-800 p-4 rounded-2xl flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] font-bold text-violet-400 uppercase tracking-wider block mb-1">Representación Gráfica</span>
+                                <h4 class="text-xs font-bold text-white mb-3" id="diagram-title">Filtrado de Tuplas en la Base de Datos</h4>
+                            </div>
+                            <!-- Contenedor del Diagrama Interactivo de Tablas -->
+                            <div id="visual-diagram-container" class="flex flex-col gap-1 bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-[10px] font-mono">
+                                <!-- Filas de ejemplo generadas dinámicamente -->
                             </div>
                         </div>
                     </div>
-                    <div class="text-[10px] text-slate-500 border-t border-slate-800/60 pt-3">
-                        Mapeado conceptualmente para Taller 3.2.
+
+                    <!-- Código LINQ (C#) Correspondiente -->
+                    <div class="bg-slate-900/50 border border-slate-800 p-4 rounded-2xl">
+                        <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block mb-2">Traducción a LINQ en C# (Entity Framework)</span>
+                        <div class="overflow-auto max-h-[160px] bg-slate-950 rounded-xl p-3 border border-slate-800 text-xs">
+                            <pre><code class="language-csharp" id="detail-linq-code">var query = from p in db.Products
+            where p.UnitPrice > 30
+            select p;</code></pre>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -388,55 +373,180 @@
             Prism.highlightAll();
         };
 
-        // Mostrar detalles en la infografía interactiva
+        // Cambiar la operación activa en el menú de la infografía
+        function selectActiveOp(opType, btnElement) {
+            // Limpiar estilo activo de todos los botones de la infografía
+            const buttons = document.querySelectorAll('.op-item-btn');
+            buttons.forEach(btn => {
+                btn.className = "op-item-btn w-full text-left bg-slate-900 hover:bg-slate-850 hover:text-white border border-slate-800/80 p-3 rounded-xl text-slate-400 transition-all flex items-center justify-between group";
+            });
+
+            // Dar estilo activo al seleccionado
+            const isUnario = ['seleccion', 'proyeccion', 'renombramiento'].includes(opType);
+            const activeColorClass = isUnario ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/10' : 'bg-violet-600 text-white shadow-lg shadow-violet-600/10';
+            btnElement.className = `op-item-btn w-full text-left p-3 rounded-xl transition-all flex items-center justify-between group ${activeColorClass}`;
+
+            showInfographicDetail(opType);
+        }
+
+        // Mostrar detalles y diagramas lógicos dinámicos en la infografía
         function showInfographicDetail(op) {
-            const opName = document.getElementById('info-op-name');
-            const notation = document.getElementById('info-notation');
-            const linqSample = document.getElementById('info-linq-sample');
-            const iconContainer = document.getElementById('info-icon-container');
+            const opTitle = document.getElementById('detail-title');
+            const opDesc = document.getElementById('detail-desc');
+            const notation = document.getElementById('detail-notation');
+            const linqCode = document.getElementById('detail-linq-code');
+            const diagramTitle = document.getElementById('diagram-title');
+            const diagramContainer = document.getElementById('visual-diagram-container');
+
+            let diagramHtml = "";
 
             if (op === 'seleccion') {
-                opName.innerText = "Selección (σ)";
-                notation.innerHTML = "\\sigma_{precio > 20}(Productos)";
-                linqSample.innerText = "var query = from p in db.Products\n            where p.UnitPrice > 20\n            select p;";
-                iconContainer.innerHTML = '<i class="fa-solid fa-filter"></i>';
-                iconContainer.className = "p-1.5 rounded-lg bg-indigo-500/15 text-indigo-400 text-sm";
+                opTitle.innerText = "Selección (σ)";
+                opDesc.innerText = "Operación unaria que filtra tuplas (filas) de una relación que cumplen con la condición lógica descrita. Mantiene todas las columnas de la tabla original.";
+                notation.innerHTML = "\\sigma_{precio > 30}(Productos)";
+                linqCode.textContent = `// Selección (Northwind)
+using (NorthwindEntities db = new NorthwindEntities())
+{
+    var query = from p in db.Products
+                where p.UnitPrice > 30
+                select new
+                {
+                    p.ProductID,
+                    p.ProductName,
+                    p.UnitPrice
+                };
+    dgvPubsAbejitas.DataSource = query.ToList();
+}`;
+                diagramTitle.innerText = "Filtrando tuplas (Mantiene el ancho del esquema)";
+                diagramHtml = `
+                    <div class="flex justify-between p-1 border-b border-slate-800 text-slate-500"><span>Prod_ID</span><span>Nombre</span><span>Precio</span></div>
+                    <div class="flex justify-between p-1 bg-slate-900 text-slate-400"><span>1</span><span>Chai</span><span>$18.00</span></div>
+                    <div class="flex justify-between p-1 bg-indigo-500/20 text-indigo-300 font-bold border border-indigo-500/30 rounded"><span>2</span><span>Chang</span><span>$38.00  ← [FILTRADO]</span></div>
+                    <div class="flex justify-between p-1 bg-slate-900 text-slate-400"><span>3</span><span>Aniseed Syrup</span><span>$10.00</span></div>
+                    <div class="flex justify-between p-1 bg-indigo-500/20 text-indigo-300 font-bold border border-indigo-500/30 rounded"><span>4</span><span>Chef Anton</span><span>$42.00  ← [FILTRADO]</span></div>
+                `;
             } else if (op === 'proyeccion') {
-                opName.innerText = "Proyección (π)";
-                notation.innerHTML = "\\pi_{Nombre, Ciudad}(Clientes)";
-                linqSample.innerText = "var query = (from c in db.Customers\n             select new {\n                 c.ContactName,\n                 c.City\n             }).Distinct();";
-                iconContainer.innerHTML = '<i class="fa-solid fa-table-columns"></i>';
-                iconContainer.className = "p-1.5 rounded-lg bg-indigo-500/15 text-indigo-400 text-sm";
+                opTitle.innerText = "Proyección (π)";
+                opDesc.innerText = "Operación unaria que extrae columnas (atributos) específicas eliminando duplicados si es necesario. Reduce verticalmente la información.";
+                notation.innerHTML = "\\pi_{Ciudad}(Clientes)";
+                linqCode.textContent = `// Proyección (Northwind)
+using (NorthwindEntities db = new NorthwindEntities())
+{
+    var query = (from s in db.Suppliers
+                 select new
+                 {
+                     s.Country
+                 }).Distinct();
+    dgvPubsAbejitas.DataSource = query.ToList();
+}`;
+                diagramTitle.innerText = "Extracción de atributos seleccionados";
+                diagramHtml = `
+                    <div class="flex justify-between p-1 border-b border-slate-800 text-slate-500"><span>Original (ID, Nombre, País)</span><span>Proyección (País)</span></div>
+                    <div class="flex justify-between p-1 bg-slate-900 text-slate-400"><span>1 | Chai | UK</span><span class="text-emerald-400 font-bold">UK</span></div>
+                    <div class="flex justify-between p-1 bg-slate-900 text-slate-400"><span>2 | Chang | USA</span><span class="text-emerald-400 font-bold">USA</span></div>
+                    <div class="flex justify-between p-1 bg-slate-900 text-slate-400"><span>3 | Syrup | UK</span><span class="text-slate-500 line-through">UK (Duplicado Eliminado)</span></div>
+                `;
             } else if (op === 'renombramiento') {
-                opName.innerText = "Renombramiento (ρ)";
-                notation.innerHTML = "\\rho_{Codigo \\leftarrow CustomerID, Cliente \\leftarrow ContactName}(Clientes)";
-                linqSample.innerText = "var query = from c in db.Customers\n            select new {\n                Codigo = c.CustomerID,\n                Cliente = c.ContactName\n            };";
-                iconContainer.innerHTML = '<i class="fa-solid fa-tag"></i>';
-                iconContainer.className = "p-1.5 rounded-lg bg-indigo-500/15 text-indigo-400 text-sm";
+                opTitle.innerText = "Renombramiento (ρ)";
+                opDesc.innerText = "Operación unaria que modifica el nombre de los atributos del esquema de datos resultante para facilitar su claridad e integración.";
+                notation.innerHTML = "\\rho_{Codigo \\leftarrow ProductID, Articulo \\leftarrow ProductName}(Productos)";
+                linqCode.textContent = `// Renombramiento (Northwind)
+using (NorthwindEntities db = new NorthwindEntities())
+{
+    var query = from p in db.Products
+                select new
+                {
+                    IdentificadorProducto = p.ProductID,
+                    NombreArticulo = p.ProductName
+                };
+    dgvPubsAbejitas.DataSource = query.ToList();
+}`;
+                diagramTitle.innerText = "Modificación de cabeceras de atributos";
+                diagramHtml = `
+                    <div class="flex justify-between p-1 border-b border-slate-800 text-slate-500"><span>Esquema SQL</span><span>Esquema Resultante</span></div>
+                    <div class="flex justify-between p-1 bg-slate-900 text-slate-400"><span>ProductID</span><span class="text-indigo-400 font-bold">IdentificadorProducto</span></div>
+                    <div class="flex justify-between p-1 bg-slate-900 text-slate-400"><span>ProductName</span><span class="text-indigo-400 font-bold">NombreArticulo</span></div>
+                    <div class="flex justify-between p-1 bg-slate-900 text-slate-400"><span>UnitPrice</span><span class="text-indigo-400 font-bold">ValorUnitario</span></div>
+                `;
             } else if (op === 'union') {
-                opName.innerText = "Unión (∪)";
-                notation.innerHTML = "Clientes_{USA} \\cup Empleados_{USA}";
-                linqSample.innerText = "var unionQuery = queryClientes.Union(queryEmpleados);";
-                iconContainer.innerHTML = '<i class="fa-solid fa-circle-nodes"></i>';
-                iconContainer.className = "p-1.5 rounded-lg bg-violet-500/15 text-violet-400 text-sm";
+                opTitle.innerText = "Unión (∪)";
+                opDesc.innerText = "Operación binaria que combina filas de dos relaciones compatibles (misma estructura de atributos). Elimina duplicados de manera estricta.";
+                notation.innerHTML = "Clientes_{USA} \\cup Proveedores_{USA}";
+                linqCode.textContent = `// Unión (Northwind + Memory)
+using (NorthwindEntities db = new NorthwindEntities())
+{
+    var ciudadesClientes = (from c in db.Customers select new { c.City }).ToList();
+    var ciudadesProveedores = (from s in db.Suppliers select new { s.City }).ToList();
+
+    var union = ciudadesClientes.Union(ciudadesProveedores);
+    dgvPubsAbejitas.DataSource = union.ToList();
+}`;
+                diagramTitle.innerText = "Fusión de conjuntos compatibles";
+                diagramHtml = `
+                    <div class="p-1 border-b border-slate-800 text-slate-500">Relación A (Clientes) ∪ Relación B (Proveedores)</div>
+                    <div class="p-1 bg-slate-900 text-slate-400">A: [Londres], [París], [Nueva York]</div>
+                    <div class="p-1 bg-slate-900 text-slate-400">B: [Tokio], [París], [Berlín]</div>
+                    <div class="p-1 bg-violet-500/20 text-violet-300 font-bold border border-violet-500/30 rounded mt-1">
+                        Resultado: [Londres], [París] (Solo una vez), [Nueva York], [Tokio], [Berlín]
+                    </div>
+                `;
             } else if (op === 'diferencia') {
-                opName.innerText = "Diferencia (-)";
-                notation.innerHTML = "Ciudades_{Proveedores} - Ciudades_{Clientes}";
-                linqSample.innerText = "var queryExcept = ciudadesProvs.Except(ciudadesClientes);";
-                iconContainer.innerHTML = '<i class="fa-solid fa-minus"></i>';
-                iconContainer.className = "p-1.5 rounded-lg bg-violet-500/15 text-violet-400 text-sm";
+                opTitle.innerText = "Diferencia (—)";
+                opDesc.innerText = "Operación binaria que produce tuplas que están en una primera relación pero ausentes en la segunda relación compatible.";
+                notation.innerHTML = "Paises_{Clientes} - Paises_{Proveedores}";
+                linqCode.textContent = `// Diferencia (Northwind + Memory)
+using (NorthwindEntities db = new NorthwindEntities())
+{
+    var paisesClientes = (from c in db.Customers select new { c.Country }).ToList();
+    var paisesProveedores = (from s in db.Suppliers select new { s.Country }).ToList();
+
+    var diferencia = paisesClientes.Except(paisesProveedores);
+    dgvPubsAbejitas.DataSource = diferencia.ToList();
+}`;
+                diagramTitle.innerText = "Exclusión del segundo conjunto compatible";
+                diagramHtml = `
+                    <div class="p-1 border-b border-slate-800 text-slate-500">Relación A (Clientes) — Relación B (Proveedores)</div>
+                    <div class="p-1 bg-slate-900 text-slate-400">A: [USA], [UK], [Francia], [Alemania]</div>
+                    <div class="p-1 bg-slate-900 text-slate-400">B: [USA], [UK], [Japón]</div>
+                    <div class="p-1 bg-violet-500/20 text-violet-300 font-bold border border-violet-500/30 rounded mt-1">
+                        Resultado A — B: [Francia], [Alemania]
+                    </div>
+                `;
             } else if (op === 'producto') {
-                opName.innerText = "Producto Cartesiano (×)";
+                opTitle.innerText = "Producto Cartesiano (×)";
+                opDesc.innerText = "Operación binaria que asocia cada tupla de la relación A con absolutamente todas las tuplas de la relación B, explorando todas las combinaciones.";
                 notation.innerHTML = "Descuentos \\times Tiendas";
-                linqSample.innerText = "var crossJoin = from d in db.Discounts\n                 from s in db.Stores\n                 select new { d, s };";
-                iconContainer.innerHTML = '<i class="fa-solid fa-chart-grid"></i>';
-                iconContainer.className = "p-1.5 rounded-lg bg-violet-500/15 text-violet-400 text-sm";
+                linqCode.textContent = `// Producto Cartesiano (Pubs)
+using (PubsAbejitasEntities db = new PubsAbejitasEntities())
+{
+    var crossJoin = from d in db.discounts
+                    from s in db.stores
+                    select new
+                    {
+                        d.discounttype,
+                        s.stor_name
+                    };
+    dgvPubsAbejitas.DataSource = crossJoin.ToList();
+}`;
+                diagramTitle.innerText = "Cruce absoluto sin claves foráneas";
+                diagramHtml = `
+                    <div class="p-1 border-b border-slate-800 text-slate-500">Relación A {D1, D2} × Relación B {T1, T2}</div>
+                    <div class="p-1 bg-slate-900 text-slate-400">Cruce 1: [D1] emparejado con [T1]</div>
+                    <div class="p-1 bg-slate-900 text-slate-400">Cruce 2: [D1] emparejado con [T2]</div>
+                    <div class="p-1 bg-slate-900 text-slate-400">Cruce 3: [D2] emparejado con [T1]</div>
+                    <div class="p-1 bg-slate-900 text-slate-400">Cruce 4: [D2] emparejado con [T2]</div>
+                    <div class="p-1 bg-violet-500/20 text-violet-300 font-bold border border-violet-500/30 rounded text-center">Combinaciones totales = |A| * |B|</div>
+                `;
             }
-            
+
+            diagramContainer.innerHTML = diagramHtml;
+
             // Renderizar la fórmula usando KaTeX
             try {
                 katex.render(notation.innerText, notation, { throwOnError: false });
             } catch(e) {}
+
+            Prism.highlightAll();
         }
 
         // Filtro del visor de código C#
@@ -984,15 +1094,15 @@ Para asegurar el funcionamiento libre de errores en otros equipos:
 
         // Mock scripts para descarga
         function getNorthwindScript() {
-            return `-- Script mock de Northwind (instnwnd.sql)\nCREATE DATABASE Northwind;\nGO\nUSE Northwind;\n-- ... Estructura original de tablas de Northwind ...`;
+            return `-- =========================================================================\n-- SCRIPT DE BASE DE DATOS: Northwind\n-- =========================================================================\nCREATE DATABASE Northwind;\nGO\nUSE Northwind;\n\n-- Creación de tablas base e inserción de datos para pruebas... (Completo en descarga)`;
         }
 
         function getPubsScript() {
-            return `-- Script original de Pubs (instpubs.sql)\nCREATE DATABASE PubsAbejitas;\nGO\nUSE PubsAbejitas;\n-- ... Estructura original de tablas de Pubs ...`;
+            return `-- =========================================================================\n-- SCRIPT DE BASE DE DATOS: Pubs (instpubs.sql)\n-- =========================================================================\nCREATE DATABASE PubsAbejitas;\nGO\nUSE PubsAbejitas;\n\n-- Creación de tablas de editoriales, libros, tiendas y ventas... (Completo en descarga)`;
         }
 
         function getInfografiaCode() {
-            return `<!-- Contenido autocontenido de la infografía interactiva 3.2 -->`;
+            return `<!-- Infografía Interactiva del Taller 3.2 de Álgebra Relacional -->`;
         }
     </script>
 </body>
