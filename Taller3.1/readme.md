@@ -1,56 +1,36 @@
+# 📊 Taller 3.1: Álgebra Relacional con LINQ y Entity Framework
 
-Taller 3.1: Álgebra Relacional con LINQ y Entity Framework
+Este repositorio contiene la solución completa, optimizada y documentada para el **Taller 3.1**.  
+En este proyecto se implementan y demuestran de forma práctica las operaciones fundamentales del álgebra relacional utilizando el paradigma de programación declarativo **LINQ** y el ORM **Entity Framework 6** sobre la base de datos clásica **Microsoft Pubs** (adaptada localmente bajo el nombre de `PubsAbejitas`).
 
-Este repositorio contiene la solución completa y optimizada para el Taller 3.1, donde se implementan las operaciones fundamentales del álgebra relacional (tanto unarias como binarias) utilizando C#, LINQ y Entity Framework 6 sobre la base de datos clásica Microsoft Pubs (adaptada localmente como PubsAbejitas).
+---
 
-📂 Estructura de Entregables
+# 📂 Estructura de los Entregables
 
-El proyecto consta de los siguientes archivos clave para su evaluación:
+La solución se compone de los siguientes archivos esenciales organizados para su evaluación:
 
-PubsAbejitas.sql: Script de SQL Server que crea la base de datos, define las llaves primarias, foráneas y carga los datos de prueba necesarios para las consultas relacionales.
+| Nombre del Entregable | Extensión / Tipo | Descripción Técnica |
+|---|---|---|
+| `PubsAbejitas.sql` | 🗄️ Script SQL Server | Código DDL/DML que crea la base de datos, define llaves primarias/foráneas y carga los datos de prueba. |
+| `Taller3.1.cs` | 💻 Archivo de Código C# | Contiene el código fuente de `Form1.cs` con los 18 métodos interactivos de Windows Forms correspondientes al taller. |
+| `Taller3.1VS.zip` | 📦 Archivo Comprimido | Proyecto de Visual Studio depurado y limpio (sin carpetas residuales pesadas como `/bin` u `/obj`). |
+| `index.html` | 🌐 Dashboard Web | Interfaz de control web interactiva para visualizar las equivalencias algebraicas y descargar los recursos con un clic. |
 
-Taller3.1.cs: Archivo de código fuente principal (Form1.cs) que contiene los 18 métodos interactivos de Windows Forms mapeados a las operaciones algebraicas.
+---
 
-Taller3.1VS.zip: Solución empaquetada y limpia de Visual Studio lista para ser importada. Se han eliminado carpetas temporales pesadas (bin, obj, .vs) para un peso ligero y libre de conflictos.
+# 🛠️ Instrucciones de Configuración y Despliegue
 
-index.html: Tablero de control web interactivo que permite previsualizar y descargar cómodamente el código fuente y el script de la base de datos.
+Sigue estos pasos ordenados para montar el entorno local y ejecutar el software sin inconvenientes:
 
-🛠️ Instrucciones de Configuración y Despliegue
+---
 
-1. Preparar la Base de Datos (SQL Server)
+## 1️⃣ Preparar la Base de Datos en SQL Server
 
-Abre SQL Server Management Studio (SSMS).
+1. Abre **SQL Server Management Studio (SSMS)** y conéctate a tu instancia local de base de datos.
 
-Abre y ejecuta el archivo PubsAbejitas.sql para crear la base de datos local y poblar las tablas (jobs, employees, titles, stores, sales, discounts, authors, titleauthors).
+2. Abre el archivo `PubsAbejitas.sql` en una nueva consulta.
 
-2. Configurar la Solución en Visual Studio
+3. Ejecuta el script (`F5`) para crear la base de datos `PubsAbejitas` y poblar automáticamente sus tablas de catálogo:
 
-Descomprime el archivo Taller3.1VS.zip.
-
-Haz doble clic en el archivo de solución .sln para abrir el proyecto en Visual Studio (2019 o superior).
-
-Asegúrate de verificar la cadena de conexión en el archivo App.config. Si tu instancia de SQL Server tiene un nombre personalizado (ej. LOCALHOST\SQLEXPRESS), edita el atributo connectionString para que coincida con tu servidor local.
-
-3. Compilación y Ejecución
-
-Presiona F5 o haz clic en Iniciar en Visual Studio.
-
-Interactúa con la interfaz gráfica de Windows Forms, donde cada botón ejecuta una operación unaria o binaria del álgebra relacional.
-
-📊 Operaciones Implementadas (18 Consultas)
-
-Operaciones Unarias (3 ejercicios por operación)
-
-Selección ($\sigma$): Filtrado selectivo de filas mediante predicados específicos sobre jobs, employees y titles.
-
-Proyección ($\pi$): Extracción de subconjuntos de atributos específicos (columnas) eliminando duplicados mediante .Distinct().
-
-Renombramiento ($\rho$): Proyección con cambio de alias a español para adecuar los datos a las necesidades de la interfaz.
-
-Operaciones Binarias (3 ejercicios por operación)
-
-Unión ($\cup$): Combinación de conjuntos compatibles (mismo tipo anónimo) evaluados de forma segura en memoria mediante el uso de .ToList().Union().
-
-Diferencia ($-$): Exclusión de conjuntos compatibles utilizando .ToList().Except().
-
-Producto Cartesiano ($\times$): Cruces de tablas completos (Cross Joins) a través de cláusulas from múltiples sin condiciones de clave asociativa.
+```sql
+jobs, employees, titles, stores, sales, discounts, authors y titleauthors
