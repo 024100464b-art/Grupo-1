@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Álgebra Relacional en LINQ y Entity Framework</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --accent-blue: #38bdf8;
+            --accent-green: #34d399;
+            --accent-purple: #a78bfa;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --card-padding: 1.5rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Encabezado Principal */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 2rem;
+        }
+
+        .meta-team {
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        header h1 span {
+            color: var(--accent-blue);
+        }
+
+        .intro-box {
+            background-color: var(--bg-secondary);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-blue);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Grid de Secciones */
+        .infographic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .section-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--card-padding);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-card.unarias { border-top: 5px solid var(--accent-green); }
+        .section-card.binarias { border-top: 5px solid var(--accent-purple); }
+
+        .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .unarias .section-title { color: var(--accent-green); }
+        .binarias .section-title { color: var(--accent-purple); }
+
+        /* Estilo de Operaciones */
+        .operation-block {
+            background-color: rgba(15, 23, 42, 0.6);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .operation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .operation-name {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .operation-symbol {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--border-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .unarias .operation-symbol { color: var(--accent-green); }
+        .binarias .operation-symbol { color: var(--accent-purple); }
+
+        .operation-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        /* Simulación de código o implementación */
+        .tech-tag {
+            font-size: 0.8rem;
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-family: monospace;
+        }
+
+        .case-study {
+            font-size: 0.85rem;
+            border-left: 2px solid var(--border-color);
+            padding-left: 0.75rem;
+            margin-top: 0.5rem;
+            color: #cbd5e1;
+        }
+
+        .case-study strong {
+            color: var(--accent-blue);
+        }
+
+        /* Footer Técnico Integrado */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+
+        .credits {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            body { padding: 1rem 0.5rem; }
+            header h1 { font-size: 2rem; }
+            .infographic-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <div class="meta-team">Taller 3.2 • Equipo: Las Abejitas</div>
+            <h1>Álgebra Relacional <span>en Producción</span></h1>
+            <div class="intro-box">
+                Mapeo técnico e informativo que detalla la traducción directa de operaciones abstractas unarias y binarias a instrucciones lógicas ejecutables mediante <strong>LINQ</strong> y <strong>Entity Framework</strong> bajo entornos reales de bases de datos.
+            </div>
+        </header>
+
+        <div class="infographic-grid">
+            
+            <div class="section-card unarias">
+                <h2 class="section-title">
+                    <i>📊</i> Operaciones Unarias
+                </h2>
+                
+                <div class="operation-block">
+                    <div class="operation-header">
+                        <span class="operation-name">Selección</span>
+                        <span class="operation-symbol">σ (condición)</span>
+                    </div>
+                    <p class="operation-desc">Filtra horizontalmente un conjunto de datos extrayendo únicamente las tuplas (filas) que satisfacen un predicado lógico específico.</p>
+                    <div>
+                        <span class="tech-tag">Where()</span>
+                        <span class="tech-tag">Northwind / Pubs</span>
+                    </div>
+                    <div class="case-study">
+                        <strong>Casos de estudio implementados:</strong>
+                        <ul>
+                            <li>Filtrado en <code>Employees</code> donde el país es estrictamente 'USA'.</li>
+                            <li>Aislamiento en <code>Products</code> con <code>UnitPrice > 20</code>.</li>
+                            <li>Segmentación en <code>Customers</code> cuya ciudad nativa es 'London'.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="operation-block">
+                    <div class="operation-header">
+                        <span class="operation-name">Proyección</span>
+                        <span class="operation-symbol">π (atributos)</span>
+                    </div>
+                    <p class="operation-desc">Filtra verticalmente una tabla seleccionando columnas específicas y descartando el resto para optimizar la transferencia de memoria.</p>
+                    <div>
+                        <span class="tech-tag">Select()</span>
+                        <span class="tech-tag">Objetos Anónimos</span>
+                    </div>
+                    <div class="case-study">
+                        <strong>Casos de estudio implementados:</strong>
+                        <ul>
+                            <li>Extracción aislada de atributos de identidad (<code>FirstName</code>, <code>LastName</code>).</li>
+                            <li>Reducción en inventarios capturando únicamente <code>ProductName</code> junto a su <code>UnitPrice</code>.</li>
+                            <li>Mapeo transaccional limitado a <code>OrderID</code> y <code>OrderDate</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="operation-block">
+                    <div class="operation-header">
+                        <span class="operation-name">Renombramiento</span>
+                        <span class="operation-symbol">ρ (nuevo, viejo)</span>
+                    </div>
+                    <p class="operation-desc">Modifica los identificadores de los atributos del resultado. Crucial para prevenir colisiones de nombres o amoldar interfaces de usuario nativas.</p>
+                    <div>
+                        <span class="tech-tag">Alias en Select</span>
+                        <span class="tech-tag">new { Alias = c.Col }</span>
+                    </div>
+                    <div class="case-study">
+                        <strong>Casos de estudio implementados:</strong>
+                        <ul>
+                            <li>Conversión semántica de lenguaje: campos técnicos mapeados a etiquetas limpias como <code>Producto</code> y <code>Precio</code>.</li>
+                            <li>Normalización de entidades de negocio: visualización clara transformando propiedades complejas en <code>Empresa</code> y <code>Ciudad</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section-card binarias">
+                <h2 class="section-title">
+                    <i>🧬</i> Operaciones Binarias
+                </h2>
+
+                <div class="operation-block">
+                    <div class="operation-header">
+                        <span class="operation-name">Unión</span>
+                        <span class="operation-symbol">∪</span>
+                    </div>
+                    <p class="operation-desc">Combina los resultados de dos o más consultas en un conjunto unificado, eliminando de forma automática los registros duplicados. Requiere compatibilidad estricta de esquemas.</p>
+                    <div>
+                        <span class="tech-tag">.Union()</span>
+                        <span class="tech-tag">Esquemas Compatibles</span>
+                    </div>
+                    <div class="case-study">
+                        <strong>Casos de estudio implementados:</strong>
+                        <ul>
+                            <li>Consolidación en un único flujo de los nombres extraídos tanto de <code>authors</code> como de <code>publishers</code>.</li>
+                            <li>Generación de catálogos únicos geográficos cruzando localidades de autores, editores y tiendas.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="operation-block">
+                    <div class="operation-header">
+                        <span class="operation-name">Diferencia</span>
+                        <span class="operation-symbol">−</span>
+                    </div>
+                    <p class="operation-desc">Extrae los elementos presentes en la primera relación que no tienen correspondencia ni existencia alguna dentro del segundo conjunto evaluado.</p>
+                    <div>
+                        <span class="tech-tag">.Except()</span>
+                        <span class="tech-tag">Exclusión Lógica</span>
+                    </div>
+                    <div class="case-study">
+                        <strong>Casos de estudio implementados:</strong>
+                        <ul>
+                            <li>Aislamiento de ciudades exclusivas de autores que no registran sedes editoriales activas.</li>
+                            <li>Detección de estados o regiones huérfanas entre tablas de negocio.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="operation-block">
+                    <div class="operation-header">
+                        <span class="operation-name">Producto Cartesiano</span>
+                        <span class="operation-symbol">×</span>
+                    </div>
+                    <p class="operation-desc">Cruza de forma exhaustiva y sistemática cada registro de la primera colección con la totalidad de elementos contenidos en la segunda.</p>
+                    <div>
+                        <span class="tech-tag">from a in A from b in B</span>
+                        <span class="tech-tag">Sin condición (where/on)</span>
+                    </div>
+                    <div class="case-study">
+                        <strong>Casos de estudio implementados:</strong>
+                        <ul>
+                            <li>Cruces masivos analíticos combinando de manera totalizadora cada autor registrado contra todos los títulos (<code>titles</code>) del sistema.</li>
+                            <li>Combinaciones combinatorias integrales entre entidades de editoriales (<code>publishers</code>) y tiendas comerciales (<code>stores</code>).</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <div class="credits">
+                Universidad Andina del Cusco • Facultad de Ingeniería y Arquitectura • Escuela Profesional de Ingeniería de Sistemas<br>
+                Asignatura: Modelado de Base de Datos • Semestre 2026-I
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
