@@ -1,0 +1,403 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Álgebra Relacional - Operaciones Unarias</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #dd6b20;
+            --bg-gradient: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            --card-bg: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --sigma-color: #e53e3e;
+            --pi-color: #319795;
+            --rho-color: #d69e2e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .infographic-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+            padding: 30px;
+        }
+
+        /* HEADER SECTION */
+        header {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: #ffffff;
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.95rem;
+        }
+
+        .meta-item {
+            margin: 5px 15px;
+        }
+
+        /* INTRO / CONTEXT SECTION */
+        .intro-box {
+            background: var(--card-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .intro-box h2 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.4rem;
+        }
+
+        /* CORE OPERATIONS GRID */
+        .section-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin: 40px 0 20px 0;
+            font-size: 1.8rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 8px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .operations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .op-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border-top: 6px solid var(--text-main);
+        }
+
+        .op-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+
+        .op-card.selection { border-top-color: var(--sigma-color); }
+        .op-card.projection { border-top-color: var(--pi-color); }
+        .op-card.rename { border-top-color: var(--rho-color); }
+
+        .symbol-badge {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            opacity: 0.15;
+        }
+
+        .op-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .op-card h3 span {
+            font-size: 1.1rem;
+            margin-left: 8px;
+            font-weight: normal;
+            color: var(--text-muted);
+        }
+
+        .op-card p {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .example-list {
+            list-style: none;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .example-list li {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .example-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .example-list li strong {
+            color: var(--primary-color);
+        }
+
+        /* BINARY OPERATIONS SECTION */
+        .binary-section {
+            background: #edf2f7;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .binary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .binary-item {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .binary-item h4 {
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        /* FOOTER & MEMBERS SECTION */
+        footer {
+            margin-top: 40px;
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .team-box h4, .conclusion-box h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .team-list {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .team-list li {
+            margin-bottom: 5px;
+            opacity: 0.85;
+        }
+
+        .conclusion-box p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            text-align: justify;
+        }
+
+        .repo-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .repo-link a {
+            color: #63b3ed;
+            text-decoration: none;
+        }
+
+        .repo-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .meta-info { flex-direction: column; align-items: center; }
+            .meta-item { margin: 3px 0; }
+            .infographic-container { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="infographic-container">
+        
+        <header>
+            <h1>Álgebra Relacional</h1>
+            <p>Modelado de Bases de Datos • Operaciones Unarias</p>
+            
+            <div class="meta-info">
+                <div class="meta-item"><strong>Universidad:</strong> Andina del Cusco</div>
+                <div class="meta-item"><strong>Equipo:</strong> Las abejitas</div>
+                <div class="meta-item"><strong>Docente:</strong> Hugo Espetia Huamanga</div>
+            </div>
+        </header>
+
+        <div class="intro-box">
+            <h2>Objetivo del Proyecto</h2>
+            <p>Aplicación práctica de las operaciones fundamentales del álgebra relacional mediante consultas declarativas usando la base de datos <strong>Pubs</strong> y la tecnología <strong>ADO.NET Entity Framework</strong> en un entorno moderno desarrollado con Visual Studio.</p>
+        </div>
+
+        <div class="section-title">Operaciones Unarias Fundamentales</div>
+
+        <div class="operations-grid">
+            
+            <div class="op-card selection">
+                <div class="symbol-badge" style="color: var(--sigma-color);">σ</div>
+                <h3>Selección <span>(σ)</span></h3>
+                <p>Se utiliza para recuperar tuplas (filas) de una entidad que cumplan estrictamente con una condición o predicado específico (filtros, rangos o comparaciones).</p>
+                <div class="example-list">
+                    <p style="font-weight: bold; margin-bottom: 5px; color: var(--text-muted);">Implementaciones:</p>
+                    <ul>
+                        <li><strong>Job:</strong> Filtrado por roles específicos como 'Editor'.</li>
+                        <li><strong>Employees:</strong> Selección según niveles de trabajo.</li>
+                        <li><strong>Price:</strong> Filtrado de libros por rangos de precio.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="op-card projection">
+                <div class="symbol-badge" style="color: var(--pi-color);">π</div>
+                <h3>Proyección <span>(π)</span></h3>
+                <p>Permite extraer únicamente columnas (atributos) específicas de una relación. Optimiza la visualización eliminando datos redundantes e innecesarios.</p>
+                <div class="example-list">
+                    <p style="font-weight: bold; margin-bottom: 5px; color: var(--text-muted);">Implementaciones:</p>
+                    <ul>
+                        <li><strong>Publishers:</strong> Extracción exclusiva del país ('country').</li>
+                        <li><strong>Store:</strong> Proyección de direcciones y nombres de tiendas.</li>
+                        <li><strong>Authors:</strong> Visualización segmentada por ciudad y estado.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="op-card rename">
+                <div class="symbol-badge" style="color: var(--rho-color);">ρ</div>
+                <h3>Renombramiento <span>(ρ)</span></h3>
+                <p>Facilita el cambio de nombre de los atributos o del resultado de una consulta. Mejora drásticamente la claridad, legibilidad y organización de los datos.</p>
+                <div class="example-list">
+                    <p style="font-weight: bold; margin-bottom: 5px; color: var(--text-muted);">Implementaciones:</p>
+                    <ul>
+                        <li><strong>Title:</strong> Mapeo a identificadores amigables ('Id Titulo', 'Nombre Libro').</li>
+                        <li><strong>Sales:</strong> Renombrar columnas a 'Cantidad Vendida' o 'Fecha Venta'.</li>
+                        <li><strong>Employee:</strong> Ajustes de alias en cabeceras de tablas.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="binary-section">
+            <h3 style="color: var(--primary-color); text-align: center;">Funcionalidades Adicionales: Operaciones Binarias</h3>
+            <p style="text-align: center; font-size: 0.95rem; color: var(--text-muted);">El taller también integró consultas más complejas sobre colecciones de datos:</p>
+            
+            <div class="binary-grid">
+                <div class="binary-item">
+                    <h4>Unión (∪)</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-main);">Aplicada en tablas como <em>Stores, Authors</em> y <em>Title</em>.</p>
+                </div>
+                <div class="binary-item">
+                    <h4>Diferencia (−)</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-main);">Evaluación de diferencias en <em>Jobs, Employees</em> y <em>Publishers</em>.</p>
+                </div>
+                <div class="binary-item">
+                    <h4>Producto Cartesiano (×)</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-main);">Cruces combinatorios aplicados en <em>Discounts, Producto</em> y <em>Authors</em>.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-grid">
+                <div class="team-box">
+                    <h4>Integrantes del Equipo</h4>
+                    <ul class="team-list">
+                        <li>• Flórez Hurtado, Diego Alonzo (100%)</li>
+                        <li>• Gil Condori, Ghyvraim Horacio (100%)</li>
+                        <li>• Canaza Coricasa, Yamile Zamira (100%)</li>
+                        <li>• Flores Bocangel, Rhai Francisco (100%)</li>
+                    </ul>
+                </div>
+                <div class="conclusion-box">
+                    <h4>Conclusión</h4>
+                    <p>Las consultas modeladas bajo el álgebra relacional demuestran ser herramientas de alta utilidad y eficiencia para la manipulación y optimización funcional de grandes volúmenes de datos en repositorios modernos.</p>
+                </div>
+            </div>
+            
+            <div class="repo-link">
+                Repositorio del Taller: <a href="https://github.com/024100464b-art/Grupo-1" target="_blank">github.com/024100464b-art/Grupo-1</a>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
