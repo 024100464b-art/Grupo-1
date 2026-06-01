@@ -2,7 +2,7 @@
 
 enlace del informe: https://docs.google.com/document/d/1m4hF-El2VvDXaAiTE2C1vUS3zjjb1C3AYRzupd6OAUE/edit?tab=t.0
 
-enlace de visualizacion del informe: https://024100464b-art.github.io/Grupo-1/Aeroquery/informe%20aeroquery.pdf
+enlace de visualizacion del informe: https://024100464b-art.github.io/Grupo-1/Aeroquery/Informe-Aeroquery.pdf
 
 enlace de githubpages: https://024100464b-art.github.io/Grupo-1/Aeroquery/infografia.html
 
