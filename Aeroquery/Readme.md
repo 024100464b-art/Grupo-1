@@ -1,4 +1,7 @@
 # ✈️ AeroQuery Cusco - Propuesta de Sistema Aeroportuario
+
+enlace del informe: https://docs.google.com/document/d/1m4hF-El2VvDXaAiTE2C1vUS3zjjb1C3AYRzupd6OAUE/edit?tab=t.0
+
 **AeroQuery Cusco** es una propuesta de diseño arquitectónico y modelado de datos para la gestión operativa en terminales aéreos. El proyecto plantea resolver la complejidad de manejar simultáneamente el flujo de pasajeros, asignación de aeronaves, venta de boletos y logística de equipaje mediante una base de datos relacional altamente normalizada.
 🌐 **Ver Presentación del Proyecto (GitHub Pages):** Reemplaza-esto-con-tu-link-de-github-pages.com
 ## 📂 Contenido del Repositorio
