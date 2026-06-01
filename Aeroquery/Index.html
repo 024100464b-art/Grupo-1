@@ -1,1 +1,425 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía AeroQuery Cusco - Design Thinking & IA</title>
+    <!-- Tailwind CSS para diseño moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cusco: {
+                            blue: '#0B2545',
+                            sky: '#134074',
+                            gold: '#EEB902',
+                            light: '#EEF4F8',
+                            accent: '#3A86C8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-[#F4F7FA] text-slate-800 antialiased min-h-screen">
+
+    <!-- Header Principal -->
+    <header class="bg-gradient-to-r from-cusco-blue via-cusco-sky to-[#081b31] text-white py-12 px-6 relative overflow-hidden shadow-xl">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between relative z-10 gap-8">
+            <div class="text-center md:text-left">
+                <span class="bg-cusco-gold text-cusco-blue font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wider">Proyecto Destacado - Unidad II</span>
+                <h1 class="text-4xl md:text-5xl font-extrabold mt-3 tracking-tight">AeroQuery Cusco</h1>
+                <p class="text-slate-300 mt-2 text-lg max-w-2xl font-light">
+                    Innovación y Desarrollo Web con Design Thinking e IA para el Monitoreo Logístico y Tracking de Vuelos en Tiempo Real.
+                </p>
+                <div class="flex flex-wrap gap-3 mt-4 justify-center md:justify-start">
+                    <span class="bg-white/10 text-white border border-white/20 px-3 py-1 rounded-md text-xs font-medium">UAC 2026-1</span>
+                    <span class="bg-white/10 text-white border border-white/20 px-3 py-1 rounded-md text-xs font-medium">Ingeniería de Sistemas</span>
+                    <span class="bg-white/10 text-white border border-white/20 px-3 py-1 rounded-md text-xs font-medium">Modelado de Base de Datos</span>
+                </div>
+            </div>
+            <!-- Tarjeta de Equipo -->
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 w-full max-w-sm shadow-lg">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 bg-cusco-gold rounded-full flex items-center justify-center text-cusco-blue text-2xl font-bold">🐝</div>
+                    <div>
+                        <h3 class="font-bold text-white leading-tight">Equipo "Las abejitas"</h3>
+                        <p class="text-xs text-slate-300">Participación Activa 100%</p>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-sm text-slate-200">
+                    <li class="flex justify-between"><span>• Flórez Hurtado, Diego Alonzo</span> <span class="text-cusco-gold font-semibold">100%</span></li>
+                    <li class="flex justify-between"><span>• Gil Condori, Ghyvraim Horacio</span> <span class="text-cusco-gold font-semibold">100%</span></li>
+                    <li class="flex justify-between"><span>• Canaza Coricasa, Yamile Zamira</span> <span class="text-cusco-gold font-semibold">100%</span></li>
+                    <li class="flex justify-between"><span>• Flores Bocangel, Rhai Francisco</span> <span class="text-cusco-gold font-semibold">100%</span></li>
+                </ul>
+                <div class="mt-4 pt-3 border-t border-white/10 text-xs text-slate-300 flex justify-between">
+                    <span>Docente: Hugo Espetia H.</span>
+                    <span>Cusco, Perú</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Estadísticas Rápidas -->
+    <section class="max-w-7xl mx-auto -mt-6 px-4 mb-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white p-5 rounded-2xl shadow-md border-b-4 border-cusco-accent flex items-center gap-4 hover:translate-y-[-2px] transition-all">
+                <div class="p-3 bg-blue-50 rounded-xl text-cusco-accent">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-400 font-medium uppercase">Metodología</p>
+                    <h4 class="text-lg font-bold text-cusco-blue">Design Thinking</h4>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl shadow-md border-b-4 border-amber-500 flex items-center gap-4 hover:translate-y-[-2px] transition-all">
+                <div class="p-3 bg-amber-50 rounded-xl text-amber-500">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-400 font-medium uppercase">Copiloto IA</p>
+                    <h4 class="text-lg font-bold text-cusco-blue">Google AI Studio</h4>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl shadow-md border-b-4 border-emerald-500 flex items-center gap-4 hover:translate-y-[-2px] transition-all">
+                <div class="p-3 bg-emerald-50 rounded-xl text-emerald-500">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4"></path></svg>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-400 font-medium uppercase">Base de Datos</p>
+                    <h4 class="text-lg font-bold text-cusco-blue">Supabase Cloud</h4>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl shadow-md border-b-4 border-violet-500 flex items-center gap-4 hover:translate-y-[-2px] transition-all">
+                <div class="p-3 bg-violet-50 rounded-xl text-violet-500">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-400 font-medium uppercase">Despliegue</p>
+                    <h4 class="text-lg font-bold text-cusco-blue">Vercel & GitHub</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-7xl mx-auto px-4 pb-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Columna Izquierda: Roadmap e Historia de Design Thinking (2/3 del ancho en desktop) -->
+        <div class="lg:col-span-2 space-y-8">
+           
+            <!-- Roadmap de Design Thinking -->
+            <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-cusco-blue flex items-center gap-2">
+                            <span class="p-1.5 bg-cusco-blue text-white rounded-lg text-sm">📍</span>
+                            El Camino de Innovación
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">Interacción interactiva basada en el Design Thinking del reporte</p>
+                    </div>
+                    <!-- Controladores de Fase -->
+                    <div class="flex flex-wrap gap-1 bg-slate-100 p-1 rounded-xl">
+                        <button onclick="switchPhase('fase1')" id="btn-fase1" class="phase-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-cusco-blue text-white transition-all">Fase 1</button>
+                        <button onclick="switchPhase('fase2')" id="btn-fase2" class="phase-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-600 hover:bg-slate-200 transition-all">Fase 2</button>
+                        <button onclick="switchPhase('fase3')" id="btn-fase3" class="phase-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-600 hover:bg-slate-200 transition-all">Fase 3</button>
+                        <button onclick="switchPhase('fase4')" id="btn-fase4" class="phase-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-600 hover:bg-slate-200 transition-all">Fase 4</button>
+                        <button onclick="switchPhase('fase5')" id="btn-fase5" class="phase-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-600 hover:bg-slate-200 transition-all">Fase 5</button>
+                    </div>
+                </div>
+
+                <!-- Contenido de las Fases -->
+                <div class="relative min-h-[360px]">
+
+                    <!-- FASE 1: EMPATIZAR Y DEFINIR -->
+                    <div id="content-fase1" class="phase-content space-y-6 transition-all duration-300">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xl shrink-0">1</div>
+                            <div>
+                                <span class="text-xs font-bold text-amber-600 tracking-wider uppercase">Fase 1: Empatizar y Definir</span>
+                                <h3 class="text-xl font-bold text-cusco-blue mt-0.5">Entendiendo el Caos del Equipaje</h3>
+                                <p class="text-sm text-slate-600 mt-2">
+                                    Para sumergirse en la problemática aeroportuaria, se aplicaron encuestas estructuradas utilizando <strong>Google Forms</strong> y se consolidaron las respuestas directamente en <strong>Google Sheets</strong>. El objetivo: mapear los cuellos de botella en la entrega de equipajes en Cusco.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+                            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                                <h4 class="font-bold text-sm text-cusco-blue mb-2 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-blue-500"></span> Hallazgos Clave
+                                </h4>
+                                <ul class="text-xs text-slate-600 space-y-2">
+                                    <li class="flex items-start gap-2">✓ Sincronización ineficiente entre vuelos entrantes y fajas operativas.</li>
+                                    <li class="flex items-start gap-2">✓ Pasajeros desorientados por falta de pantallas dinámicas actualizadas.</li>
+                                    <li class="flex items-start gap-2">✓ Personal de rampa trabajando bajo presión climática sin alertas integradas.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                                <h4 class="font-bold text-sm text-cusco-blue mb-2 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-amber-500"></span> Definición del Reto (POV)
+                                </h4>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    ¿Cómo podríamos optimizar la visualización de datos operacionales de vuelos y asignación de equipajes para que el personal de rampa reduzca los tiempos de entrega en un 30%?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2: IDEAR -->
+                    <div id="content-fase2" class="phase-content hidden space-y-6 transition-all duration-300">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xl shrink-0">2</div>
+                            <div>
+                                <span class="text-xs font-bold text-blue-600 tracking-wider uppercase">Fase 2: Idear</span>
+                                <h3 class="text-xl font-bold text-cusco-blue mt-0.5">Concibiendo AeroQuery Cusco</h3>
+                                <p class="text-sm text-slate-600 mt-2">
+                                    Se propuso un sistema web responsivo que sirviera como único punto de verdad operativa. La solución ideada integra seguridad, monitorización climática, consultas inteligentes avanzadas y asignación automatizada.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100">
+                            <div class="p-4 bg-blue-50/50 rounded-xl border border-blue-100 text-center">
+                                <span class="text-2xl">🔒</span>
+                                <h4 class="font-bold text-xs text-cusco-blue mt-2">Login Seguro</h4>
+                                <p class="text-[10px] text-slate-500 mt-1">Autenticación basada en roles para evitar accesos indebidos.</p>
+                            </div>
+                            <div class="p-4 bg-amber-50/50 rounded-xl border border-amber-100 text-center">
+                                <span class="text-2xl">⚡</span>
+                                <h4 class="font-bold text-xs text-cusco-blue mt-2">Live Weather Widget</h4>
+                                <p class="text-[10px] text-slate-500 mt-1">Velocidad del viento y estados de rampa críticos para el Cusco.</p>
+                            </div>
+                            <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100 text-center">
+                                <span class="text-2xl">🔍</span>
+                                <h4 class="font-bold text-xs text-cusco-blue mt-2">Módulo LINQ</h4>
+                                <p class="text-[10px] text-slate-500 mt-1">Filtrado inteligente, asignación de fajas y tracking de maletas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3: PROTOTIPAR -->
+                    <div id="content-fase3" class="phase-content hidden space-y-6 transition-all duration-300">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xl shrink-0">3</div>
+                            <div>
+                                <span class="text-xs font-bold text-indigo-600 tracking-wider uppercase">Fase 3: Prototipar (Google Stitch)</span>
+                                <h3 class="text-xl font-bold text-cusco-blue mt-0.5">Estructurando la Interfaz del Mañana</h3>
+                                <p class="text-sm text-slate-600 mt-2">
+                                    Utilizando **Google Stitch**, el equipo materializó la interfaz visual de alta fidelidad, diseñando flujos simplificados para que el personal en pista acceda a la información con menos de tres clics.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex flex-col md:flex-row items-center gap-6">
+                            <div class="w-full md:w-1/2 space-y-2">
+                                <h4 class="font-bold text-sm text-cusco-blue">Principios del Diseño AeroQuery:</h4>
+                                <ul class="text-xs text-slate-600 space-y-2">
+                                    <li class="flex items-center gap-2">🔵 <strong>Paleta Aeronáutica:</strong> Azul profundo y celeste cielo para transmitir confianza y claridad técnica.</li>
+                                    <li class="flex items-center gap-2">📱 <strong>Diseño Mobile-First:</strong> Cards adaptables a pantallas pequeñas en la pista de aterrizaje.</li>
+                                    <li class="flex items-center gap-2">👁️ <strong>Legibilidad Alta:</strong> Contraste optimizado para exteriores soleados.</li>
+                                </ul>
+                            </div>
+                            <!-- Mockup representativo con CSS -->
+                            <div class="w-full md:w-1/2 bg-white border border-slate-200 rounded-xl p-3 shadow-inner relative overflow-hidden">
+                                <div class="flex justify-between items-center pb-2 border-b border-slate-100 mb-2">
+                                    <span class="text-[10px] font-bold text-cusco-blue flex items-center gap-1">✈️ AeroQuery <span class="text-xs font-normal">Cusco</span></span>
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="bg-[#EEF4F8] p-2 rounded-lg text-center">
+                                        <p class="text-[8px] text-slate-400">Viento SPZO</p>
+                                        <p class="text-xs font-bold text-cusco-blue">14 nudos</p>
+                                    </div>
+                                    <div class="bg-[#EEF4F8] p-2 rounded-lg text-center">
+                                        <p class="text-[8px] text-slate-400">Fajas Libres</p>
+                                        <p class="text-xs font-bold text-cusco-blue">02 / 04</p>
+                                    </div>
+                                </div>
+                                <div class="mt-2 bg-slate-900 text-white rounded-lg p-2 text-[8px] font-mono">
+                                    SELECT * FROM vuelos WHERE destino = 'CUZ';
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4: TESTEAR Y DESARROLLAR -->
+                    <div id="content-fase4" class="phase-content hidden space-y-6 transition-all duration-300">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-xl shrink-0">4</div>
+                            <div>
+                                <span class="text-xs font-bold text-purple-600 tracking-wider uppercase">Fase 4: Testear y Desarrollar</span>
+                                <h3 class="text-xl font-bold text-cusco-blue mt-0.5">El Salto Tecnológico</h3>
+                                <p class="text-sm text-slate-600 mt-2">
+                                    Esta fase combinó el poder de la Inteligencia Artificial y arquitecturas escalables. Usando **Google AI Studio** como copiloto, se programaron los algoritmos, mientras que **Supabase (PostgreSQL)** alojó la data en la nube de forma segura.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-100 text-center">
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                                <h5 class="font-bold text-xs text-cusco-blue">Supabase Cloud</h5>
+                                <p class="text-[10px] text-slate-500 mt-1">Esquema robusto con integridad referencial en PostgreSQL.</p>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                                <h5 class="font-bold text-xs text-cusco-blue">AI Debugging</h5>
+                                <p class="text-[10px] text-slate-500 mt-1">Corrección de errores lógicos y seguridad de accesos.</p>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                                <h5 class="font-bold text-xs text-cusco-blue">React + Vite</h5>
+                                <p class="text-[10px] text-slate-500 mt-1">Interfáz ultrarrápida con renderizado instantáneo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 5: IMPLEMENTACIÓN -->
+                    <div id="content-fase5" class="phase-content hidden space-y-6 transition-all duration-300">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xl shrink-0">5</div>
+                            <div>
+                                <span class="text-xs font-bold text-emerald-600 tracking-wider uppercase">Fase 5: Implementación</span>
+                                <h3 class="text-xl font-bold text-cusco-blue mt-0.5">Despliegue y Control de Versiones</h3>
+                                <p class="text-sm text-slate-600 mt-2">
+                                    La solución fue desplegada en producción. Usando flujos de Integración Continua (CI/CD) automatizados, se integró el repositorio de GitHub con el entorno de alojamiento en Vercel, permitiendo actualizaciones inmediatas y fiabilidad de nivel empresarial.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-around p-4 bg-slate-900 text-white rounded-2xl gap-4">
+                            <div class="text-center">
+                                <p class="text-slate-400 text-[10px] uppercase">Control de Versiones</p>
+                                <p class="font-bold text-sm text-white">GitHub Repo 🐙</p>
+                            </div>
+                            <div class="h-8 w-[1px] bg-white/20"></div>
+                            <div class="text-center">
+                                <p class="text-slate-400 text-[10px] uppercase">Alojamiento Global</p>
+                                <p class="font-bold text-sm text-white">Vercel Edge ⚡</p>
+                            </div>
+                            <div class="h-8 w-[1px] bg-white/20"></div>
+                            <div class="text-center">
+                                <p class="text-slate-400 text-[10px] uppercase">Estado en Producción</p>
+                                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-100 text-emerald-800">
+                                    Online
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Interactivo: Prompt Engineering Log -->
+            <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-cusco-blue flex items-center gap-2">
+                        <span class="p-1.5 bg-amber-100 text-amber-600 rounded-lg text-sm">🤖</span>
+                        Copiloto IA: Prompt Engineering Log
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">Cómo Google AI Studio resolvió problemas críticos en AeroQuery Cusco</p>
+                </div>
+
+                <!-- Tabs de Prompts -->
+                <div class="grid grid-cols-3 gap-2 bg-slate-50 p-1.5 rounded-xl mb-6">
+                    <button onclick="switchPrompt(1)" id="btn-p1" class="prompt-tab px-3 py-2 text-xs font-semibold rounded-lg bg-cusco-blue text-white transition-all text-center">Prompt 1 (Bug de Búsqueda)</button>
+                    <button onclick="switchPrompt(2)" id="btn-p2" class="prompt-tab px-3 py-2 text-xs font-semibold rounded-lg text-slate-600 hover:bg-slate-200 transition-all text-center">Prompt 2 (PostgreSQL Schema)</button>
+                    <button onclick="switchPrompt(3)" id="btn-p3" class="prompt-tab px-3 py-2 text-xs font-semibold rounded-lg text-slate-600 hover:bg-slate-200 transition-all text-center">Prompt 3 (Mapeo LINQ)</button>
+                </div>
+
+                <!-- Contenido interactivo del Prompt Log -->
+                <div class="bg-slate-900 text-slate-300 rounded-2xl p-6 font-mono text-xs overflow-x-auto relative">
+                    <!-- Prompt 1 -->
+                    <div id="prompt-1-content" class="prompt-content space-y-4">
+                        <div>
+                            <span class="text-amber-400 font-bold">// EL DESAFÍO EN JAVASCRIPT:</span>
+                            <p class="text-slate-400 mt-1 leading-relaxed">
+                                Al limpiar el buscador de vuelos, el valor quedaba nulo e invocaba un error de tipo <span class="text-rose-400">Cannot read properties of undefined</span> al ejecutar <span class="text-rose-400">.toLowerCase()</span>, congelando la interfaz.
+                            </p>
+                        </div>
+                        <div class="bg-black/30 p-4 rounded-xl border border-white/5">
+                            <span class="text-sky-400 font-bold"># PROMPT ENVIADO A GOOGLE AI STUDIO:</span>
+                            <p class="text-slate-200 italic mt-1">
+                                "Tengo un bug en React con mi barra de búsqueda de vuelos de AeroQuery. Cuando borro todo el texto de la barra de búsqueda rápido, se cae el sistema tirando un undefined en toLowerCase(). ¿Cómo puedo blindar esta función?"
+                            </p>
+                        </div>
+                        <div>
+                            <span class="text-emerald-400 font-bold">// CÓDIGO CORREGIDO POR IA (Optional Chaining):</span>
+                            <pre class="bg-black/50 p-3 rounded-lg mt-1 text-slate-200 overflow-x-auto"><code>const handleSearch = (vuelo) => {
+  // Blindaje absoluto usando encadenamiento opcional y coalescencia nula
+  const terminalSearch = searchTerm?.toLowerCase() ?? '';
+  return vuelo?.numero_vuelo?.toLowerCase()?.includes(terminalSearch);
+};</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Prompt 2 -->
+                    <div id="prompt-2-content" class="prompt-content hidden space-y-4">
+                        <div>
+                            <span class="text-amber-400 font-bold">// EL DESAFÍO EN SUPABASE:</span>
+                            <p class="text-slate-400 mt-1 leading-relaxed">
+                                Generar el script de base de datos relacional para Supabase cuidando los triggers, las claves foráneas y la coherencia del esquema físico.
+                            </p>
+                        </div>
+                        <div class="bg-black/30 p-4 rounded-xl border border-white/5">
+                            <span class="text-sky-400 font-bold"># PROMPT ENVIADO A GOOGLE AI STUDIO:</span>
+                            <p class="text-slate-200 italic mt-1">
+                                "Genera un script DDL compatible con PostgreSQL para Supabase. Necesito tablas para: 'Vuelos' (id, aerolinea, faja_id), 'Fajas' (id, estado), 'Equipajes' (id, peso, pasajero_id, vuelo_id) y 'Pasajeros'. Asegura integridad referencial."
+                            </p>
+                        </div>
+                        <div>
+                            <span class="text-emerald-400 font-bold">// SCHEMA EXPORTADO:</span>
+                            <pre class="bg-black/50 p-3 rounded-lg mt-1 text-slate-200 overflow-x-auto"><code>CREATE TABLE fajas (
+  id SERIAL PRIMARY KEY,
+  estado VARCHAR(20) CHECK (estado IN ('libre', 'ocupado', 'mantenimiento'))
+);
+
+CREATE TABLE vuelos (
+  id SERIAL PRIMARY KEY,
+  aerolinea VARCHAR(100),
+  estado VARCHAR(50),
+  faja_id INT REFERENCES fajas(id)
+);</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Prompt 3 -->
+                    <div id="prompt-3-content" class="prompt-content hidden space-y-4">
+                        <div>
+                            <span class="text-amber-400 font-bold">// EL DESAFÍO EN C# / FRONTEND:</span>
+                            <p class="text-slate-400 mt-1 leading-relaxed">
+                                Procesar miles de equipajes en memoria y asociar cada maleta con el pasajero correspondiente y el número de faja utilizando consultas LINQ eficientes.
+                            </p>
+                        </div>
+                        <div class="bg-black/30 p-4 rounded-xl border border-white/5">
+                            <span class="text-sky-400 font-bold"># PROMPT ENVIADO A GOOGLE AI STUDIO:</span>
+                            <p class="text-slate-200 italic mt-1">
+                                "Ayúdame a escribir una consulta LINQ que agrupe los equipajes de los pasajeros del vuelo 'AQ-450' por su estado de entrega, mostrando la faja asignada de forma dinámica."
+                            </p>
+                        </div>
+                        <div>
+                            <span class="text-emerald-400 font-bold">// CÓDIGO LINQ SUGERIDO:</span>
+                            <pre class="bg-black/50 p-3 rounded-lg mt-1 text-slate-200 overflow-x-auto"><code>var trackEquipaje = from e in equipajes
+                    join v in vuelos on e.VueloId equals v.Id
+                    where v.NumeroVuelo == "AQ-450"
+                    group e by
