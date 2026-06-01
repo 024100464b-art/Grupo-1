@@ -1,0 +1,6 @@
+{
+  "name": "Consola de Base de Datos Cusco Aeropuerto",
+  "description": "Explorador relacional del Core de Base de Datos (SQL Server/EF Core) para la gestión aeronáutica del Aeropuerto de Cusco.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
