@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroGest Cusco — AOCC Strategic Terminal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .glass-panel {
+      background: rgba(30, 41, 59, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #60a5fa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-[#0b1120] text-slate-300 min-h-screen flex items-center justify-center p-4 selection:bg-yellow-500/30">
+  <div class="max-w-2xl w-full space-y-8 text-center">
+    <div class="glass-panel p-8 md:p-12 rounded-3xl space-y-6">
+      <div class="inline-block mb-2">
+        <span class="bg-slate-800/80 text-yellow-500 border border-yellow-700/50 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase">
+          AeroGest Cusco
+        </span>
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        AOCC <span class="text-gradient">Strategic Terminal</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-slate-400 max-w-lg mx-auto">
+        Sistema de gestión aeroportuaria integral con panel ejecutivo, CRUD en tiempo real e inteligencia artificial predictiva.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4 pt-4">
+        <a href="https://aerogest-cusco.vercel.app"
+           class="inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-slate-900 font-semibold px-6 py-3 rounded-xl transition-all shadow-lg shadow-yellow-500/25">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          Abrir App en Vercel
+        </a>
+        <a href="https://github.com/024100464b-art/Grupo-1/tree/main/proyecto-aerogest"
+           class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-xl transition-all border border-slate-700/50">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          Ver en GitHub
+        </a>
+      </div>
+
+      <div class="pt-6 border-t border-slate-700/50 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+        <div class="p-3 rounded-xl bg-slate-800/40">
+          <div class="font-bold text-white">React 19</div>
+          <div class="text-slate-500 text-xs">Frontend</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-800/40">
+          <div class="font-bold text-white">Supabase</div>
+          <div class="text-slate-500 text-xs">Backend + Realtime</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-800/40">
+          <div class="font-bold text-white">Gemini 2.5</div>
+          <div class="text-slate-500 text-xs">IA Predictiva</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-800/40">
+          <div class="font-bold text-white">Vercel</div>
+          <div class="text-slate-500 text-xs">Deploy</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-slate-600 text-xs">
+      Universidad Andina del Cusco · Ingeniería de Sistemas · Modelado de Base de Datos 2026
+    </p>
+  </div>
+</body>
+</html>
