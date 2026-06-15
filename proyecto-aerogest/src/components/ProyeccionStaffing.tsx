@@ -65,8 +65,8 @@ export default function ProyeccionStaffing({ vuelos }: Props) {
   ];
 
   return (
-    <div className="bg-white border border-[#e2e8f0] rounded-2xl shadow-[0_8px_30px_rgb(0,10,30,0.03)] overflow-hidden">
-      <div className="px-6 py-4 border-b border-[#e2e8f0] flex items-center justify-between bg-gradient-to-r from-[#000c24] to-[#001c4a]">
+    <div className="glass-card bg-[#121214]/60 border border-white/5 rounded-xl overflow-hidden">
+      <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between bg-gradient-to-r from-[#000c24] to-[#001c4a]">
         <div className="flex items-center gap-3">
           <span className="p-2 bg-sky-500/10 rounded-xl text-sky-400 border border-sky-400/30">
             <Users className="w-5 h-5" />
@@ -83,30 +83,30 @@ export default function ProyeccionStaffing({ vuelos }: Props) {
       <div className="p-6">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-slate-200 text-[10px] font-mono font-semibold text-slate-400 uppercase tracking-wider">
+            <tr className="border-b border-white/5 text-[10px] font-mono font-semibold text-gray-500 uppercase tracking-wider">
               <th className="pb-3 pl-1">Rol</th>
               <th className="pb-3 text-right">Personal Requerido</th>
               <th className="pb-3 text-right pr-1">Criterio</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-white/5">
             {filas.map((f, i) => {
               const Icon = f.icon;
               return (
-                <tr key={f.label} className="group hover:bg-slate-50/50 transition-colors">
+                <tr key={f.label} className="group hover:bg-white/[0.02] transition-colors">
                   <td className="py-3 pl-1">
                     <div className="flex items-center gap-2.5">
-                      <span className="p-1.5 rounded-lg bg-slate-100 text-slate-500 group-hover:bg-sky-50 group-hover:text-sky-600 transition-colors">
+                      <span className="p-1.5 rounded-lg bg-[#161618] text-gray-400 group-hover:bg-sky-500/10 group-hover:text-amber-500 transition-colors">
                         <Icon className="w-4 h-4" />
                       </span>
-                      <span className="text-sm font-semibold text-slate-800">{f.label}</span>
+                      <span className="text-sm font-semibold text-gray-100">{f.label}</span>
                     </div>
                   </td>
                   <td className="py-3 text-right">
-                    <span className="text-lg font-extrabold font-mono text-[#001c4a]">{f.valor}</span>
+                    <span className="text-lg font-extrabold font-mono text-amber-400">{f.valor}</span>
                   </td>
                   <td className="py-3 text-right pr-1">
-                    <span className="text-[11px] font-mono text-slate-400">{f.detalle}</span>
+                    <span className="text-[11px] font-mono text-gray-500">{f.detalle}</span>
                   </td>
                 </tr>
               );

@@ -242,20 +242,20 @@ export default function VuelosView({
       {/* Panel Header */}
       <div className="flex justify-between items-end">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">Gestión de Vuelos</h2>
-          <p className="text-sm text-gray-500 mt-1">Monitoreo, control y programación del tráfico aéreo en tiempo real.</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white">Gestión de Vuelos</h2>
+          <p className="text-sm text-gray-400 mt-1">Monitoreo, control y programación del tráfico aéreo en tiempo real.</p>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={exportarManifiestoCSV}
-            className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 px-4 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all cursor-pointer"
+            className="bg-[#161618] border border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20 px-4 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all cursor-pointer"
           >
             <Download className="w-4.5 h-4.5" />
             <span>Exportar Manifiesto de Retrasos (CSV)</span>
           </button>
           <button
             onClick={handleOpenCreateModal}
-            className="bg-[#000511] text-white hover:bg-slate-900 px-5 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 hover:shadow-lg transition-all cursor-pointer"
+            className="bg-amber-600 hover:bg-amber-500 text-white px-5 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all cursor-pointer"
           >
             <Plus className="w-4.5 h-4.5" />
             <span>Nuevo Vuelo</span>
@@ -264,9 +264,9 @@ export default function VuelosView({
       </div>
 
       {/* Contenedor Principal (Glassmorphic Table) */}
-      <div className="bg-white/80 backdrop-blur-md border border-gray-200/50 shadow-lg rounded-2xl overflow-hidden flex flex-col min-h-[500px]">
+      <div className="glass-card bg-[#121214]/60 border border-white/5 rounded-xl overflow-hidden flex flex-col min-h-[500px]">
         {/* Barra de Filtros */}
-        <div className="p-6 border-b border-gray-100 flex flex-wrap items-center justify-between gap-4 bg-gray-50/20">
+        <div className="p-6 border-b border-white/5 flex flex-wrap items-center justify-between gap-4 bg-[#161618]">
           <div className="flex flex-wrap gap-2">
             {(['Todos', 'Programados', 'En Vuelo', 'Retrasados', 'Completados'] as const).map((filter) => {
               const isActive = activeFilter === filter;
@@ -276,8 +276,8 @@ export default function VuelosView({
                   onClick={() => setActiveFilter(filter)}
                   className={`px-4 py-1.5 rounded-full text-xs font-semibold font-mono transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'bg-blue-600 text-white shadow-sm'
-                      : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+                      ? 'bg-amber-600 text-white shadow-sm'
+                      : 'bg-[#161618] text-gray-400 border border-white/10 hover:bg-white/10'
                   }`}
                 >
                   {filter}
@@ -285,17 +285,17 @@ export default function VuelosView({
               );
             })}
           </div>
-          <span className="text-xs font-mono text-gray-400">
-            Filtros Activos: <strong className="text-gray-700">{activeFilter}</strong>
+          <span className="text-xs font-mono text-gray-500">
+            Filtros Activos: <strong className="text-gray-200">{activeFilter}</strong>
           </span>
         </div>
 
         {/* Tabla de Vuelos */}
         <div className="flex-grow p-6">
-          <div className="overflow-x-auto rounded-xl border border-slate-250 shadow-sm bg-white">
+          <div className="overflow-x-auto rounded-xl border border-white/5 bg-[#121214]/60">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-slate-200 bg-[#001c4a] font-mono text-xs text-slate-200 uppercase">
+                <tr className="border-b border-white/5 bg-[#001c4a] font-mono text-xs text-gray-300 uppercase">
                   <th className="py-4 px-4 font-semibold">Código</th>
                   <th className="py-4 px-4 font-semibold">Aerolínea</th>
                   <th className="py-4 px-4 font-semibold">Origen</th>
@@ -307,10 +307,10 @@ export default function VuelosView({
                   <th className="py-4 px-4 font-semibold text-right">Acciones</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 font-mono text-sm text-slate-700">
+              <tbody className="divide-y divide-white/5 font-mono text-sm text-gray-200">
                 {filteredFlights.length === 0 ? (
                   <tr>
-                    <td colSpan={9} className="py-12 text-center text-slate-400 text-xs">
+                    <td colSpan={9} className="py-12 text-center text-gray-500 text-xs">
                       Ningún vuelo coincide con los filtros especificados.
                     </td>
                   </tr>
@@ -319,24 +319,24 @@ export default function VuelosView({
                     const airlineInitials = (v.aerolina || '').slice(0, 2).toUpperCase();
 
                     // Mapeo estilístico exacto según pedido:
-                    // Verde: Programado, Naranja: Retrasado, Rojo: Cancelado, Azul: Aterrizado/Completado
-                    let labelClass = 'bg-[#ecfdf5] text-[#047857] border-[#d1fae5]'; // Verde (Programado)
+                    // Verde: Programado, Naranja: Retrasado, Rojo: Cancelado, Azul: En Vuelo / Completado
+                    let labelClass = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
                     let textLabel = v.estado;
 
                     if (v.estado === 'Retrasado' || v.estado === 'Retrasados') {
-                      labelClass = 'bg-[#fffbeb] text-[#b45309] border-[#fef3c7]'; // Naranja (Retrasado)
+                      labelClass = 'bg-amber-500/10 text-amber-400 border-amber-500/20';
                       textLabel = 'Retrasado';
                     } else if (v.estado === 'En Vuelo') {
-                      labelClass = 'bg-[#eff6ff] text-[#1d4ed8] border-[#dbeafe]'; // Azul (En Vuelo)
+                      labelClass = 'bg-sky-500/10 text-sky-400 border-sky-500/20';
                       textLabel = 'En Vuelo';
                     } else if (v.estado === 'Completado' || v.estado === 'Completados' || v.estado === 'Aterrizado') {
-                      labelClass = 'bg-[#eff6ff] text-[#1d4ed8] border-[#dbeafe]'; // Azul (Completado / Aterrizado)
+                      labelClass = 'bg-sky-500/10 text-sky-400 border-sky-500/20';
                       textLabel = v.estado === 'Aterrizado' ? 'Aterrizado' : 'Completado';
                     } else if (v.estado === 'Cancelado') {
-                      labelClass = 'bg-[#fef2f2] text-[#b91c1c] border-[#fee2e2]'; // Rojo (Cancelado)
+                      labelClass = 'bg-red-500/10 text-red-400 border-red-500/20';
                       textLabel = 'Cancelado';
                     } else if (v.estado === 'Programado' || v.estado === 'Programados') {
-                      labelClass = 'bg-[#ecfdf5] text-[#047857] border-[#d1fae5]'; // Verde
+                      labelClass = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
                     }
 
                     const esConflicto = conflictIds.has(v.id);
@@ -344,25 +344,25 @@ export default function VuelosView({
                     return (
                       <tr 
                         key={`${v.id}-${idx}`} 
-                        className={`hover:bg-slate-50/70 transition-all group even:bg-slate-50/30 ${
+                        className={`hover:bg-white/[0.02] transition-all group even:bg-white/[0.01] ${
                           esConflicto ? 'border-l-4 border-l-red-500 bg-red-950/5' : ''
                         }`}
                       >
-                        <td className="py-4 px-4 font-bold text-slate-900">{v.codigo}</td>
+                        <td className="py-4 px-4 font-bold text-white">{v.codigo}</td>
                         <td className="py-4 px-4">
                           <div className="flex items-center gap-2.5">
-                            <span className="w-6.5 h-6.5 rounded-lg bg-[#001c4a] text-white flex items-center justify-center text-[9px] font-bold shadow-sm">
+                            <span className="w-6.5 h-6.5 rounded-lg bg-amber-600 text-white flex items-center justify-center text-[9px] font-bold">
                               {airlineInitials}
                             </span>
-                            <span className="font-sans font-semibold text-slate-800">{v.aerolina}</span>
+                            <span className="font-semibold text-gray-100">{v.aerolina}</span>
                           </div>
                         </td>
-                        <td className="py-4 px-4 font-sans text-slate-500 font-medium">{v.origen}</td>
-                        <td className="py-4 px-4 font-sans font-semibold text-slate-900">{v.destino}</td>
-                        <td className="py-4 px-4 text-xs font-semibold text-slate-600">{v.salida}</td>
-                        <td className="py-4 px-4 text-xs text-slate-500">{v.llegada}</td>
-                        <td className={`py-4 px-4 text-center font-bold bg-slate-50/30 relative ${
-                          esConflicto ? 'text-red-600' : 'text-slate-800'
+                        <td className="py-4 px-4 text-gray-400 font-medium">{v.origen}</td>
+                        <td className="py-4 px-4 font-semibold text-white">{v.destino}</td>
+                        <td className="py-4 px-4 text-xs font-semibold text-gray-300">{v.salida}</td>
+                        <td className="py-4 px-4 text-xs text-gray-400">{v.llegada}</td>
+                        <td className={`py-4 px-4 text-center font-bold bg-[#161618] relative ${
+                          esConflicto ? 'text-red-600' : 'text-gray-100'
                         }`}>
                           <div className="flex items-center justify-center gap-1.5">
                             <span>{v.puerta}</span>
@@ -382,14 +382,14 @@ export default function VuelosView({
                           <div className="flex items-center justify-end gap-2">
                             <button
                               onClick={() => setSelectedVuelo(v)}
-                              className="p-1.5 px-3 bg-[#0284c7]/5 hover:bg-[#0284c7]/10 text-[#0284c7] hover:text-[#0369a1] rounded-lg border border-[#0284c7]/10 transition-colors cursor-pointer inline-flex items-center gap-1.5 text-xs font-sans font-semibold"
+                              className="p-1.5 px-3 bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 rounded-lg border border-amber-500/20 transition-colors cursor-pointer inline-flex items-center gap-1.5 text-xs font-semibold"
                             >
                               <Eye className="w-3.5 h-3.5" />
                               <span>Detalle</span>
                             </button>
                             <button
                               onClick={() => abrirGestion(v)}
-                              className="p-1.5 px-3 bg-[#000c24] hover:bg-slate-800 text-sky-300 hover:text-sky-200 rounded-lg border border-sky-400/20 hover:border-sky-400/40 transition-all cursor-pointer inline-flex items-center gap-1.5 text-[10px] font-mono font-bold"
+                              className="p-1.5 px-3 bg-amber-600 hover:bg-amber-500 text-white rounded-lg border-0 transition-all cursor-pointer inline-flex items-center gap-1.5 text-[10px] font-mono font-bold"
                             >
                               <Settings className="w-3.5 h-3.5" />
                               <span>Gestionar</span>
@@ -406,15 +406,15 @@ export default function VuelosView({
         </div>
 
         {/* Footer con Paginacion ficticia */}
-        <div className="border-t border-gray-100 px-6 py-4 flex items-center justify-between bg-gray-50/50">
-          <span className="text-xs text-gray-500 font-mono">
+        <div className="border-t border-white/5 px-6 py-4 flex items-center justify-between bg-[#161618]">
+          <span className="text-xs text-gray-400 font-mono">
             Mostrando 1 a {filteredFlights.length} de {vuelos.length} vuelos registrados en Cusco
           </span>
           <div className="flex gap-2">
-            <button className="p-1.5 border border-gray-200 rounded hover:bg-gray-100 text-gray-500 hover:text-gray-700 disabled:opacity-40 cursor-pointer" disabled>
+            <button className="p-1.5 border border-white/5 rounded hover:bg-white/10 text-gray-400 hover:text-gray-200 disabled:opacity-40 cursor-pointer" disabled>
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <button className="p-1.5 border border-gray-200 rounded hover:bg-gray-100 text-gray-500 hover:text-gray-700 disabled:opacity-40" disabled>
+            <button className="p-1.5 border border-white/5 rounded hover:bg-white/10 text-gray-400 hover:text-gray-200 disabled:opacity-40" disabled>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -423,16 +423,16 @@ export default function VuelosView({
 
       {/* MODAL: REGISTRAR NUEVO VUELO */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-[#001e40]/40 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden border border-gray-100 animate-slide-up">
-            <div className="px-6 py-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
-              <h3 className="font-bold text-gray-800 flex items-center gap-2">
-                <Plane className="w-5 h-5 text-blue-600" />
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
+          <div className="bg-[#121214]/95 rounded-xl w-full max-w-lg border border-white/10 shadow-2xl overflow-hidden animate-slide-up">
+            <div className="px-6 py-4 bg-[#161618] border-b border-white/5 flex justify-between items-center">
+              <h3 className="font-bold text-white flex items-center gap-2">
+                <Plane className="w-5 h-5 text-amber-500" />
                 Registrar Nuevo Vuelo (Cusco Sector)
               </h3>
               <button 
                 onClick={() => setIsModalOpen(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+                className="text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -440,7 +440,7 @@ export default function VuelosView({
 
             <form onSubmit={handleCreateVuelo} className="p-6 space-y-4">
               {formError && (
-                <div className="p-3 bg-red-50 text-red-700 rounded-lg flex items-center gap-2 text-xs font-mono">
+                <div className="p-3 bg-red-500/10 text-red-400 rounded-lg flex items-center gap-2 text-xs font-mono">
                   <AlertCircle className="w-4 h-4 shrink-0" />
                   <span>{formError}</span>
                 </div>
@@ -448,22 +448,22 @@ export default function VuelosView({
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1">Código de Vuelo *</label>
+                  <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1">Código de Vuelo *</label>
                   <input
                     type="text"
                     value={formCodigo}
                     onChange={(e) => setFormCodigo(e.target.value)}
                     placeholder="ej. LA2014"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500/30 focus:border-blue-500 uppercase font-mono"
+                    className="w-full bg-[#161618] border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/30 uppercase font-mono"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1">Aerolínea *</label>
+                  <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1">Aerolínea *</label>
                   <select
                     value={formAerolinea}
                     onChange={(e) => setFormAerolinea(e.target.value)}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-blue-500/30 focus:border-blue-500"
+                    className="w-full bg-[#161618] text-gray-200 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/30"
                   >
                     {aerolineas.map((airline) => (
                       <option key={airline} value={airline}>{airline}</option>
@@ -474,24 +474,24 @@ export default function VuelosView({
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1">Origen *</label>
+                  <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1">Origen *</label>
                   <input
                     type="text"
                     value={formOrigen}
                     onChange={(e) => setFormOrigen(e.target.value)}
                     placeholder="ej. Lima (LIM)"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500/30 focus:border-blue-500"
+                    className="w-full bg-[#161618] border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/30"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1">Destino *</label>
+                  <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1">Destino *</label>
                   <input
                     type="text"
                     value={formDestino}
                     onChange={(e) => setFormDestino(e.target.value)}
                     placeholder="ej. Cusco (CUZ)"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500/30 focus:border-blue-500 bg-gray-50"
+                    className="w-full bg-[#161618] border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/30"
                     required
                   />
                 </div>
@@ -499,24 +499,24 @@ export default function VuelosView({
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1">Hora Salida Estimada *</label>
+                  <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1">Hora Salida Estimada *</label>
                   <input
                     type="text"
                     value={formSalida}
                     onChange={(e) => setFormSalida(e.target.value)}
                     placeholder="ej. 10:45 AM"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500/30 focus:border-blue-500 font-mono"
+                    className="w-full bg-[#161618] border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/30 font-mono"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1">Hora Llegada Estimada *</label>
+                  <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1">Hora Llegada Estimada *</label>
                   <input
                     type="text"
                     value={formLlegada}
                     onChange={(e) => setFormLlegada(e.target.value)}
                     placeholder="ej. 11:55 AM"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500/30 focus:border-blue-500 font-mono"
+                    className="w-full bg-[#161618] border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/30 font-mono"
                     required
                   />
                 </div>
@@ -524,11 +524,11 @@ export default function VuelosView({
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1">Puerta</label>
+                  <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1">Puerta</label>
                   <select
                     value={formPuerta}
                     onChange={(e) => setFormPuerta(e.target.value)}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-blue-500/30 focus:border-blue-500"
+                    className="w-full bg-[#161618] text-gray-200 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/30"
                   >
                     <option value="G1">G1</option>
                     <option value="G2">G2</option>
@@ -538,11 +538,11 @@ export default function VuelosView({
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1">Estado Operativo</label>
+                  <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1">Estado Operativo</label>
                   <select
                     value={formEstado}
                     onChange={(e) => setFormEstado(e.target.value as Vuelo['estado'])}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-blue-500/30 focus:border-blue-500"
+                    className="w-full bg-[#161618] text-gray-200 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/30"
                   >
                     <option value="Programado">Programado</option>
                     <option value="En Vuelo">En Vuelo</option>
@@ -553,17 +553,17 @@ export default function VuelosView({
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-gray-100 flex justify-end gap-2.5">
+              <div className="pt-4 border-t border-white/5 flex justify-end gap-2.5">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
+                  className="px-4 py-2 bg-[#161618] hover:bg-white/10 text-gray-300 border border-white/10 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow transition-colors cursor-pointer"
+                  className="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold rounded-lg shadow transition-colors cursor-pointer"
                 >
                   Guardar Vuelo
                 </button>
@@ -575,16 +575,16 @@ export default function VuelosView({
 
       {/* MODAL: GESTIÓN RÁPIDA DE VUELO */}
       {gestionarVuelo && (
-        <div className="fixed inset-0 bg-[#001e40]/40 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden border border-gray-100 animate-slide-up">
-            <div className="px-6 py-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
-              <h3 className="font-bold text-gray-800 flex items-center gap-2">
-                <Settings className="w-5 h-5 text-blue-600" />
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
+          <div className="bg-[#121214]/95 rounded-xl w-full max-w-md border border-white/10 shadow-2xl overflow-hidden animate-slide-up">
+            <div className="px-6 py-4 bg-[#161618] border-b border-white/5 flex justify-between items-center">
+              <h3 className="font-bold text-white flex items-center gap-2">
+                <Settings className="w-5 h-5 text-amber-500" />
                 Gestión Rápida: {gestionarVuelo.codigo}
               </h3>
               <button
                 onClick={() => setGestionarVuelo(null)}
-                className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+                className="text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -592,20 +592,20 @@ export default function VuelosView({
 
             <form onSubmit={handleGuardarCambios} className="p-6 space-y-4">
               {editError && (
-                <div className="p-3 bg-red-50 text-red-700 rounded-lg flex items-center gap-2 text-xs font-mono border border-red-100">
+                <div className="p-3 bg-red-500/10 text-red-400 rounded-lg flex items-center gap-2 text-xs font-mono border border-red-500/20">
                   <AlertCircle className="w-4 h-4 shrink-0" />
                   <span>{editError}</span>
                 </div>
               )}
 
               <div>
-                <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1.5">
+                <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1.5">
                   Estado del Vuelo
                 </label>
                 <select
                   value={editEstado}
                   onChange={(e) => setEditEstado(e.target.value as Vuelo['estado'])}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500"
+                  className="w-full bg-[#161618] text-gray-200 border border-white/10 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/10 focus:border-amber-500/30"
                 >
                   <option value="Programado">Programado</option>
                   <option value="En Vuelo">En Vuelo</option>
@@ -616,13 +616,13 @@ export default function VuelosView({
               </div>
 
               <div>
-                <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1.5">
+                <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1.5">
                   Puerta de Embarque
                 </label>
                 <select
                   value={editPuerta}
                   onChange={(e) => setEditPuerta(e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500"
+                  className="w-full bg-[#161618] text-gray-200 border border-white/10 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/10 focus:border-amber-500/30"
                 >
                   <option value="G1">G1</option>
                   <option value="G2">G2</option>
@@ -632,18 +632,18 @@ export default function VuelosView({
                 </select>
               </div>
 
-              <div className="pt-4 border-t border-gray-100 flex justify-end gap-2.5">
+              <div className="pt-4 border-t border-white/5 flex justify-end gap-2.5">
                 <button
                   type="button"
                   onClick={() => setGestionarVuelo(null)}
-                  className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
+                  className="px-4 py-2 bg-[#161618] hover:bg-white/10 text-gray-300 border border-white/10 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={editLoading}
-                  className="px-5 py-2 bg-[#000c24] hover:bg-slate-800 text-white text-xs font-semibold rounded-lg shadow transition-colors cursor-pointer disabled:opacity-60 flex items-center gap-2"
+                  className="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold rounded-lg shadow transition-colors cursor-pointer disabled:opacity-60 flex items-center gap-2"
                 >
                   {editLoading && (
                     <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -658,55 +658,55 @@ export default function VuelosView({
 
       {/* MODAL / BOTTOM SHEET: VER DETALLE DEL VUELO */}
       {selectedVuelo && (
-        <div className="fixed inset-0 bg-[#001e40]/30 backdrop-blur-xs flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl w-full max-w-md shadow-xl overflow-hidden border border-gray-100 animate-slide-up">
-            <div className="px-6 py-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
-              <h3 className="font-bold text-gray-800">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+          <div className="bg-[#121214]/95 rounded-xl w-full max-w-md border border-white/10 shadow-2xl overflow-hidden animate-slide-up">
+            <div className="px-6 py-4 bg-[#161618] border-b border-white/5 flex justify-between items-center">
+              <h3 className="font-bold text-white">
                 Ficha Técnica: {selectedVuelo.codigo}
               </h3>
               <button 
                 onClick={() => setSelectedVuelo(null)}
-                className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+                className="text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             <div className="p-6 space-y-4">
               <div className="flex justify-between border-b pb-2">
-                <span className="text-xs text-gray-400 uppercase font-mono">Aerolínea</span>
-                <span className="text-sm font-semibold text-gray-800">{selectedVuelo.aerolina}</span>
+                <span className="text-xs text-gray-500 uppercase font-mono">Aerolínea</span>
+                <span className="text-sm font-semibold text-white">{selectedVuelo.aerolina}</span>
               </div>
               <div className="flex justify-between border-b pb-2">
-                <span className="text-xs text-gray-400 uppercase font-mono">Código</span>
-                <span className="text-sm font-bold text-blue-700 font-mono">{selectedVuelo.codigo}</span>
+                <span className="text-xs text-gray-500 uppercase font-mono">Código</span>
+                <span className="text-sm font-bold text-amber-500 font-mono">{selectedVuelo.codigo}</span>
               </div>
               <div className="flex justify-between border-b pb-2">
-                <span className="text-xs text-gray-400 uppercase font-mono">Ruta Aérea</span>
-                <span className="text-sm font-medium text-gray-800 flex items-center gap-1.5">
+                <span className="text-xs text-gray-500 uppercase font-mono">Ruta Aérea</span>
+                <span className="text-sm font-medium text-white flex items-center gap-1.5">
                   <span>{selectedVuelo.origen}</span>
-                  <MapPin className="w-3.5 h-3.5 text-blue-500" />
+                  <MapPin className="w-3.5 h-3.5 text-amber-500" />
                   <span>{selectedVuelo.destino}</span>
                 </span>
               </div>
               <div className="flex justify-between border-b pb-2">
-                <span className="text-xs text-gray-400 uppercase font-mono">Salida / Llegada</span>
-                <span className="text-sm font-mono font-medium text-gray-700">
+                <span className="text-xs text-gray-500 uppercase font-mono">Salida / Llegada</span>
+                <span className="text-sm font-mono font-medium text-gray-200">
                   {selectedVuelo.salida} &rarr; {selectedVuelo.llegada}
                 </span>
               </div>
               <div className="flex justify-between border-b pb-2">
-                <span className="text-xs text-gray-400 uppercase font-mono">Puerta Asignada</span>
-                <span className="text-sm font-bold text-gray-800 font-mono">{selectedVuelo.puerta}</span>
+                <span className="text-xs text-gray-500 uppercase font-mono">Puerta Asignada</span>
+                <span className="text-sm font-bold text-white font-mono">{selectedVuelo.puerta}</span>
               </div>
               <div className="flex justify-between border-b pb-2">
-                <span className="text-xs text-gray-400 uppercase font-mono">Estado Actual</span>
-                <span className="text-xs font-bold font-mono text-blue-700 uppercase">{selectedVuelo.estado}</span>
+                <span className="text-xs text-gray-500 uppercase font-mono">Estado Actual</span>
+                <span className="text-xs font-bold font-mono text-amber-500 uppercase">{selectedVuelo.estado}</span>
               </div>
             </div>
-            <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 text-right">
+            <div className="px-6 py-4 bg-[#161618] border-t border-white/5 text-right">
               <button 
                 onClick={() => setSelectedVuelo(null)}
-                className="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg cursor-pointer shadow"
+                className="px-4 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs rounded-lg cursor-pointer shadow"
               >
                 Cerrar
               </button>

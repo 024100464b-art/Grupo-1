@@ -77,7 +77,7 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
   };
 
   return (
-    <div className="space-y-8 font-sans pb-4">
+    <div className="space-y-8 pb-4">
       {/* SECCIÓN HERO TIPO BANNER DE CONTROL AERONÁUTICO */}
       <div className="bg-gradient-to-r from-[#000c24] via-[#001c4a] to-[#023e8a] rounded-3xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden border border-sky-500/20">
         {/* Fondo decorativo geométrico vector-HUD */}
@@ -100,7 +100,7 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-[11px] font-semibold text-sky-300 font-mono tracking-wider uppercase">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-[11px] font-semibold text-amber-400 font-mono tracking-wider uppercase">
               <div className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-ping"></div>
               <span>TORRE CUZ EN LÍNEA: 3,310m altitud</span>
             </span>
@@ -125,47 +125,47 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
       {/* Grid de Tarjetas de Indicadores */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
         {/* Card 1: Total Vuelos */}
-        <div className="bg-white border border-[#e2e8f0] rounded-2xl p-5 relative overflow-hidden group shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_rgba(0,10,30,0.06)] hover:border-[#38bdf8]/40 transition-all duration-300">
-          <div className="absolute -right-5 -top-5 w-20 h-20 bg-blue-500/5 rounded-full blur-xl group-hover:bg-blue-500/10 transition-all"></div>
+        <div className="bg-[#121214]/60 border border-white/5 rounded-xl p-5 relative overflow-hidden group hover:border-amber-500/20 transition-all duration-300">
+          <div className="absolute -right-5 -top-5 w-20 h-20 bg-amber-500/5 rounded-full blur-xl group-hover:bg-amber-500/10 transition-all"></div>
           <div className="flex justify-between items-start mb-4 relative z-10">
-            <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">TOTAL VUELOS</span>
-            <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl shadow-sm border border-blue-150">
+            <span className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider">TOTAL VUELOS</span>
+            <div className="p-2.5 bg-amber-500/10 text-amber-500 rounded-xl border border-amber-500/20">
               <Plane className="w-5 h-5" />
             </div>
           </div>
           <div className="relative z-10">
-            <span className="text-3xl font-extrabold text-slate-900 leading-none tracking-tight">{formatStat(stats.total_vuelos)}</span>
-            <p className="text-[10px] text-emerald-600 font-medium font-mono mt-1">CUZ Sector</p>
+            <span className="text-3xl font-extrabold text-white leading-none tracking-tight">{formatStat(stats.total_vuelos)}</span>
+            <p className="text-[10px] text-emerald-400 font-medium font-mono mt-1">CUZ Sector</p>
           </div>
         </div>
 
         {/* Card 2: Programados */}
-        <div className="bg-white border border-[#e2e8f0] rounded-2xl p-5 relative overflow-hidden group shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_rgba(0,10,30,0.06)] hover:border-[#10b981]/40 transition-all duration-300">
+        <div className="bg-[#121214]/60 border border-white/5 rounded-xl p-5 relative overflow-hidden group hover:border-amber-500/20 transition-all duration-300">
           <div className="absolute -right-5 -top-5 w-20 h-20 bg-emerald-500/5 rounded-full blur-xl group-hover:bg-emerald-500/10 transition-all"></div>
           <div className="flex justify-between items-start mb-4 relative z-10">
-            <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">PROGRAMADOS</span>
-            <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl shadow-sm border border-emerald-150">
+            <span className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider">PROGRAMADOS</span>
+            <div className="p-2.5 bg-emerald-500/10 text-emerald-400 rounded-xl border border-emerald-500/20">
               <Calendar className="w-5 h-5" />
             </div>
           </div>
           <div className="relative z-10">
-            <span className="text-3xl font-extrabold text-slate-900 leading-none tracking-tight">{formatStat(stats.vuelos_programados)}</span>
-            <p className="text-[10px] text-emerald-600 font-medium font-mono mt-1">&bull; Confirmados</p>
+            <span className="text-3xl font-extrabold text-white leading-none tracking-tight">{formatStat(stats.vuelos_programados)}</span>
+            <p className="text-[10px] text-emerald-400 font-medium font-mono mt-1">&bull; Confirmados</p>
           </div>
         </div>
 
         {/* Card 3: Retrasados */}
-        <div className="bg-white border border-[#e2e8f0] rounded-2xl p-5 relative overflow-hidden group shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_rgba(0,10,30,0.06)] hover:border-[#f97316]/40 transition-all duration-300">
+        <div className="bg-[#121214]/60 border border-white/5 rounded-xl p-5 relative overflow-hidden group hover:border-amber-500/20 transition-all duration-300">
           <div className="absolute -right-5 -top-5 w-20 h-20 bg-orange-500/5 rounded-full blur-xl group-hover:bg-orange-500/10 transition-all"></div>
           <div className="flex justify-between items-start mb-4 relative z-10">
-            <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">RETRASADOS</span>
-            <div className="p-2.5 bg-amber-50 text-amber-600 rounded-xl shadow-sm border border-amber-150">
+            <span className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider">RETRASADOS</span>
+            <div className="p-2.5 bg-amber-500/10 text-amber-400 rounded-xl border border-amber-500/20">
               <AlertTriangle className="w-5 h-5" />
             </div>
           </div>
           <div className="relative z-10 flex items-baseline gap-2">
             <span className="text-3xl font-extrabold text-amber-650 leading-none tracking-tight">{stats.vuelos_retrasados}</span>
-            <span className="flex items-center text-[10px] text-rose-600 font-bold bg-rose-50 px-1.5 py-0.5 rounded-full border border-rose-100">
+            <span className="flex items-center text-[10px] text-red-400 font-bold bg-red-500/10 px-1.5 py-0.5 rounded-full border border-red-500/20">
               <TrendingUp className="w-3 h-3 mr-0.5" />
               <span>+3</span>
             </span>
@@ -173,47 +173,47 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
         </div>
 
         {/* Card 4: Pasajeros */}
-        <div className="bg-white border border-[#e2e8f0] rounded-2xl p-5 relative overflow-hidden group shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_rgba(0,10,30,0.06)] hover:border-[#6366f1]/40 transition-all duration-300">
-          <div className="absolute -right-5 -top-5 w-20 h-20 bg-indigo-500/5 rounded-full blur-xl group-hover:bg-indigo-500/10 transition-all"></div>
+        <div className="bg-[#121214]/60 border border-white/5 rounded-xl p-5 relative overflow-hidden group hover:border-amber-500/20 transition-all duration-300">
+          <div className="absolute -right-5 -top-5 w-20 h-20 bg-amber-500/5 rounded-full blur-xl group-hover:bg-amber-500/10 transition-all"></div>
           <div className="flex justify-between items-start mb-4 relative z-10">
-            <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">PASAJEROS</span>
-            <div className="p-2.5 bg-indigo-50 text-indigo-600 rounded-xl shadow-sm border border-indigo-150">
+            <span className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider">PASAJEROS</span>
+            <div className="p-2.5 bg-amber-500/5 text-amber-500 rounded-xl border border-amber-500/20">
               <Users className="w-5 h-5" />
             </div>
           </div>
           <div className="relative z-10">
-            <span className="text-3xl font-extrabold text-slate-900 leading-none tracking-tight">{formatStat(stats.total_pasajeros, true)}</span>
-            <p className="text-[10px] text-indigo-600 font-medium font-mono mt-1">Hoy registrados</p>
+            <span className="text-3xl font-extrabold text-white leading-none tracking-tight">{formatStat(stats.total_pasajeros, true)}</span>
+            <p className="text-[10px] text-amber-500 font-medium font-mono mt-1">Hoy registrados</p>
           </div>
         </div>
 
         {/* Card 5: Boletos */}
-        <div className="bg-white border border-[#e2e8f0] rounded-2xl p-5 relative overflow-hidden group shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_rgba(0,10,30,0.06)] hover:border-[#a855f7]/40 transition-all duration-300">
-          <div className="absolute -right-5 -top-5 w-20 h-20 bg-purple-500/5 rounded-full blur-xl group-hover:bg-purple-500/10 transition-all"></div>
+        <div className="bg-[#121214]/60 border border-white/5 rounded-xl p-5 relative overflow-hidden group hover:border-amber-500/20 transition-all duration-300">
+          <div className="absolute -right-5 -top-5 w-20 h-20 bg-amber-500/5 rounded-full blur-xl group-hover:bg-amber-500/10 transition-all"></div>
           <div className="flex justify-between items-start mb-4 relative z-10">
-            <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">BOLETOS</span>
-            <div className="p-2.5 bg-purple-50 text-purple-600 rounded-xl shadow-sm border border-purple-150">
+            <span className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider">BOLETOS</span>
+            <div className="p-2.5 bg-amber-500/5 text-amber-500 rounded-xl border border-amber-500/20">
               <Ticket className="w-5 h-5" />
             </div>
           </div>
           <div className="relative z-10">
-            <span className="text-3xl font-extrabold text-slate-900 leading-none tracking-tight">{formatStat(stats.total_boletos, true)}</span>
-            <p className="text-[10px] text-purple-600 font-medium font-mono mt-1">Emitidos hoy</p>
+            <span className="text-3xl font-extrabold text-white leading-none tracking-tight">{formatStat(stats.total_boletos, true)}</span>
+            <p className="text-[10px] text-amber-500 font-medium font-mono mt-1">Emitidos hoy</p>
           </div>
         </div>
 
         {/* Card 6: Equipajes */}
-        <div className="bg-white border border-[#e2e8f0] rounded-2xl p-5 relative overflow-hidden group shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_rgba(0,10,30,0.06)] hover:border-sky-500/40 transition-all duration-300">
-          <div className="absolute -right-5 -top-5 w-20 h-20 bg-sky-500/5 rounded-full blur-xl group-hover:bg-sky-500/10 transition-all"></div>
+        <div className="bg-[#121214]/60 border border-white/5 rounded-xl p-5 relative overflow-hidden group hover:border-amber-500/20 transition-all duration-300">
+          <div className="absolute -right-5 -top-5 w-20 h-20 bg-amber-500/5 rounded-full blur-xl group-hover:bg-amber-500/10 transition-all"></div>
           <div className="flex justify-between items-start mb-4 relative z-10">
-            <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">EQUIPAJES</span>
-            <div className="p-2.5 bg-sky-50 text-[#0284c7] rounded-xl shadow-sm border border-sky-150">
+            <span className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider">EQUIPAJES</span>
+            <div className="p-2.5 bg-amber-500/5 text-amber-500 rounded-xl border border-amber-500/20">
               <Luggage className="w-5 h-5" />
             </div>
           </div>
           <div className="relative z-10">
-            <span className="text-3xl font-extrabold text-slate-900 leading-none tracking-tight">{formatStat(stats.total_equipajes, true)}</span>
-            <p className="text-[10px] text-sky-600 font-medium font-mono mt-1">Bultos en bodega</p>
+            <span className="text-3xl font-extrabold text-white leading-none tracking-tight">{formatStat(stats.total_equipajes, true)}</span>
+            <p className="text-[10px] text-amber-500 font-medium font-mono mt-1">Bultos en bodega</p>
           </div>
         </div>
       </div>
@@ -225,16 +225,16 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
       <ProyeccionStaffing vuelos={vuelos} />
 
       {/* Tabla: Próximos Vuelos de Alta Estética */}
-      <div className="bg-white border border-[#e2e8f0] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,10,30,0.03)] flex flex-col">
+      <div className="bg-[#121214]/60 border border-white/5 rounded-xl overflow-hidden flex flex-col">
         {/* Cabecera de la sección */}
-        <div className="px-6 py-5 border-b border-[#e2e8f0] flex justify-between items-center bg-slate-50/50">
+        <div className="px-6 py-5 border-b border-white/5 flex justify-between items-center bg-[#161618]">
           <div>
-            <h3 className="font-display font-semibold text-lg text-slate-900">Despacho de Próximos Vuelos</h3>
-            <p className="text-xs text-slate-400 mt-0.5">Sincronización en tiempo real con sistemas de radar local.</p>
+            <h3 className="font-display font-semibold text-lg text-white">Despacho de Próximos Vuelos</h3>
+            <p className="text-xs text-gray-400 mt-0.5">Sincronización en tiempo real con sistemas de radar local.</p>
           </div>
           <button
             onClick={() => onNavigateToView('vuelos')}
-            className="font-semibold text-xs text-sky-600 hover:text-sky-700 transition-colors flex items-center gap-1.5 cursor-pointer bg-sky-50 px-3 py-1.5 rounded-lg border border-sky-100"
+            className="font-semibold text-xs text-amber-500 hover:text-amber-400 transition-colors flex items-center gap-1.5 cursor-pointer bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20"
           >
             <span>Monitorear Todo</span>
             <ArrowRight className="w-4 h-4" />
@@ -245,7 +245,7 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-[#e2e8f0] bg-[#001c4a] text-xs font-mono font-medium text-slate-200">
+              <tr className="border-b border-white/5 bg-[#001c4a] text-xs font-mono font-semibold text-gray-300">
                 <th className="py-4 px-6 uppercase tracking-wider">Código de Vuelo</th>
                 <th className="py-4 px-6 uppercase tracking-wider">Aerolínea</th>
                 <th className="py-4 px-6 uppercase tracking-wider">Origen</th>
@@ -255,55 +255,55 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
                 <th className="py-4 px-6 uppercase tracking-wider text-center">Acción Rápida</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100/80 text-slate-700 text-sm">
+            <tbody className="divide-y divide-white/5 text-gray-200 text-sm">
               {premiumFlights.map((v, idx) => {
                 const airlineCode = (v.aerolina || '').slice(0, 2).toUpperCase();
 
                 // Estilo pulcro según estado pedido
-                let badgeClass = 'bg-[#ecf5ff] text-[#0061a5] border border-[#d2e5ff]';
+                let badgeClass = 'bg-sky-500/10 text-sky-400 border-sky-500/20';
                 let stateLabel = v.estado;
 
                 if ((v.estado as string) === 'Retrasado' || (v.estado as string) === 'Retrasados') {
-                  badgeClass = 'bg-[#fffbeb] text-[#b45309] border border-[#fef3c7]';
+                  badgeClass = 'bg-amber-500/10 text-amber-400 border-amber-500/20';
                   stateLabel = 'Retrasado';
                 } else if ((v.estado as string) === 'Aterrizado' || (v.estado as string) === 'Completados' || (v.estado as string) === 'Completado' || (v.estado as string) === 'Confirmados') {
-                  badgeClass = 'bg-[#ecfdf5] text-[#047857] border border-[#d1fae5]';
+                  badgeClass = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
                   stateLabel = v.estado === 'Aterrizado' ? 'Aterrizado' : 'Completado';
                 } else if (v.estado === 'Cancelado') {
-                  badgeClass = 'bg-[#fef2f2] text-[#b91c1c] border border-[#fee2e2]';
+                  badgeClass = 'bg-red-500/10 text-red-400 border-red-500/20';
                   stateLabel = 'Cancelado';
                 } else if (v.estado === 'En Vuelo') {
-                  badgeClass = 'bg-[#e0f2fe] text-[#0369a1] border border-[#bae6fd]';
+                  badgeClass = 'bg-sky-500/10 text-sky-400 border-sky-500/20';
                   stateLabel = 'En Vuelo';
                 }
 
                 return (
                   <tr 
                     key={`${v.id}-${idx}`} 
-                    className="hover:bg-slate-50/70 transition-all group even:bg-[#f8fafc]/50"
+                    className="hover:bg-white/[0.02] transition-all group even:bg-white/[0.01]"
                   >
                     {/* Código de vuelo */}
-                    <td className="py-4.5 px-6 font-mono font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
+                    <td className="py-4.5 px-6 font-mono font-bold text-white group-hover:text-amber-500 transition-colors">
                       {v.codigo}
                     </td>
 
                     {/* Aerolínea */}
-                    <td className="py-4.5 px-6 text-slate-800">
+                    <td className="py-4.5 px-6 text-gray-200">
                       <div className="flex items-center gap-2.5">
-                        <span className="w-7 h-7 bg-slate-100 rounded-full flex items-center justify-center text-[10px] font-mono font-bold text-slate-500 border border-slate-200">
+                        <span className="w-7 h-7 bg-[#161618] rounded-full flex items-center justify-center text-[10px] font-mono font-bold text-gray-400 border border-white/5">
                           {airlineCode}
                         </span>
-                        <span className="font-semibold text-slate-800">{v.aerolina}</span>
+                        <span className="font-semibold text-gray-200">{v.aerolina}</span>
                       </div>
                     </td>
 
                     {/* Origen */}
-                    <td className="py-4.5 px-6 text-slate-500 font-medium">
+                    <td className="py-4.5 px-6 text-gray-400 font-medium">
                       {v.origen}
                     </td>
 
                     {/* Destino */}
-                    <td className="py-4.5 px-6 text-slate-900 font-semibold">
+                    <td className="py-4.5 px-6 text-white font-semibold">
                       {v.destino}
                     </td>
 
@@ -313,13 +313,13 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
                         <div className="flex flex-col">
                           <span className="text-amber-600 font-semibold">{v.salida}</span>
                           {v.hora_salida_real && (
-                            <span className="text-[10px] text-slate-400 line-through">{v.hora_salida_real}</span>
+                            <span className="text-[10px] text-gray-500 line-through">{v.hora_salida_real}</span>
                           )}
                         </div>
                       ) : v.estado === 'Cancelado' ? (
                         <span className="text-rose-500 font-semibold">Cancelado</span>
                       ) : (
-                        <span className="text-slate-700 font-semibold">{v.salida}</span>
+                        <span className="text-gray-200 font-semibold">{v.salida}</span>
                       )}
                     </td>
 
@@ -340,7 +340,7 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
                     <td className="py-4.5 px-6 text-center">
                       <button
                         onClick={() => abrirGestion(v)}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#000c24] hover:bg-slate-800 text-sky-300 hover:text-sky-200 text-[10px] font-mono font-bold rounded-lg border border-sky-400/20 hover:border-sky-400/40 transition-all cursor-pointer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-[10px] font-mono font-bold rounded-lg border border-amber-500/20 hover:border-amber-500/40 transition-all cursor-pointer"
                       >
                         <Settings className="w-3.5 h-3.5" />
                         <span>Gestionar</span>
@@ -356,16 +356,16 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
 
       {/* MODAL: GESTIÓN RÁPIDA DE VUELO */}
       {gestionarVuelo && (
-        <div className="fixed inset-0 bg-[#001e40]/40 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden border border-gray-100 animate-slide-up">
-            <div className="px-6 py-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
-              <h3 className="font-bold text-gray-800 flex items-center gap-2">
-                <Settings className="w-5 h-5 text-blue-600" />
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
+          <div className="bg-[#121214]/95 rounded-xl w-full max-w-md border border-white/10 shadow-2xl overflow-hidden animate-slide-up">
+            <div className="px-6 py-4 bg-[#161618] border-b border-white/5 flex justify-between items-center">
+              <h3 className="font-bold text-white flex items-center gap-2">
+                <Settings className="w-5 h-5 text-amber-500" />
                 Gestión Rápida: {gestionarVuelo.codigo}
               </h3>
               <button
                 onClick={() => setGestionarVuelo(null)}
-                className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+                className="text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -373,20 +373,20 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
 
             <form onSubmit={handleGuardarCambios} className="p-6 space-y-4">
               {formError && (
-                <div className="p-3 bg-red-50 text-red-700 rounded-lg flex items-center gap-2 text-xs font-mono border border-red-100">
+                <div className="p-3 bg-red-500/10 text-red-400 rounded-lg flex items-center gap-2 text-xs font-mono border border-red-500/20">
                   <AlertTriangle className="w-4 h-4 shrink-0" />
                   <span>{formError}</span>
                 </div>
               )}
 
               <div>
-                <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1.5">
+                <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1.5">
                   Estado del Vuelo
                 </label>
                 <select
                   value={formEstado}
                   onChange={(e) => setFormEstado(e.target.value as Vuelo['estado'])}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500"
+                  className="w-full border border-white/10 rounded-lg px-3 py-2.5 text-sm bg-[#161618] focus:outline-none focus:ring-2 focus:ring-amber-500/10 focus:border-amber-500/30"
                 >
                   <option value="Programado">Programado</option>
                   <option value="En Vuelo">En Vuelo</option>
@@ -397,13 +397,13 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
               </div>
 
               <div>
-                <label className="block text-xs font-mono font-semibold text-gray-500 uppercase mb-1.5">
+                <label className="block text-xs font-mono font-semibold text-gray-400 uppercase mb-1.5">
                   Puerta de Embarque
                 </label>
                 <select
                   value={formPuerta}
                   onChange={(e) => setFormPuerta(e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500"
+                  className="w-full border border-white/10 rounded-lg px-3 py-2.5 text-sm bg-[#161618] focus:outline-none focus:ring-2 focus:ring-amber-500/10 focus:border-amber-500/30"
                 >
                   <option value="G1">G1</option>
                   <option value="G2">G2</option>
@@ -413,18 +413,18 @@ export default function DashboardView({ stats, vuelos, onNavigateToView }: Dashb
                 </select>
               </div>
 
-              <div className="pt-4 border-t border-gray-100 flex justify-end gap-2.5">
+              <div className="pt-4 border-t border-white/5 flex justify-end gap-2.5">
                 <button
                   type="button"
                   onClick={() => setGestionarVuelo(null)}
-                  className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
+                  className="px-4 py-2 bg-[#161618] hover:bg-white/10 text-gray-300 border border-white/10 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={formLoading}
-                  className="px-5 py-2 bg-[#000c24] hover:bg-slate-800 text-white text-xs font-semibold rounded-lg shadow transition-colors cursor-pointer disabled:opacity-60 flex items-center gap-2"
+                  className="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer disabled:opacity-60 flex items-center gap-2"
                 >
                   {formLoading && (
                     <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
