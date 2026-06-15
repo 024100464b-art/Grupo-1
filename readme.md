@@ -26,6 +26,7 @@ Sistema de gestión aeroportuaria integral para el **Aeropuerto Internacional Al
 - **Producción (Vercel):** [https://aerogest-cusco.vercel.app](https://aerogest-cusco.vercel.app)
 - **GitHub Pages:** [https://024100464b-art.github.io/Grupo-1/](https://024100464b-art.github.io/Grupo-1/)
 - **Repositorio:** `proyecto-aerogest/`
+- **Informe (PDF):** [proyecto-aerogest/informe/AeroGest_Cusco_Informe.pdf](./proyecto-aerogest/informe/AeroGest_Cusco_Informe.pdf)
 
 ## Variables de Entorno
 
