@@ -1,0 +1,6 @@
+{
+  "name": "AeroGest Cusco",
+  "description": "Sistema de Información Web para la Gestión de Vuelos, Pasajeros y Equipajes en el Aeropuerto de Cusco.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

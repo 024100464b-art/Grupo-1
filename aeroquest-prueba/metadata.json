@@ -1,0 +1,6 @@
+{
+  "name": "AeroGest Cusco",
+  "description": "Terminal de Monitoreo Estratégico y Control de Negocios para la Gerencia General y Directorio de AeroGest Cusco",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
