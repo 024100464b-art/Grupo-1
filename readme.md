@@ -27,6 +27,8 @@ Sistema de gestión aeroportuaria integral para el **Aeropuerto Internacional Al
 - **GitHub Pages:** [https://024100464b-art.github.io/Grupo-1/](https://024100464b-art.github.io/Grupo-1/)
 - **Repositorio:** `proyecto-aerogest/`
 - **Informe (PDF):** [proyecto-aerogest/informe/AeroGest_Cusco_Informe.pdf](./proyecto-aerogest/informe/AeroGest_Cusco_Informe.pdf)
+- **Informe Completo (DOCX):** [proyecto-aerogest/informe/Informe Completo AeroGest.docx](./proyecto-aerogest/informe/Informe%20Completo%20AeroGest.docx)
+- **Informe Completo (PDF):** [proyecto-aerogest/informe/Informe Completo AeroGest.pdf](./proyecto-aerogest/informe/Informe%20Completo%20AeroGest.pdf)
 
 ## Variables de Entorno
 
