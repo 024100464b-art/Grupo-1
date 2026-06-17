@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Interactiva: Triggers (Disparadores)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bee: {
+                            50: '#fdfdf2',
+                            100: '#fbf9d4',
+                            200: '#f7f0a1',
+                            300: '#eddfa3',
+                            400: '#e3c65d',
+                            500: '#d9ab26', // Warm amber-gold
+                            600: '#b8891b',
+                            700: '#946716',
+                            800: '#754f14',
+                            900: '#402a0a',
+                            950: '#1e1102'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glow-gold {
+            box-shadow: 0 0 15px -3px rgba(217, 171, 38, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-bee-500 selection:text-slate-950 overflow-x-hidden">
+
+    <!-- HEADER / HERO -->
+    <header class="relative border-b border-slate-800 bg-slate-900/50 backdrop-blur overflow-hidden">
+        <!-- Decoración de Fondo (Abejas / Celdas de Panal) -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <defs>
+                    <pattern id="hexagons" width="50" height="43.3" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
+                        <path d="M24.8 0L49.6 14.3V42.9L24.8 57.2L0 42.9V14.3L24.8 0Z" fill="none" stroke="#d9ab26" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#hexagons)" />
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 relative z-10">
+            <div class="flex flex-wrap items-center justify-between gap-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-bee-500/10 border border-bee-500/30 text-bee-400 text-xs font-semibold uppercase tracking-wider mb-4">
+                        <svg class="w-4 h-4 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        Modelado de Base de Datos - Taller 3.3
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
+                        Triggers <span class="text-transparent bg-clip-text bg-gradient-to-r from-bee-400 to-amber-500">(Disparadores)</span>
+                    </h1>
+                    <p class="mt-3 text-lg text-slate-400 max-w-3xl">
+                        Automatización, control de integridad, consistencia y auditoría activa directamente desde el motor de Base de Datos en SQL Server.
+                    </p>
+                </div>
+                
+                <!-- Tarjeta Autores (Equipo Las Abejitas) -->
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl glow-gold w-full md:w-auto min-w-[280px]">
+                    <div class="flex items-center gap-3 mb-3 border-b border-slate-800 pb-2">
+                        <div class="p-2 bg-bee-500 rounded-lg text-slate-950">
+                            <!-- Bee / Insect Icon SVG -->
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                                <path d="M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                                <path d="M8 12h8M12 8v8" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Equipo "Las Abejitas"</h4>
+                            <p class="text-xs text-bee-400">Universidad Andina del Cusco</p>
+                        </div>
+                    </div>
+                    <ul class="text-xs text-slate-300 space-y-1">
+                        <li>• Flórez Hurtado, Diego Alonzo</li>
+                        <li>• Gil Condori, Ghyvraim Horacio</li>
+                        <li>• Canaza Coricasa, Yamile Zamira</li>
+                        <li>• Flores Bocangel, Rhai Francisco</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <!-- CONCEPTOS CLAVE -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Qué es un Trigger -->
+            <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl relative overflow-hidden group hover:border-slate-700 transition">
+                <div class="absolute -top-10 -right-10 w-24 h-24 bg-bee-500/5 rounded-full blur-xl group-hover:bg-bee-500/10 transition"></div>
+                <div class="w-10 h-10 bg-bee-500/10 border border-bee-500/30 rounded-lg flex items-center justify-center text-bee-400 mb-4 font-bold">01</div>
+                <h3 class="text-xl font-bold text-white mb-2">¿Qué es un Trigger?</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Es un objeto de base de datos que contiene un conjunto de instrucciones SQL que se ejecuta de manera <strong>automática</strong> en respuesta a un evento específico (DML, DDL o de inicio de sesión).
+                </p>
+            </div>
+
+            <!-- Por qué se usan -->
+            <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl relative overflow-hidden group hover:border-slate-700 transition">
+                <div class="absolute -top-10 -right-10 w-24 h-24 bg-bee-500/5 rounded-full blur-xl group-hover:bg-bee-500/10 transition"></div>
+                <div class="w-10 h-10 bg-bee-500/10 border border-bee-500/30 rounded-lg flex items-center justify-center text-bee-400 mb-4 font-bold">02</div>
+                <h3 class="text-xl font-bold text-white mb-2">¿Cuál es su Propósito?</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Garantizan la <strong>integridad referencial</strong> compleja, automatizan tareas repetitivas de cálculo, evitan transacciones no deseadas, mantienen logs de auditoría activa y sincronizan tablas de forma transparente.
+                </p>
+            </div>
+
+            <!-- Ventaja de Operación -->
+            <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl relative overflow-hidden group hover:border-slate-700 transition">
+                <div class="absolute -top-10 -right-10 w-24 h-24 bg-bee-500/5 rounded-full blur-xl group-hover:bg-bee-500/10 transition"></div>
+                <div class="w-10 h-10 bg-bee-500/10 border border-bee-500/30 rounded-lg flex items-center justify-center text-bee-400 mb-4 font-bold">03</div>
+                <h3 class="text-xl font-bold text-white mb-2">Ventaja del Motor</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Al ejecutarse directamente dentro del motor de SQL Server, evitan el tráfico de red de ida y vuelta que causaría realizar estas comprobaciones y flujos en el backend de la aplicación.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- INTERACTIVE ARQUITECTURA: TABLAS VIRTUALES (INSERTED / DELETED) -->
+        <section class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 relative">
+            <div class="absolute top-4 right-4 text-xs font-semibold text-slate-500 tracking-wider uppercase">Módulo Interactivo</div>
+            
+            <div class="max-w-3xl mb-8">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-2">Arquitectura de Tablas Virtuales</h2>
+                <p class="text-slate-400 text-sm md:text-base">
+                    SQL Server administra dos tablas lógicas y temporales exclusivas durante la acción de un disparador: <code class="text-bee-400 bg-slate-950 px-1.5 py-0.5 rounded font-mono">inserted</code> e <code class="text-bee-400 bg-slate-950 px-1.5 py-0.5 rounded font-mono">deleted</code>. Su comportamiento cambia drásticamente según la operación DML efectuada.
+                </p>
+            </div>
+
+            <!-- Selector de Operación -->
+            <div class="grid grid-cols-3 gap-2 max-w-md mx-auto mb-10 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
+                <button onclick="setOperation('insert')" id="btn-insert" class="py-2.5 px-4 text-sm font-bold rounded-lg transition-all text-center focus:outline-none bg-bee-500 text-slate-950 shadow-md">
+                    INSERT
+                </button>
+                <button onclick="setOperation('update')" id="btn-update" class="py-2.5 px-4 text-sm font-bold rounded-lg transition-all text-center focus:outline-none text-slate-400 hover:text-white">
+                    UPDATE
+                </button>
+                <button onclick="setOperation('delete')" id="btn-delete" class="py-2.5 px-4 text-sm font-bold rounded-lg transition-all text-center focus:outline-none text-slate-400 hover:text-white">
+                    DELETE
+                </button>
+            </div>
+
+            <!-- Canvas Interactivo del Proceso -->
+            <div class="bg-slate-950/80 rounded-2xl p-6 border border-slate-800/80 min-h-[340px] flex flex-col justify-between">
+                <!-- Flujo Visual -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center relative py-4">
+                    
+                    <!-- Elemento 1: Acción de Usuario -->
+                    <div id="flow-source" class="flex flex-col items-center p-4 rounded-xl border border-dashed border-slate-800 bg-slate-900/40 text-center">
+                        <div class="w-12 h-12 rounded-full bg-bee-500/10 flex items-center justify-center text-bee-400 mb-3 border border-bee-500/20">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
+                        </div>
+                        <span class="text-xs uppercase tracking-widest text-slate-500 font-bold">Paso 1: Acción DML</span>
+                        <h4 id="flow-action-title" class="text-lg font-bold text-white mt-1">Insertar Registro</h4>
+                        <p id="flow-action-desc" class="text-xs text-slate-400 mt-1">Se ejecuta un comando INSERT sobre la tabla.</p>
+                    </div>
+
+                    <!-- Elemento 2: Tablas de Trabajo -->
+                    <div class="flex flex-col gap-4 items-center justify-center relative">
+                        <!-- Conectores visuales para pantallas grandes (flechas) -->
+                        <div class="hidden md:block absolute -left-8 top-1/2 -translate-y-1/2 text-slate-700 text-2xl font-bold">➔</div>
+                        <div class="hidden md:block absolute -right-8 top-1/2 -translate-y-1/2 text-slate-700 text-2xl font-bold">➔</div>
+
+                        <!-- Tabla Inserted -->
+                        <div id="card-inserted" class="w-full max-w-[200px] p-3 rounded-lg border text-center transition-all duration-300 bg-bee-500/20 border-bee-500/50 text-white shadow-lg shadow-bee-500/5">
+                            <div class="font-bold text-sm">inserted</div>
+                            <div id="badge-inserted" class="text-[10px] uppercase font-mono mt-1 px-1.5 py-0.5 rounded bg-bee-500 text-slate-950 inline-block font-bold">Activa (Nuevo Dato)</div>
+                        </div>
+
+                        <!-- Tabla Deleted -->
+                        <div id="card-deleted" class="w-full max-w-[200px] p-3 rounded-lg border text-center transition-all duration-300 bg-slate-900 border-slate-800 text-slate-500">
+                            <div class="font-bold text-sm">deleted</div>
+                            <div id="badge-deleted" class="text-[10px] uppercase font-mono mt-1 px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 inline-block font-bold">Inactiva (Vacía)</div>
+                        </div>
+                    </div>
+
+                    <!-- Elemento 3: Acción del Trigger -->
+                    <div id="flow-target" class="flex flex-col items-center p-4 rounded-xl border border-slate-800 bg-slate-900/40 text-center">
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-3 border border-emerald-500/20">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <span class="text-xs uppercase tracking-widest text-emerald-500 font-bold">Paso 3: Disparo</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Trigger se Ejecuta</h4>
+                        <p id="flow-trigger-desc" class="text-xs text-slate-400 mt-1">El Trigger lee <strong class="text-bee-400 font-normal">inserted</strong> para validar, auditar o replicar la información.</p>
+                    </div>
+
+                </div>
+
+                <!-- Explicación Técnica Inferior -->
+                <div class="mt-6 border-t border-slate-800 pt-4">
+                    <div class="flex items-start gap-3">
+                        <div class="text-bee-500 text-xl font-bold">💡</div>
+                        <div>
+                            <h5 class="text-sm font-semibold text-white">Comportamiento Técnico Detallado:</h5>
+                            <p id="flow-technical-text" class="text-xs text-slate-400 mt-1">
+                                Durante un <strong>INSERT</strong>, la tabla <code class="text-bee-400 font-mono">inserted</code> almacena una copia exacta de las filas que se pretenden ingresar. La tabla <code class="text-bee-400 font-mono">deleted</code> no se utiliza y permanece completamente vacía.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CLASIFICACIÓN Y COMPONENTES TÉCNICOS -->
+        <section class="space-y-8">
+            <div class="text-center max-w-xl mx-auto">
+                <h2 class="text-3xl font-extrabold text-white">Clasificación de Triggers</h2>
+                <p class="text-slate-400 text-sm mt-2">¿Cuándo, cómo y sobre qué elementos de base de datos se disparan?</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Según Momento de Ejecución -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-6">
+                    <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                        <div class="p-2.5 rounded-xl bg-bee-500/10 text-bee-400">
+                            <!-- Clock Icon SVG -->
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Por Momento de Ejecución (Timing)</h3>
+                            <p class="text-xs text-slate-500">¿En qué fase de la consulta se interponen?</p>
+                        </div>
+                    </div>
+
+                    <!-- AFTER -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-white text-base">AFTER / FOR Triggers</h4>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-bee-500/10 text-bee-400 border border-bee-500/20 font-bold uppercase">Por Defecto</span>
+                        </div>
+                        <p class="text-sm text-slate-400">
+                            Se ejecutan <strong>después</strong> de que la acción de la consulta (INSERT, UPDATE, DELETE) haya pasado las restricciones de integridad (como Foreign Keys y Check Constraints) y se guarde temporalmente.
+                        </p>
+                        <div class="text-xs bg-slate-950 p-3 rounded-lg border border-slate-850 text-slate-300 font-mono">
+                            <span class="text-amber-500">CREATE TRIGGER</span> trg_Name <span class="text-amber-500">ON</span> Tabla <span class="text-amber-500">AFTER INSERT</span> ...
+                        </div>
+                    </div>
+
+                    <!-- INSTEAD OF -->
+                    <div class="space-y-2 border-t border-slate-850 pt-4">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-white text-base">INSTEAD OF Triggers</h4>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20 font-bold uppercase">Pre-acción</span>
+                        </div>
+                        <p class="text-sm text-slate-400">
+                            Se ejecutan <strong>en lugar de</strong> la acción original. El motor cancela la acción DML original del usuario y ejecuta únicamente el cuerpo de instrucciones dentro del disparador. Ideal para vistas no actualizables de forma nativa.
+                        </p>
+                        <div class="text-xs bg-slate-950 p-3 rounded-lg border border-slate-850 text-slate-300 font-mono">
+                            <span class="text-amber-500">CREATE TRIGGER</span> trg_Name <span class="text-amber-500">ON</span> Vista <span class="text-amber-500">INSTEAD OF UPDATE</span> ...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Según su Ámbito y Nivel -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-6">
+                    <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                        <div class="p-2.5 rounded-xl bg-bee-500/10 text-bee-400">
+                            <!-- Layers Icon SVG -->
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Por Tipo de Evento (Alcance)</h3>
+                            <p class="text-xs text-slate-500">¿Qué tipo de eventos interceptan?</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- DML -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-850">
+                            <h4 class="font-bold text-white text-sm mb-1">1. DML Triggers</h4>
+                            <p class="text-xs text-slate-400 mb-2">Operaciones de manipulación de datos en tablas y vistas.</p>
+                            <div class="flex gap-1 flex-wrap">
+                                <span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono font-bold">INSERT</span>
+                                <span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono font-bold">UPDATE</span>
+                                <span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono font-bold">DELETE</span>
+                            </div>
+                        </div>
+
+                        <!-- DDL -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-850">
+                            <h4 class="font-bold text-white text-sm mb-1">2. DDL Triggers</h4>
+                            <p class="text-xs text-slate-400 mb-2">Cambios estructurales en el esquema de la base de datos.</p>
+                            <div class="flex gap-1 flex-wrap">
+                                <span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono font-bold">CREATE</span>
+                                <span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono font-bold">ALTER</span>
+                                <span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono font-bold">DROP</span>
+                            </div>
+                        </div>
+
+                        <!-- LOGON -->
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-850">
+                            <h4 class="font-bold text-white text-sm mb-1">3. LOGON Triggers</h4>
+                            <p class="text-xs text-slate-400 mb-2">Control de accesos y sesiones de usuarios de base de datos.</p>
+                            <div class="flex gap-1 flex-wrap">
+                                <span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono font-bold">CONEXIONES</span>
+                                <span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono font-bold">SESIONES</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nota del Ámbito de Disparo -->
+                    <div class="p-3.5 bg-bee-500/5 rounded-xl border border-bee-500/10 text-xs text-slate-400 leading-relaxed">
+                        ⚠️ <strong>Nota Técnica:</strong> En SQL Server, los triggers DML por defecto operan a <strong>nivel de sentencia (Statement)</strong>, ejecutándose una sola vez por consulta incluso si se modifican millones de filas juntas.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CASOS PRÁCTICOS / VISUALIZADOR DE CÓDIGO -->
+        <section class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white">Ejemplos Prácticos de Implementación</h2>
+                    <p class="text-slate-400 text-sm">Explora escenarios reales con SQL Server analizados en el informe.</p>
+                </div>
+
+                <!-- Selector de Ejemplo -->
+                <div class="flex flex-wrap gap-2 bg-slate-950 p-1 rounded-xl border border-slate-850">
+                    <button onclick="switchCode(1)" id="btn-code-1" class="px-4 py-2 text-xs font-bold rounded-lg transition-all bg-bee-500 text-slate-950">
+                        1. Validación de Fechas
+                    </button>
+                    <button onclick="switchCode(2)" id="btn-code-2" class="px-4 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">
+                        2. Auditoría y Logs
+                    </button>
+                    <button onclick="switchCode(3)" id="btn-code-3" class="px-4 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">
+                        3. Control de Ventas / Stock
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Explicación del Escenario -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="p-4 bg-slate-950 rounded-2xl border border-slate-850 space-y-3">
+                        <div class="text-xs uppercase tracking-wider text-bee-400 font-bold">Caso Seleccionado</div>
+                        <h4 id="case-title" class="text-lg font-bold text-white">Validación de Fechas de Envío (Northwind)</h4>
+                        <p id="case-desc" class="text-xs text-slate-400 leading-relaxed">
+                            Este trigger de tipo <strong>AFTER INSERT, UPDATE</strong> en la tabla <code class="text-bee-400 bg-slate-900 px-1 py-0.5 rounded font-mono">Orders</code> valida que la fecha de envío (<code class="text-bee-300 font-mono">ShippedDate</code>) no sea cronológicamente anterior a la fecha de compra o pedido (<code class="text-bee-300 font-mono font-normal">OrderDate</code>).
+                        </p>
+                        <div id="case-impact" class="pt-2 border-t border-slate-800 text-xs text-emerald-400 flex items-center gap-1.5 font-semibold">
+                            ✔ Evita inconsistencias de fechas de negocio.
+                        </div>
+                    </div>
+
+                    <!-- Flujo del Script -->
+                    <div class="p-4 bg-slate-950 rounded-2xl border border-slate-850">
+                        <h5 class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-2">Comandos Clave Utilizados:</h5>
+                        <ul id="case-keywords" class="space-y-1 text-xs font-mono text-slate-300">
+                            <li>• <span class="text-amber-500">ROLLBACK TRANSACTION</span>: Revierte la transacción si falla.</li>
+                            <li>• <span class="text-amber-500">RAISERROR</span>: Muestra error personalizado al cliente.</li>
+                            <li>• <span class="text-amber-500">EXISTS</span>: Evalúa si hay registros inconsistentes.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Bloque de Código -->
+                <div class="lg:col-span-8 bg-slate-950 rounded-2xl border border-slate-850 overflow-hidden relative">
+                    <div class="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-850">
+                        <div class="flex gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-red-500/70 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500/70 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500/70 inline-block"></span>
+                        </div>
+                        <span class="text-[11px] font-mono text-slate-500">Taller3.3_SQLServer.sql</span>
+                    </div>
+
+                    <!-- Código Fuente -->
+                    <pre class="p-4 text-xs md:text-sm font-mono overflow-x-auto text-slate-300 leading-relaxed"><code id="code-content">-- Trigger para validar fechas de envío coherentes
+CREATE TRIGGER trg_Validar_Fecha_Envio
+ON Orders
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Si detecta que ShippedDate es menor que OrderDate
+    IF EXISTS (
+        SELECT 1 
+        FROM inserted 
+        WHERE ShippedDate < OrderDate
+    )
+    BEGIN
+        -- Eleva el error y cancela todo cambio
+        RAISERROR ('Error: La fecha de envío no puede ser anterior a la fecha del pedido.', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END;</code></pre>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- QUIZ INTERACTIVO PARA PONERSE A PRUEBA -->
+        <section class="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-bee-500/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="max-w-2xl mx-auto text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-bee-400 font-bold">Evaluación Activa</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">¿Cuánto aprendiste sobre Triggers?</h2>
+                <p class="text-slate-400 text-xs md:text-sm mt-1">Resuelve estas 3 preguntas clave preparadas por el equipo de ingeniería.</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto space-y-6">
+                <!-- Pregunta 1 -->
+                <div class="bg-slate-950/60 border border-slate-850 p-5 rounded-2xl space-y-3">
+                    <h4 class="font-bold text-white text-sm md:text-base"><span class="text-bee-400">1.</span> En un trigger que reacciona ante un comando <code class="text-bee-300 font-mono">UPDATE</code>, ¿qué datos contienen las tablas de sistema?</h4>
+                    <div class="grid grid-cols-1 gap-2.5">
+                        <button onclick="checkAnswer(1, 'A', this)" class="w-full text-left text-xs p-3.5 rounded-xl border border-slate-800 bg-slate-900/30 hover:border-slate-700 hover:bg-slate-900/50 transition">
+                            A) La tabla <code class="text-bee-300 font-mono">inserted</code> está vacía y la tabla <code class="text-bee-300 font-mono">deleted</code> tiene los datos anteriores.
+                        </button>
+                        <button onclick="checkAnswer(1, 'B', this)" class="w-full text-left text-xs p-3.5 rounded-xl border border-slate-800 bg-slate-900/30 hover:border-slate-700 hover:bg-slate-900/50 transition">
+                            B) <code class="text-bee-300 font-mono">inserted</code> tiene los valores nuevos que se van a guardar y <code class="text-bee-300 font-mono">deleted</code> contiene los valores antiguos previos al cambio.
+                        </button>
+                        <button onclick="checkAnswer(1, 'C', this)" class="w-full text-left text-xs p-3.5 rounded-xl border border-slate-800 bg-slate-900/30 hover:border-slate-700 hover:bg-slate-900/50 transition">
+                            C) Ambas tablas contienen siempre la información original de la base de datos sin modificaciones.
+                        </button>
+                    </div>
+                    <div id="feedback-1" class="hidden text-xs font-semibold p-2.5 rounded-xl"></div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="bg-slate-950/60 border border-slate-850 p-5 rounded-2xl space-y-3">
+                    <h4 class="font-bold text-white text-sm md:text-base"><span class="text-bee-400">2.</span> Si un trigger de tipo <code class="text-bee-300 font-mono">AFTER</code> detecta un fallo de negocio y ejecuta <code class="text-bee-300 font-mono">ROLLBACK TRANSACTION</code>, ¿qué sucede?</h4>
+                    <div class="grid grid-cols-1 gap-2.5">
+                        <button onclick="checkAnswer(2, 'A', this)" class="w-full text-left text-xs p-3.5 rounded-xl border border-slate-800 bg-slate-900/30 hover:border-slate-700 hover:bg-slate-900/50 transition">
+                            A) Solo se cancelan las operaciones que falten dentro del trigger, pero los datos se guardan.
+                        </button>
+                        <button onclick="checkAnswer(2, 'B', this)" class="w-full text-left text-xs p-3.5 rounded-xl border border-slate-800 bg-slate-900/30 hover:border-slate-700 hover:bg-slate-900/50 transition">
+                            B) Se cancela toda la transacción activa, revirtiendo por completo la operación DML del usuario y las modificaciones del trigger.
+                        </button>
+                        <button onclick="checkAnswer(2, 'C', this)" class="w-full text-left text-xs p-3.5 rounded-xl border border-slate-800 bg-slate-900/30 hover:border-slate-700 hover:bg-slate-900/50 transition">
+                            C) Se borra la base de datos completa.
+                        </button>
+                    </div>
+                    <div id="feedback-2" class="hidden text-xs font-semibold p-2.5 rounded-xl"></div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="bg-slate-950/60 border border-slate-850 p-5 rounded-2xl space-y-3">
+                    <h4 class="font-bold text-white text-sm md:text-base"><span class="text-bee-400">3.</span> ¿Cuál es la principal diferencia entre un trigger <code class="text-bee-300 font-mono">AFTER</code> y uno <code class="text-bee-300 font-mono">INSTEAD OF</code>?</h4>
+                    <div class="grid grid-cols-1 gap-2.5">
+                        <button onclick="checkAnswer(3, 'A', this)" class="w-full text-left text-xs p-3.5 rounded-xl border border-slate-800 bg-slate-900/30 hover:border-slate-700 hover:bg-slate-900/50 transition">
+                            A) <code class="text-bee-300 font-mono">AFTER</code> se ejecuta después de que la base de datos realiza el proceso e inspecciona restricciones. <code class="text-bee-300 font-mono">INSTEAD OF</code> cancela la acción nativa para ejecutar su propio bloque.
+                        </button>
+                        <button onclick="checkAnswer(3, 'B', this)" class="w-full text-left text-xs p-3.5 rounded-xl border border-slate-800 bg-slate-900/30 hover:border-slate-700 hover:bg-slate-900/50 transition">
+                            B) <code class="text-bee-300 font-mono">INSTEAD OF</code> es solo para conexiones (Logon), mientras que <code class="text-bee-300 font-mono">AFTER</code> es para tablas físicas.
+                        </button>
+                        <button onclick="checkAnswer(3, 'C', this)" class="w-full text-left text-xs p-3.5 rounded-xl border border-slate-800 bg-slate-900/30 hover:border-slate-700 hover:bg-slate-900/50 transition">
+                            C) No hay ninguna diferencia real, son nombres equivalentes en distintas versiones de SQL Server.
+                        </button>
+                    </div>
+                    <div id="feedback-3" class="hidden text-xs font-semibold p-2.5 rounded-xl"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CONCLUSIONES -->
+        <section class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8">
+            <h2 class="text-2xl font-extrabold text-white mb-6 text-center md:text-left">Conclusiones del Estudio</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Conclusión 1 -->
+                <div class="space-y-2">
+                    <div class="text-bee-400 font-bold text-2xl">01</div>
+                    <h4 class="font-bold text-white text-sm">Garantía de Integridad</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Los triggers permiten forzar restricciones complejas y dinámicas que las claves primarias/foráneas básicas no pueden expresar por sí solas.
+                    </p>
+                </div>
+
+                <!-- Conclusión 2 -->
+                <div class="space-y-2">
+                    <div class="text-bee-400 font-bold text-2xl">02</div>
+                    <h4 class="font-bold text-white text-sm">Auditoría Robusta</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Al rastrear los datos de <code class="text-bee-300 font-mono">deleted</code> e <code class="text-bee-300 font-mono">inserted</code>, se puede registrar de forma transparente qué usuario hizo qué cambio exacto.
+                    </p>
+                </div>
+
+                <!-- Conclusión 3 -->
+                <div class="space-y-2">
+                    <div class="text-bee-400 font-bold text-2xl">03</div>
+                    <h4 class="font-bold text-white text-sm">Rendimiento Interno</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Optimiza la gestión al ejecutarse del lado del servidor SQL, evitando múltiples envíos y consultas por red desde las aplicaciones clientes.
+                    </p>
+                </div>
+
+                <!-- Conclusión 4 -->
+                <div class="space-y-2">
+                    <div class="text-bee-400 font-bold text-2xl">04</div>
+                    <h4 class="font-bold text-white text-sm">Consistencia del Negocio</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Permiten automatizar la actualización de stocks, sumas o estadísticas de ventas en tiempo real tras cada pedido o compra exitosa.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p>© 2026 Universidad Andina del Cusco — Escuela Profesional de Ingeniería de Sistemas.</p>
+            <p>Infografía interactiva creada para el Modelado de Base de Datos — Grupo "Las Abejitas".</p>
+        </div>
+    </footer>
+
+    <!-- LOGIC SCRIPTS -->
+    <script>
+        // 1. Interactive Architecture Logic
+        function setOperation(op) {
+            // Reset button styles
+            const btns = ['insert', 'update', 'delete'];
+            btns.forEach(b => {
+                const btn = document.getElementById(`btn-${b}`);
+                btn.className = "py-2.5 px-4 text-sm font-bold rounded-lg transition-all text-center focus:outline-none text-slate-400 hover:text-white";
+            });
+
+            // Active button style
+            const activeBtn = document.getElementById(`btn-${op}`);
+            activeBtn.className = "py-2.5 px-4 text-sm font-bold rounded-lg transition-all text-center focus:outline-none bg-bee-500 text-slate-950 shadow-md";
+
+            // Visual elements
+            const cardInserted = document.getElementById('card-inserted');
+            const cardDeleted = document.getElementById('card-deleted');
+            const badgeInserted = document.getElementById('badge-inserted');
+            const badgeDeleted = document.getElementById('badge-deleted');
+            
+            const flowActionTitle = document.getElementById('flow-action-title');
+            const flowActionDesc = document.getElementById('flow-action-desc');
+            const flowTriggerDesc = document.getElementById('flow-trigger-desc');
+            const technicalText = document.getElementById('flow-technical-text');
+
+            if (op === 'insert') {
+                flowActionTitle.innerText = "Insertar Registro";
+                flowActionDesc.innerText = "Se ejecuta un comando INSERT sobre la tabla.";
+                flowTriggerDesc.innerHTML = "El Trigger lee <strong class='text-bee-400 font-bold'>inserted</strong> para validar, auditar o rechazar la información.";
+                technicalText.innerHTML = "Durante un <strong>INSERT</strong>, la tabla <code class='text-bee-400 font-mono'>inserted</code> almacena una copia exacta de las filas que se pretenden ingresar. La tabla <code class='text-bee-400 font-mono'>deleted</code> permanece vacía de forma predeterminada.";
+
+                // Highlight inserted, fade deleted
+                cardInserted.className = "w-full max-w-[200px] p-3 rounded-lg border text-center transition-all duration-300 bg-bee-500/20 border-bee-500/50 text-white shadow-lg shadow-bee-500/5";
+                badgeInserted.className = "text-[10px] uppercase font-mono mt-1 px-1.5 py-0.5 rounded bg-bee-500 text-slate-950 inline-block font-bold";
+                badgeInserted.innerText = "Activa (Nuevo Dato)";
+
+                cardDeleted.className = "w-full max-w-[200px] p-3 rounded-lg border text-center transition-all duration-300 bg-slate-900 border-slate-800 text-slate-500";
+                badgeDeleted.className = "text-[10px] uppercase font-mono mt-1 px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 inline-block font-bold";
+                badgeDeleted.innerText = "Inactiva (Vacía)";
+            } else if (op === 'update') {
+                flowActionTitle.innerText = "Actualizar Registro";
+                flowActionDesc.innerText = "Se ejecuta un UPDATE sobre la tabla.";
+                flowTriggerDesc.innerHTML = "El Trigger compara <strong class='text-bee-400 font-bold'>deleted</strong> (anterior) e <strong class='text-bee-400 font-bold'>inserted</strong> (nuevo) para verificar el cambio.";
+                technicalText.innerHTML = "Un <strong>UPDATE</strong> es lógicamente un <em>DELETE</em> del dato antiguo seguido de un <em>INSERT</em> del dato nuevo. Por tanto, <code class='text-bee-400 font-mono'>deleted</code> contiene el estado original del registro y <code class='text-bee-400 font-mono'>inserted</code> contiene el nuevo estado propuesto.";
+
+                // Highlight both
+                cardInserted.className = "w-full max-w-[200px] p-3 rounded-lg border text-center transition-all duration-300 bg-bee-500/20 border-bee-500/50 text-white shadow-lg shadow-bee-500/5";
+                badgeInserted.className = "text-[10px] uppercase font-mono mt-1 px-1.5 py-0.5 rounded bg-bee-500 text-slate-950 inline-block font-bold";
+                badgeInserted.innerText = "Activa (Valores Nuevos)";
+
+                cardDeleted.className = "w-full max-w-[200px] p-3 rounded-lg border text-center transition-all duration-300 bg-amber-600/20 border-amber-600/50 text-white shadow-lg shadow-amber-600/5";
+                badgeDeleted.className = "text-[10px] uppercase font-mono mt-1 px-1.5 py-0.5 rounded bg-amber-600 text-slate-950 inline-block font-bold";
+                badgeDeleted.innerText = "Activa (Valores Viejos)";
+            } else if (op === 'delete') {
+                flowActionTitle.innerText = "Borrar Registro";
+                flowActionDesc.innerText = "Se ejecuta un comando DELETE sobre la tabla.";
+                flowTriggerDesc.innerHTML = "El Trigger lee <strong class='text-bee-400 font-bold'>deleted</strong> para verificar autorizaciones o guardar un historial.";
+                technicalText.innerHTML = "Durante un <strong>DELETE</strong>, la tabla <code class='text-bee-400 font-mono'>deleted</code> almacena una copia exacta de las filas que se acaban de eliminar. La tabla <code class='text-bee-400 font-mono'>inserted</code> no es utilizada y permanece vacía.";
+
+                // Highlight deleted, fade inserted
+                cardInserted.className = "w-full max-w-[200px] p-3 rounded-lg border text-center transition-all duration-300 bg-slate-900 border-slate-800 text-slate-500";
+                badgeInserted.className = "text-[10px] uppercase font-mono mt-1 px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 inline-block font-bold";
+                badgeInserted.innerText = "Inactiva (Vacía)";
+
+                cardDeleted.className = "w-full max-w-[200px] p-3 rounded-lg border text-center transition-all duration-300 bg-amber-600/20 border-amber-600/50 text-white shadow-lg shadow-amber-600/5";
+                badgeDeleted.className = "text-[10px] uppercase font-mono mt-1 px-1.5 py-0.5 rounded bg-amber-600 text-slate-950 inline-block font-bold";
+                badgeDeleted.innerText = "Activa (Viejo Dato)";
+            }
+        }
+
+        // 2. Code Switcher Logic
+        const codes = {
+            1: {
+                title: "Validación de Fechas de Envío (Northwind)",
+                desc: "Este trigger de tipo <strong>AFTER INSERT, UPDATE</strong> en la tabla <code class='text-bee-400 bg-slate-900 px-1 py-0.5 rounded font-mono'>Orders</code> valida que la fecha de envío (<code class='text-bee-300 font-mono'>ShippedDate</code>) no sea cronológicamente anterior a la fecha de compra o pedido (<code class='text-bee-300 font-mono'>OrderDate</code>). Evita errores de registro ilógicos.",
+                impact: "✔ Evita inconsistencias de fechas de negocio de forma nativa.",
+                keywords: [
+                    "• <span class='text-amber-500'>ROLLBACK TRANSACTION</span>: Revierte la transacción si falla.",
+                    "• <span class='text-amber-500'>RAISERROR</span>: Muestra error personalizado al cliente.",
+                    "• <span class='text-amber-500'>EXISTS</span>: Evalúa si hay registros inconsistentes."
+                ],
+                code: `-- Trigger para validar fechas de envío coherentes en Northwind
+CREATE TRIGGER trg_Validar_Fecha_Envio
+ON Orders
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Si detecta que ShippedDate es menor que OrderDate
+    IF EXISTS (
+        SELECT 1 
+        FROM inserted 
+        WHERE ShippedDate < OrderDate
+    )
+    BEGIN
+        -- Eleva el error y cancela todo cambio en la Base de Datos
+        RAISERROR ('Error: La fecha de envío no puede ser anterior a la fecha del pedido.', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END;`
+            },
+            2: {
+                title: "Auditoría de Cambios e Historial (Pubs)",
+                desc: "Este disparador registra cualquier modificación en la tabla <code class='text-bee-400 bg-slate-900 px-1 py-0.5 rounded font-mono'>Titles</code>. Inserta el registro anterior modificado, el usuario de SQL Server responsable y la fecha exacta en una tabla de auditoría dedicada.",
+                impact: "✔ Control completo de trazabilidad e histórico de cambios de datos.",
+                keywords: [
+                    "• <span class='text-amber-500'>SYSTEM_USER</span>: Obtiene el usuario que ejecuta la acción.",
+                    "• <span class='text-amber-500'>GETDATE()</span>: Captura marca de tiempo exacta del cambio.",
+                    "• <span class='text-amber-500'>INSERT INTO</span>: Guarda la foto anterior recuperada de deleted."
+                ],
+                code: `-- Trigger de Auditoría en la Base de Datos Pubs
+CREATE TRIGGER trg_Auditoria_Titulos
+ON Titles
+AFTER UPDATE, DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Inserta en la tabla de auditoría lo que se borró o cambió
+    INSERT INTO Titles_Audit_Log (Title_Id, Old_Price, Action_User, Change_Date, Operation)
+    SELECT 
+        d.title_id, 
+        d.price, 
+        SYSTEM_USER, 
+        GETDATE(),
+        CASE 
+            WHEN EXISTS(SELECT 1 FROM inserted) THEN 'UPDATE' 
+            ELSE 'DELETE' 
+        END
+    FROM deleted d;
+END;`
+            },
+            3: {
+                title: "Actualización Automática de Stock (Suma Ventas)",
+                desc: "Este trigger de tipo <strong>AFTER INSERT</strong> en la tabla de ventas de <code class='text-bee-400 bg-slate-900 px-1 py-0.5 rounded font-mono'>Sales</code> de Pubs actualiza de forma automática el campo acumulado de ventas (<code class='text-bee-300 font-mono'>ytd_sales</code>) en la tabla principal de títulos.",
+                impact: "✔ Mantener cálculos de stock y ventas sincronizados sin lógica de código externo.",
+                keywords: [
+                    "• <span class='text-amber-500'>INNER JOIN</span>: Cruza la tabla inserted con títulos.",
+                    "• <span class='text-amber-500'>UPDATE Titles</span>: Modifica el campo de cantidad de ventas.",
+                    "• <span class='text-amber-500'>SUM(qty)</span>: Agrupa por título para actualizar multiples filas."
+                ],
+                code: `-- Trigger para sincronización de acumulado de ventas
+CREATE TRIGGER trg_Actualizar_Acumulado_Ventas
+ON Sales
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Actualiza el campo de cantidad anual vendida (ytd_sales)
+    UPDATE t
+    SET t.ytd_sales = ISNULL(t.ytd_sales, 0) + i.TotalQty
+    FROM Titles t
+    INNER JOIN (
+        SELECT title_id, SUM(qty) AS TotalQty
+        FROM inserted
+        GROUP BY title_id
+    ) i ON t.title_id = i.title_id;
+END;`
+            }
+        };
+
+        function switchCode(id) {
+            // Reset buttons
+            for (let i = 1; i <= 3; i++) {
+                const btn = document.getElementById(`btn-code-${i}`);
+                if (i === id) {
+                    btn.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all bg-bee-500 text-slate-950";
+                } else {
+                    btn.className = "px-4 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all";
+                }
+            }
+
+            // Set content
+            const data = codes[id];
+            document.getElementById('case-title').innerHTML = data.title;
+            document.getElementById('case-desc').innerHTML = data.desc;
+            document.getElementById('case-impact').innerHTML = data.impact;
+            document.getElementById('code-content').innerText = data.code;
+
+            // Keywords
+            const kwContainer = document.getElementById('case-keywords');
+            kwContainer.innerHTML = data.keywords.join('\n');
+        }
+
+        // 3. Quiz Logic
+        const answers = {
+            1: 'B',
+            2: 'B',
+            3: 'A'
+        };
+
+        function checkAnswer(qNum, selectedOption, element) {
+            const feedback = document.getElementById(`feedback-${qNum}`);
+            const correctOption = answers[qNum];
+            
+            // Disable other buttons for this question
+            const buttons = element.parentNode.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.add('opacity-50');
+            });
+
+            feedback.classList.remove('hidden');
+
+            if (selectedOption === correctOption) {
+                element.className = "w-full text-left text-xs p-3.5 rounded-xl border border-emerald-500 bg-emerald-500/10 text-emerald-400 font-bold transition";
+                feedback.className = "text-xs font-semibold p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+                feedback.innerHTML = "🎉 ¡Correcto! Excelente análisis de la arquitectura de SQL Server.";
+            } else {
+                element.className = "w-full text-left text-xs p-3.5 rounded-xl border border-rose-500 bg-rose-500/10 text-rose-400 font-bold transition";
+                feedback.className = "text-xs font-semibold p-2.5 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20";
+                feedback.innerHTML = `❌ Incorrecto. La respuesta correcta es la ${correctOption}.`;
+            }
+        }
+    </script>
+</body>
+</html>
