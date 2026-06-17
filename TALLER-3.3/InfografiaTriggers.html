@@ -17,7 +17,7 @@
                             200: '#f7f0a1',
                             300: '#eddfa3',
                             400: '#e3c65d',
-                            500: '#d9ab26', // Warm amber-gold
+                            500: '#d9ab26', // Cálido ámbar de "Las Abejitas"
                             600: '#b8891b',
                             700: '#946716',
                             800: '#754f14',
@@ -74,7 +74,7 @@
                 <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl glow-gold w-full md:w-auto min-w-[280px]">
                     <div class="flex items-center gap-3 mb-3 border-b border-slate-800 pb-2">
                         <div class="p-2 bg-bee-500 rounded-lg text-slate-950">
-                            <!-- Bee / Insect Icon SVG -->
+                            <!-- Icono Abeja -->
                             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
                                 <path d="M12 8a4 4 0 100 8 4 4 0 000-8z" />
@@ -329,8 +329,8 @@
         <section class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8">
             <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
                 <div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-white">Ejemplos Prácticos de Implementación</h2>
-                    <p class="text-slate-400 text-sm">Explora escenarios reales con SQL Server analizados en el informe.</p>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white">Casos Prácticos de Referencia</h2>
+                    <p class="text-slate-400 text-sm">Explora escenarios lógicos con SQL Server analizados en el informe.</p>
                 </div>
 
                 <!-- Selector de Ejemplo -->
@@ -404,6 +404,62 @@ BEGIN
         ROLLBACK TRANSACTION;
     END
 END;</code></pre>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- EXPLORADOR DE ARCHIVOS DEL PROYECTO (NUEVA SECCIÓN REPOSITORIO) -->
+        <section class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 relative">
+            <div class="absolute top-4 right-4 text-xs font-semibold text-slate-500 tracking-wider uppercase font-mono">Repositorio SQL</div>
+            
+            <div class="mb-6">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">Repositorio de Scripts SQL</h2>
+                <p class="text-slate-400 text-sm mt-1">Explora, visualiza y copia los scripts de base de datos y disparadores desarrollados para el taller.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <!-- Lista de Archivos -->
+                <div class="lg:col-span-1 flex flex-col gap-2">
+                    <button onclick="viewFile('pubsAbejitas')" id="tab-pubsAbejitas" class="flex items-center gap-2 px-4 py-3 text-sm font-bold rounded-xl transition-all bg-bee-500 text-slate-950 shadow-md">
+                        <svg class="w-4 h-4 min-w-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                        <span class="truncate">pubsAbejitas.sql</span>
+                    </button>
+                    <button onclick="viewFile('TriggersPubs')" id="tab-TriggersPubs" class="flex items-center gap-2 px-4 py-3 text-sm font-bold rounded-xl transition-all bg-slate-950 text-slate-400 border border-slate-850 hover:bg-slate-800 hover:text-white">
+                        <svg class="w-4 h-4 min-w-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        <span class="truncate">TriggersPubs.sql</span>
+                    </button>
+                    <button onclick="viewFile('northwind')" id="tab-northwind" class="flex items-center gap-2 px-4 py-3 text-sm font-bold rounded-xl transition-all bg-slate-950 text-slate-400 border border-slate-850 hover:bg-slate-800 hover:text-white">
+                        <svg class="w-4 h-4 min-w-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                        <span class="truncate">northwind.sql</span>
+                    </button>
+                    <button onclick="viewFile('triggersNorthwind')" id="tab-triggersNorthwind" class="flex items-center gap-2 px-4 py-3 text-sm font-bold rounded-xl transition-all bg-slate-950 text-slate-400 border border-slate-850 hover:bg-slate-800 hover:text-white">
+                        <svg class="w-4 h-4 min-w-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        <span class="truncate">triggersNorthwind.sql</span>
+                    </button>
+                    <button onclick="viewFile('triggersNorthwind2')" id="tab-triggersNorthwind2" class="flex items-center gap-2 px-4 py-3 text-sm font-bold rounded-xl transition-all bg-slate-950 text-slate-400 border border-slate-850 hover:bg-slate-800 hover:text-white">
+                        <svg class="w-4 h-4 min-w-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        <span class="truncate">triggersNorthwind2.sql</span>
+                    </button>
+                </div>
+
+                <!-- Visor de Código -->
+                <div class="lg:col-span-3 bg-slate-950 rounded-2xl border border-slate-850 overflow-hidden flex flex-col h-[500px]">
+                    <div class="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-850">
+                        <div class="flex items-center gap-3">
+                            <div class="flex gap-1.5">
+                                <span class="w-3 h-3 rounded-full bg-red-500/70 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500/70 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500/70 inline-block"></span>
+                            </div>
+                            <span id="repo-file-name" class="text-[12px] font-mono text-bee-400 font-bold ml-2">pubsAbejitas.sql</span>
+                        </div>
+                        <button onclick="copyRepoCode()" class="text-xs flex items-center gap-1.5 text-slate-400 hover:text-white transition px-2.5 py-1 rounded bg-slate-800/50 hover:bg-slate-800 border border-slate-700" title="Copiar código al portapapeles">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span id="copy-text">Copiar</span>
+                        </button>
+                    </div>
+                    <pre class="p-4 text-xs md:text-sm font-mono overflow-auto text-slate-300 leading-relaxed flex-grow scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-900"><code id="repo-code-content">-- Cargando código...</code></pre>
                 </div>
             </div>
         </section>
@@ -528,20 +584,345 @@ END;</code></pre>
 
     <!-- LOGIC SCRIPTS -->
     <script>
-        // 1. Interactive Architecture Logic
+        // 1. Lógica del Repositorio de Archivos SQL
+        const repoFiles = {
+            pubsAbejitas: {
+                name: "pubsAbejitas.sql",
+                content: `-- ====================================================================
+-- SCRIPT: Creación y Estructura de la Base de Datos "PubsAbejitas"
+-- ====================================================================
+USE master;
+GO
+
+IF EXISTS (SELECT * FROM sysdatabases WHERE name='PubsAbejitas')
+BEGIN
+    DROP DATABASE PubsAbejitas;
+END;
+GO
+
+CREATE DATABASE PubsAbejitas;
+GO
+
+USE PubsAbejitas;
+GO
+
+-- Creación de Tipos de Datos de Usuario
+EXEC sp_addtype id, 'varchar(11)', 'NOT NULL';
+EXEC sp_addtype tid, 'varchar(6)', 'NOT NULL';
+EXEC sp_addtype empid, 'char(9)', 'NOT NULL';
+GO
+
+-- Tabla: Publishers (Editoriales)
+CREATE TABLE publishers (
+    pub_id char(4) NOT NULL CONSTRAINT UPKCL_pubind PRIMARY KEY CLUSTERED,
+    pub_name varchar(40) NULL,
+    city varchar(20) NULL,
+    state char(2) NULL,
+    country varchar(30) NULL DEFAULT('USA')
+);
+
+-- Tabla: Titles (Libros/Títulos)
+CREATE TABLE titles (
+    title_id tid CONSTRAINT UPKCL_titleidind PRIMARY KEY CLUSTERED,
+    title varchar(80) NOT NULL,
+    type char(12) NOT NULL DEFAULT ('UNDECIDED'),
+    pub_id char(4) NULL REFERENCES publishers(pub_id),
+    price money NULL,
+    advance money NULL,
+    royalty int NULL,
+    ytd_sales int NULL,
+    notes varchar(200) NULL,
+    pubdate datetime NOT NULL DEFAULT (getdate())
+);
+
+-- Tabla: Sales (Ordenes de Venta)
+CREATE TABLE sales (
+    stor_id char(4) NOT NULL,
+    ord_num varchar(20) NOT NULL,
+    ord_date datetime NOT NULL,
+    qty smallint NOT NULL,
+    payterms varchar(12) NOT NULL,
+    title_id tid REFERENCES titles(title_id),
+    CONSTRAINT UPKCL_sales PRIMARY KEY CLUSTERED (stor_id, ord_num, title_id)
+);
+
+-- Tabla: Employee (Empleados)
+CREATE TABLE employee (
+    emp_id empid CONSTRAINT PK_emp_id PRIMARY KEY NONCLUSTERED,
+    fname varchar(20) NOT NULL,
+    minit char(1) NULL,
+    lname varchar(30) NOT NULL,
+    job_id smallint NOT NULL DEFAULT 1,
+    job_lvl tinyint DEFAULT 10,
+    pub_id char(4) NOT NULL DEFAULT ('9952') REFERENCES publishers(pub_id),
+    hire_date datetime NOT NULL DEFAULT (getdate())
+);
+GO
+
+-- CONSULTAS DE EXPLORACIÓN Y REPORTES DE LA BD
+SELECT title_id, title, price, ytd_sales FROM titles;
+SELECT emp_id, fname, lname, job_lvl FROM employee;
+`
+            },
+            TriggersPubs: {
+                name: "TriggersPubs.sql",
+                content: `-- ====================================================================
+-- SCRIPT: Definición de los 5 Triggers para PubsAbejitas
+-- ====================================================================
+USE PubsAbejitas;
+GO
+
+-- 1. Trigger: ValidarPrecio (Impide precios negativos o gratis)
+CREATE TRIGGER tr_Titles_ValidarPrecio
+ON titles
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    IF EXISTS (SELECT 1 FROM inserted WHERE price <= 0)
+    BEGIN
+        RAISERROR('Error: El precio del libro debe ser mayor a cero.', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END;
+GO
+
+-- 2. Trigger: ActualizarYtdSales (Suma automáticamente ventas al acumulado)
+CREATE TRIGGER tr_Sales_ActualizarYtdSales
+ON sales
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    UPDATE t
+    SET t.ytd_sales = COALESCE(t.ytd_sales, 0) + i.qty
+    FROM titles t
+    INNER JOIN inserted i ON t.title_id = i.title_id;
+END;
+GO
+
+-- 3. Trigger: RestarYtdSales (Resta del acumulado si se anula una venta)
+CREATE TRIGGER tr_Sales_RestarYtdSales
+ON sales
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    UPDATE t
+    SET t.ytd_sales = COALESCE(t.ytd_sales, 0) - d.qty
+    FROM titles t
+    INNER JOIN deleted d ON t.title_id = d.title_id;
+END;
+GO
+
+-- 4. Trigger: VerificarNivel (Evita degradar el rango de un empleado)
+CREATE TRIGGER tr_Employee_VerificarNivel
+ON employee
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    IF EXISTS (
+        SELECT 1 
+        FROM inserted i 
+        JOIN deleted d ON i.emp_id = d.emp_id 
+        WHERE i.job_lvl < d.job_lvl
+    )
+    BEGIN
+        RAISERROR('Error: No se permite degradar el nivel de trabajo de un empleado.', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END;
+GO
+
+-- 5. Trigger: PrevenirBorrado (Protege a los publishers/editoriales de borrado)
+CREATE TRIGGER tr_Publishers_PrevenirBorrado
+ON publishers
+INSTEAD OF DELETE
+AS
+BEGIN
+    RAISERROR('Operación denegada: Las editoriales no pueden ser eliminadas de la base de datos por políticas de auditoría.', 16, 1);
+END;
+GO`
+            },
+            northwind: {
+                name: "northwind.sql",
+                content: `-- ====================================================================
+-- SCRIPT: Consultas y Análisis de la BD Northwind de Ejemplo
+-- ====================================================================
+USE Northwind;
+GO
+
+-- Explorar tabla de pedidos y detalles de envío
+SELECT OrderID, CustomerID, OrderDate, RequiredDate, ShippedDate 
+FROM Orders
+WHERE ShippedDate IS NOT NULL;
+
+-- Consultar catálogo de productos y su nivel de reorden
+SELECT ProductID, ProductName, UnitPrice, UnitsInStock, UnitsOnOrder
+FROM Products
+WHERE Discontinued = 0;
+
+-- Detalle consolidado de ventas con cálculo de subtotal por producto
+SELECT 
+    o.OrderID,
+    c.CompanyName AS [Cliente],
+    p.ProductName AS [Producto],
+    od.UnitPrice,
+    od.Quantity,
+    od.Discount,
+    (od.UnitPrice * od.Quantity * (1 - od.Discount)) AS [Subtotal]
+FROM Orders o
+INNER JOIN [Order Details] od ON o.OrderID = od.OrderID
+INNER JOIN Products p ON od.ProductID = p.ProductID
+INNER JOIN Customers c ON o.CustomerID = c.CustomerID;
+`
+            },
+            triggersNorthwind: {
+                name: "triggersNorthwind.sql",
+                content: `-- ====================================================================
+-- SCRIPT: Validaciones Lógicas de Negocio en Northwind (Parte 1)
+-- ====================================================================
+USE Northwind;
+GO
+
+-- Trigger: trg_Validar_Fecha_Envio
+-- Valida que la fecha de despacho sea posterior a la fecha de compra
+CREATE TRIGGER trg_Validar_Fecha_Envio
+ON Orders
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Si detecta que ShippedDate es menor que OrderDate
+    IF EXISTS (
+        SELECT 1 
+        FROM inserted 
+        WHERE ShippedDate < OrderDate
+    )
+    BEGIN
+        -- Eleva el error y cancela la transacción en curso
+        RAISERROR ('ERROR DE NEGOCIO: La fecha de envío (ShippedDate) no puede ser anterior a la fecha del pedido (OrderDate).', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END;
+GO`
+            },
+            triggersNorthwind2: {
+                name: "triggersNorthwind2.sql",
+                content: `-- ====================================================================
+-- SCRIPT: Control Automático de Inventario en Northwind (Parte 2)
+-- ====================================================================
+USE Northwind;
+GO
+
+-- Trigger: trg_Validar_Stock_Venta
+-- Comprueba stock antes de registrar y descuenta existencias automáticamente
+CREATE TRIGGER trg_Validar_Stock_Venta
+ON [Order Details]
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- 1. Verificar si hay suficiente stock disponible para la venta
+    IF EXISTS (
+        SELECT 1
+        FROM inserted i
+        INNER JOIN Products p ON i.ProductID = p.ProductID
+        WHERE i.Quantity > p.UnitsInStock
+    )
+    BEGIN
+        RAISERROR ('ERROR DE STOCK: No hay suficientes unidades en inventario para cubrir la orden solicitada.', 16, 1);
+        ROLLBACK TRANSACTION;
+        RETURN;
+    END
+
+    -- 2. Si pasa el filtro, restar las unidades del stock físico
+    UPDATE p
+    SET p.UnitsInStock = p.UnitsInStock - i.Quantity
+    FROM Products p
+    INNER JOIN inserted i ON p.ProductID = i.ProductID;
+    
+    PRINT 'El stock del producto se ha descontado exitosamente.';
+END;
+GO`
+            }
+        };
+
+        function viewFile(fileKey) {
+            // Reset de estilos de pestañas del repositorio
+            const tabs = ['pubsAbejitas', 'TriggersPubs', 'northwind', 'triggersNorthwind', 'triggersNorthwind2'];
+            tabs.forEach(tab => {
+                const btn = document.getElementById(`tab-${tab}`);
+                if(btn) {
+                    btn.className = "flex items-center gap-2 px-4 py-3 text-sm font-bold rounded-xl transition-all bg-slate-950 text-slate-400 border border-slate-850 hover:bg-slate-800 hover:text-white";
+                }
+            });
+
+            // Aplicar estilo activo a la pestaña clicada
+            const activeBtn = document.getElementById(`tab-${fileKey}`);
+            if(activeBtn) {
+                activeBtn.className = "flex items-center gap-2 px-4 py-3 text-sm font-bold rounded-xl transition-all bg-bee-500 text-slate-950 shadow-md";
+            }
+
+            // Actualizar contenido del visor de código
+            const fileData = repoFiles[fileKey];
+            document.getElementById('repo-file-name').innerText = fileData.name;
+            document.getElementById('repo-code-content').innerText = fileData.content;
+            
+            // Reiniciar estado del botón de copiado
+            document.getElementById('copy-text').innerText = "Copiar";
+        }
+
+        function copyRepoCode() {
+            const code = document.getElementById('repo-code-content').innerText;
+            const fallbackCopyText = (text) => {
+                var textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    const copySpan = document.getElementById('copy-text');
+                    copySpan.innerText = "¡Copiado!";
+                    setTimeout(() => copySpan.innerText = "Copiar", 2000);
+                } catch (err) {
+                    console.error('Error al copiar el código: ', err);
+                }
+                document.body.removeChild(textArea);
+            };
+
+            if (!navigator.clipboard) {
+                fallbackCopyText(code);
+                return;
+            }
+            navigator.clipboard.writeText(code).then(() => {
+                const copySpan = document.getElementById('copy-text');
+                copySpan.innerText = "¡Copiado!";
+                setTimeout(() => copySpan.innerText = "Copiar", 2000);
+            }, (err) => {
+                console.error('No se pudo copiar el texto: ', err);
+                fallbackCopyText(code);
+            });
+        }
+
+        // 2. Interactive Architecture Logic
         function setOperation(op) {
-            // Reset button styles
             const btns = ['insert', 'update', 'delete'];
             btns.forEach(b => {
                 const btn = document.getElementById(`btn-${b}`);
                 btn.className = "py-2.5 px-4 text-sm font-bold rounded-lg transition-all text-center focus:outline-none text-slate-400 hover:text-white";
             });
 
-            // Active button style
             const activeBtn = document.getElementById(`btn-${op}`);
             activeBtn.className = "py-2.5 px-4 text-sm font-bold rounded-lg transition-all text-center focus:outline-none bg-bee-500 text-slate-950 shadow-md";
 
-            // Visual elements
             const cardInserted = document.getElementById('card-inserted');
             const cardDeleted = document.getElementById('card-deleted');
             const badgeInserted = document.getElementById('badge-inserted');
@@ -558,7 +939,6 @@ END;</code></pre>
                 flowTriggerDesc.innerHTML = "El Trigger lee <strong class='text-bee-400 font-bold'>inserted</strong> para validar, auditar o rechazar la información.";
                 technicalText.innerHTML = "Durante un <strong>INSERT</strong>, la tabla <code class='text-bee-400 font-mono'>inserted</code> almacena una copia exacta de las filas que se pretenden ingresar. La tabla <code class='text-bee-400 font-mono'>deleted</code> permanece vacía de forma predeterminada.";
 
-                // Highlight inserted, fade deleted
                 cardInserted.className = "w-full max-w-[200px] p-3 rounded-lg border text-center transition-all duration-300 bg-bee-500/20 border-bee-500/50 text-white shadow-lg shadow-bee-500/5";
                 badgeInserted.className = "text-[10px] uppercase font-mono mt-1 px-1.5 py-0.5 rounded bg-bee-500 text-slate-950 inline-block font-bold";
                 badgeInserted.innerText = "Activa (Nuevo Dato)";
@@ -572,7 +952,6 @@ END;</code></pre>
                 flowTriggerDesc.innerHTML = "El Trigger compara <strong class='text-bee-400 font-bold'>deleted</strong> (anterior) e <strong class='text-bee-400 font-bold'>inserted</strong> (nuevo) para verificar el cambio.";
                 technicalText.innerHTML = "Un <strong>UPDATE</strong> es lógicamente un <em>DELETE</em> del dato antiguo seguido de un <em>INSERT</em> del dato nuevo. Por tanto, <code class='text-bee-400 font-mono'>deleted</code> contiene el estado original del registro y <code class='text-bee-400 font-mono'>inserted</code> contiene el nuevo estado propuesto.";
 
-                // Highlight both
                 cardInserted.className = "w-full max-w-[200px] p-3 rounded-lg border text-center transition-all duration-300 bg-bee-500/20 border-bee-500/50 text-white shadow-lg shadow-bee-500/5";
                 badgeInserted.className = "text-[10px] uppercase font-mono mt-1 px-1.5 py-0.5 rounded bg-bee-500 text-slate-950 inline-block font-bold";
                 badgeInserted.innerText = "Activa (Valores Nuevos)";
@@ -586,7 +965,6 @@ END;</code></pre>
                 flowTriggerDesc.innerHTML = "El Trigger lee <strong class='text-bee-400 font-bold'>deleted</strong> para verificar autorizaciones o guardar un historial.";
                 technicalText.innerHTML = "Durante un <strong>DELETE</strong>, la tabla <code class='text-bee-400 font-mono'>deleted</code> almacena una copia exacta de las filas que se acaban de eliminar. La tabla <code class='text-bee-400 font-mono'>inserted</code> no es utilizada y permanece vacía.";
 
-                // Highlight deleted, fade inserted
                 cardInserted.className = "w-full max-w-[200px] p-3 rounded-lg border text-center transition-all duration-300 bg-slate-900 border-slate-800 text-slate-500";
                 badgeInserted.className = "text-[10px] uppercase font-mono mt-1 px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 inline-block font-bold";
                 badgeInserted.innerText = "Inactiva (Vacía)";
@@ -597,7 +975,7 @@ END;</code></pre>
             }
         }
 
-        // 2. Code Switcher Logic
+        // 3. Code Switcher Logic
         const codes = {
             1: {
                 title: "Validación de Fechas de Envío (Northwind)",
@@ -691,7 +1069,6 @@ END;`
         };
 
         function switchCode(id) {
-            // Reset buttons
             for (let i = 1; i <= 3; i++) {
                 const btn = document.getElementById(`btn-code-${i}`);
                 if (i === id) {
@@ -701,19 +1078,17 @@ END;`
                 }
             }
 
-            // Set content
             const data = codes[id];
             document.getElementById('case-title').innerHTML = data.title;
             document.getElementById('case-desc').innerHTML = data.desc;
             document.getElementById('case-impact').innerHTML = data.impact;
             document.getElementById('code-content').innerText = data.code;
 
-            // Keywords
             const kwContainer = document.getElementById('case-keywords');
             kwContainer.innerHTML = data.keywords.join('\n');
         }
 
-        // 3. Quiz Logic
+        // 4. Quiz Logic
         const answers = {
             1: 'B',
             2: 'B',
@@ -724,7 +1099,6 @@ END;`
             const feedback = document.getElementById(`feedback-${qNum}`);
             const correctOption = answers[qNum];
             
-            // Disable other buttons for this question
             const buttons = element.parentNode.querySelectorAll('button');
             buttons.forEach(btn => {
                 btn.disabled = true;
@@ -743,6 +1117,11 @@ END;`
                 feedback.innerHTML = `❌ Incorrecto. La respuesta correcta es la ${correctOption}.`;
             }
         }
+
+        // Inicializar explorador de archivos al arrancar
+        document.addEventListener('DOMContentLoaded', () => {
+            viewFile('pubsAbejitas');
+        });
     </script>
 </body>
 </html>
