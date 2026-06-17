@@ -1,65 +1,116 @@
-Infografía Interactiva: Triggers (Disparadores) en SQL Server 🐝
+# 🐝 Infografía Interactiva: Triggers (Disparadores) en SQL Server
 
-Este repositorio contiene una Infografía Interactiva de Alta Fidelidad desarrollada en HTML5 y Tailwind CSS, basada en el Taller 3.3 de Modelado de Bases de Datos de la Escuela Profesional de Ingeniería de Sistemas de la Universidad Andina del Cusco (UAC).
+<div align="center">
 
-El proyecto ha sido diseñado bajo una temática visual premium inspirada en el equipo de desarrollo "Las Abejitas" (paleta de colores oscura con acentos oro, ámbar y carbón) combinando conceptos teóricos avanzados con componentes totalmente interactivos.
+![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-🚀 Características Principales
+*Taller 3.3 — Modelado de Bases de Datos | Universidad Andina del Cusco*
 
-Simulador de Arquitectura Interactiva (Tablas Virtuales): Un playground dinámico en tiempo real donde el usuario puede seleccionar operaciones DML (INSERT, UPDATE, DELETE) para visualizar cómo se comportan y qué información almacenan las tablas temporales del sistema inserted y deleted.
+</div>
 
-Explorador de Clasificación: Tarjetas técnicas interactivas para comprender los momentos de ejecución (AFTER / INSTEAD OF) y los alcances de disparo (DML, DDL, LOGON).
+---
 
-Visualizador de Código con Casos Prácticos: Un selector interactivo de scripts en SQL Server con tres escenarios de bases de datos reales (Northwind y Pubs):
+## 📖 Descripción
 
-Validación de fechas de envío (Orders).
+Este repositorio contiene una **Infografía Interactiva de Alta Fidelidad** desarrollada en HTML5 y Tailwind CSS, basada en el **Taller 3.3** de la asignatura *Modelado de Base de Datos* de la Escuela Profesional de Ingeniería de Sistemas de la **Universidad Andina del Cusco (UAC)**.
 
-Auditoría de cambios e historial (Titles).
+El proyecto ha sido diseñado bajo una temática visual premium inspirada en el equipo de desarrollo **"Las Abejitas"** — paleta de colores oscura con acentos oro, ámbar y carbón — combinando conceptos teóricos avanzados con componentes totalmente interactivos.
 
-Actualización automática y sincronización de stock (Sales).
+---
 
-Quiz de Autoevaluación: Un módulo de evaluación integrado con retroalimentación inmediata para poner a prueba los conocimientos adquiridos sobre disparadores.
+## 🚀 Características Principales
 
-🛠️ Tecnologías Utilizadas
+### 🔬 Simulador de Arquitectura Interactiva (Tablas Virtuales)
+Un playground dinámico en tiempo real donde el usuario puede seleccionar operaciones DML (`INSERT`, `UPDATE`, `DELETE`) para visualizar cómo se comportan y qué información almacenan las tablas temporales del sistema `inserted` y `deleted`.
 
-HTML5 - Estructura semántica.
+### 🗂️ Explorador de Clasificación
+Tarjetas técnicas interactivas para comprender los momentos de ejecución (`AFTER` / `INSTEAD OF`) y los alcances de disparo (`DML`, `DDL`, `LOGON`).
 
-Tailwind CSS - Estilos modernos, diseño responsivo optimizado para móviles y escritorio, y efectos de iluminación (glow effects).
+### 💻 Visualizador de Código con Casos Prácticos
+Un selector interactivo de scripts en SQL Server con tres escenarios de bases de datos reales (Northwind y Pubs):
 
-JavaScript (ES6+) - Lógica reactiva para el simulador, el cargador de código y la evaluación interactiva.
+| # | Escenario | Base de Datos |
+|---|-----------|---------------|
+| 1 | Validación de fechas de envío | Northwind — `Orders` |
+| 2 | Auditoría de cambios e historial | Pubs — `Titles` |
+| 3 | Actualización automática y sincronización de stock | Pubs — `Sales` |
 
-Google Fonts - Tipografía Plus Jakarta Sans para una legibilidad moderna.
+### 📝 Quiz de Autoevaluación
+Módulo de evaluación integrado con retroalimentación inmediata para poner a prueba los conocimientos adquiridos sobre disparadores SQL.
 
-💻 ¿Cómo ejecutar el proyecto?
+---
 
-Al ser una aplicación web completamente auto-contenida en un solo archivo, no requiere de ninguna instalación, servidores locales o compilación previa.
+## 🛠️ Tecnologías Utilizadas
 
-Descarga o clona este repositorio:
+| Tecnología | Uso |
+|---|---|
+| **HTML5** | Estructura semántica del documento |
+| **Tailwind CSS** | Estilos modernos, diseño responsivo y glow effects |
+| **JavaScript ES6+** | Lógica reactiva del simulador, cargador de código y evaluación |
+| **Google Fonts** | Tipografía *Plus Jakarta Sans* para legibilidad moderna |
 
-git clone [https://github.com/tu-usuario/nombre-repositorio.git](https://github.com/tu-usuario/nombre-repositorio.git)
+---
 
+## 💻 Cómo ejecutar el proyecto
 
-Navega al directorio del proyecto y abre el archivo en tu navegador web preferido:
+Al ser una aplicación web completamente **auto-contenida en un solo archivo**, no requiere instalación, servidores locales ni compilación previa.
 
-double-click / arrastrar a Chrome, Firefox, Edge o Safari -> triggers_infografia.html
+**1. Clona el repositorio:**
 
+```bash
+git clone https://github.com/tu-usuario/nombre-repositorio.git
+```
 
-📚 Contexto Académico
+**2. Abre el archivo directamente en tu navegador:**
 
-Este recurso didáctico fue elaborado como parte de las actividades prácticas de la asignatura Modelado de Base de Datos (Unidad II), bajo la tutoría del docente Hugo Espetia Huamanga.
+```bash
+# Opción A — doble clic sobre el archivo
+triggers_infografia.html
 
-👥 Equipo de Desarrollo: "Las Abejitas"
+# Opción B — arrastrarlo a Chrome, Firefox, Edge o Safari
+```
 
-Flórez Hurtado, Diego Alonzo
+> ✅ Compatible con cualquier navegador moderno. No se requieren dependencias externas.
 
-Gil Condori, Ghyvraim Horacio
+---
 
-Canaza Coricasa, Yamile Zamira
+## 📚 Contexto Académico
 
-Flores Bocangel, Rhai Francisco
+| Campo | Detalle |
+|---|---|
+| **Universidad** | Universidad Andina del Cusco (UAC) |
+| **Escuela** | Ingeniería de Sistemas |
+| **Asignatura** | Modelado de Base de Datos |
+| **Unidad** | Unidad III |
+| **Taller** | 3.3 — Triggers en SQL Server |
+| **Docente** | Hugo Espetia Huamanga |
+| **Semestre** | 2026-I |
+| **Sede** | Cusco, Perú |
 
-📄 Licencia
+---
 
-Este proyecto es de uso académico y libre para fines educativos y de consulta de arquitectura en SQL Server.
+## 👥 Equipo de Desarrollo — *Las Abejitas* 🐝
 
-Cusco, Perú — 2026-I
+| Integrante |
+|---|
+| Flórez Hurtado, Diego Alonzo |
+| Gil Condori, Ghyvraim Horacio |
+| Canaza Coricasa, Yamile Zamira |
+| Flores Bocangel, Rhai Francisco |
+
+---
+
+## 📄 Licencia
+
+Este proyecto es de **uso académico** y libre para fines educativos y de consulta sobre arquitectura en SQL Server.
+
+---
+
+<div align="center">
+
+*Desarrollado con 🐝 por Las Abejitas — UAC, Cusco, Perú 2026-I*
+
+</div>
